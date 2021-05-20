@@ -1,0 +1,163 @@
+<html
+    window-resizable="true"
+    window-width="800dip"
+    window-height="600dip"
+>
+<head>
+<title>sciter i18n demo</title>
+<style>
+
+@import url("css/controls.css");
+@import url("css/fontawesome.css");
+@import url("js/pagecontrol.css");
+
+pagecontrol {
+    size: *;
+}
+
+tab > div {
+    flow: vertical;
+
+    margin-top: 1em;
+    border-spacing: 1em;
+
+    background-color: color(panel);
+}
+
+</style>
+<script type="module">
+
+// import functions from sciter libraries
+import * as sys from "@sys";
+import {encode,decode} from "@sciter";
+
+</script>
+</head>
+<body>
+    <pagecontrol header="top">
+        <tab title="buttons" selected>
+            <button>Do it!</button>
+            <button role="default-button">Default</button>
+            <button disabled>Disabled</button>
+            <button .success>Success</button>
+            <button .warning>Warning</button>
+            <button .danger>Danger</button>
+        </tab>
+        <tab title="editbox">
+            <editbox value="foo" placeholder="input with content" maxlength=6 filter="a~z" spellcheck="yes" />
+            <editbox placeholder="input text here" />
+            <editbox nullable placeholder="nullable" />
+            <editbox disabled value="disabled" />
+            <input|password placeholder="password" password-char="*" />
+            <!-- https://github.com/c-smile/sciter-js-sdk/blob/main/docs/md/behaviors/behavior-masked-edit.md -->
+            <input|masked mask="(###) ### - ####" />
+        </tab>
+        <tab title="number">
+            <input|number value="42" step="1" min="0" max="999" placeholder="number1" />
+            <input|number step="1" min="0" max="999" placeholder="number2" />
+            <input|number disabled step="1" min="0" max="999" />
+            <input|decimal value="42.13" />
+            <input|integer value="42" />
+        </tab>
+        <tab title="radio">
+            <!-- as="string | integer | float | numeric | auto" -->
+            <radio (rgroup) checked value="true" as="string">Yes</radio>
+            <radio (rgroup) value="false" as="string">No</radio>
+            <radio (rgroup) value="null" as="string">Undefined</radio>
+
+            <radio (rgroupd) disabled checked value="a">Disabled (Checked)</radio>
+            <radio (rgroupd) disabled value="b">Disabled</radio>
+        </tab>
+        <tab title="checkbox">
+            <checkbox checked>Checked</checkbox>
+            <checkbox>Unchecked</checkbox>
+            <checkbox mixed>Mixed</checkbox>
+
+            <checkbox disabled checked value="a">Disabled (Checked)</checkbox>
+            <checkbox disabled value="b">Disabled</checkbox>
+
+            <checkbox #checkbox-label checked>
+                <caption .true>checked state</caption>
+                <caption .false>unchecked state</caption>
+            </checkbox>
+        </tab>
+        <tab title="toggle">
+            <toggle (foo) checked>
+                <option>No</option>
+                <option>Yes</option>
+            </toggle>
+
+            <hr />
+            no label
+            <toggle (bar) />
+
+            <hr />
+            group
+            <toggle|radio(group) value="A" />
+            <toggle|radio(group) value="B" checked />
+            <toggle|radio(group) value="C" />
+        </tab>
+
+        <tab title="select|switch">
+            <select|switch>
+                <option>Left</option>
+                <option>Center</option>
+                <option>Right</option>
+            </select>
+        </tab>
+
+        <tab title="select|dropdown">
+            <select|dropdown novalue="dropdown">
+                <option>Apple</option>
+                <option>Apricot</option>
+                <option>Currant</option>
+                <option>Grapefruit</option>
+                <option>Peach</option>
+                <option>Pomegranate</option>
+                <option>Tamarind</option>
+            </select>
+
+            <select|dropdown editable>
+                <option>Apple</option>
+                <option>Apricot</option>
+                <option>Currant</option>
+                <option>Grapefruit</option>
+                <option>Peach</option>
+                <option>Pomegranate</option>
+                <option>Tamarind</option>
+            </select>
+
+            <select|dropdown novalue="disabled" disabled>
+                <option>Apple</option>
+                <option>Apricot</option>
+                <option>Currant</option>
+                <option>Grapefruit</option>
+                <option>Peach</option>
+                <option>Pomegranate</option>
+                <option>Tamarind</option>
+            </select>
+
+            <select|dropdown>
+                <option>One</option>
+                <optgroup label="Group 1">
+                    <option>Two</option>
+                    <option.toset>Three</option>
+                    <option>Four</option>
+                </optgroup>
+                <optgroup>
+                    <caption>Group 2</caption>
+                    <option>Five</option>
+                    <option>Six</option>
+                    <option>Seven</option>
+                    <option>Eight</option>
+                </optgroup>
+                <option>Nine</option>
+                <option>Ten</option>
+                <option>Eleven</option>
+                <option>Twelve</option>
+            </select>
+
+        <tab title="">
+        </tab>
+</body>
+</html>
