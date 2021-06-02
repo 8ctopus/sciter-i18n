@@ -76,13 +76,16 @@ document.ready = function() {
         }
     });
 
-    const tabsheets = document.$$("#tabsheet-3");
+    // get tabs to translate
+    const tabs = document.$$("pagecontrol div#tab-1");
 
-    tabsheets.map(function(tabsheet) {
-        // get all html elements
-        tabsheet.$$("span,p,button,editbox").map(function(element) {
-            console.log(element.tag);
+    //console.log("tabs count" + tabs.length);
 
+    tabs.map(function(tab) {
+        //console.log("tab " + tab);
+
+        // get all tab elements
+        tab.$$("span,p,button,editbox").map(function(element) {
             switch (element.tag) {
 /*                case "span": */
                 case "p":
