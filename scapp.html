@@ -1,6 +1,6 @@
 <html
     window-resizable="true"
-    window-width="800dip"
+    window-width="1000dip"
     window-height="600dip"
 >
 <head>
@@ -31,6 +31,31 @@ tab > div {
 
 plaintext#logger {
     height: 150dip;
+}
+
+select[type="list"]#table {
+    flow: table;
+    width: 100%;
+    height: 60dip;
+}
+
+select[type="list"]#table option {
+    flow: table-row;
+}
+
+select[type="tree"] {
+    width: max-content;
+}
+
+@import url("css/std-menu.css");
+@import url("css/menu-bar.css");
+
+menu.bar {
+    width: 280dip;
+}
+
+button.context-menu {
+    context-menu: selector(menu#context);
 }
 
 </style>
@@ -165,7 +190,7 @@ document.on("ready", function() {
                 <option data-i18n>One</option>
                 <optgroup label="Group 1">
                     <option data-i18n>Two</option>
-                    <option.toset>Three</option>
+                    <option .toset>Three</option>
                     <option data-i18n>Four</option>
                 </optgroup>
                 <optgroup>
@@ -180,8 +205,188 @@ document.on("ready", function() {
                 <option data-i18n>Eleven</option>
                 <option data-i18n>Twelve</option>
             </select>
+        </tab>
+        <tab title="select|list">
+            <select|list multiple size=5>
+                <option data-i18n>Apple</option>
+                <option data-i18n selected>Apricot</option>
+                <option data-i18n>Currant</option>
+                <option data-i18n selected>Grapefruit</option>
+                <option data-i18n>Peach</option>
+                <option data-i18n>Pomegranate</option>
+                <option data-i18n>Tamarind</option>
+            </select>
+            <select|list multiple="checkmarks" size=5 dir="rtl">
+                <option data-i18n>Apple</option>
+                <option data-i18n checked>Apricot</option>
+                <option data-i18n checked>Currant</option>
+                <option data-i18n>Grapefruit</option>
+                <option data-i18n>Peach</option>
+                <option data-i18n>Pomegranate</option>
+                <option data-i18n>Tamarind</option>
+            </select>
+            <select|list #table size=3>
+                <option value="1">
+                    <span data-i18n>1</span>
+                    <span data-i18n>Fox</span>
+                </option>
+                <option value="2">
+                    <span data-i18n>2</span>
+                    <span data-i18n>Bravo</span>
+                </option>
+                <option value="3">
+                    <span data-i18n>3</span>
+                    <span data-i18n>Alpha</span>
+                </option>
+            </select>
+        </tab>
+        <tab title="select|tree">
+            <select|tree multiple="checkmarks" treelines>
+                <option expanded>
+                    <caption data-i18n>Fruits</caption>
+                    <option data-i18n value="1" checked>Apple</option>
+                    <option data-i18n value="2">Apricot</option>
+                    <option data-i18n value="3" checked>Currant</option>
+                </option>
+                <option>
+                    <caption data-i18n>Veggies</caption>
+                    <option data-i18n value="4">Cabbage</option>
+                    <option data-i18n value="5">Broccoli</option>
+                    <option data-i18n value="6">Chicory</option>
+                </option>
+            </select>
+        </tab>
 
-        <tab title="">
+        <tab title="menu">
+            <!-- top level - menu bar, it must match ul#menu-bar selector, see std-menu.css -->
+            <ul #menu-bar>
+                <li>
+                    <caption data-i18n>File</caption>
+                    <menu>
+                        <li data-i18n #menu-open>Open</li>
+                        <li data-i18n>Save</li>
+                    </menu>
+                </li>
+                <li>
+                    <caption data-i18n>Edit</caption>
+                    <menu>
+                        <li data-i18n>Cut</li>
+                        <li data-i18n>Copy</li>
+                        <li data-i18n>Paste</li>
+                        <li data-i18n>Convert
+                            <menu>
+                                <li data-i18n>Uppercase</li>
+                                <li data-i18n>Lowercase</li>
+                            </menu>
+                        </li>
+                    </menu>
+                </li>
+            </ul>
+
+            <menu .bar>
+                <li data-i18n filename="c:\windows\notepad.exe">notepad.exe</li>
+                <li data-i18n filename="c:\windows\regedit.exe">regedit.exe</li>
+                <li data-i18n filename="c:\windows\explorer.exe">explorer.exe</li>
+            </menu>
+
+            <ul id="menu-bar"> <!-- top level - menu bar, it must match ul#menu-bar selector, see std-menu.css -->
+                <li data-i18n>
+                    Simple
+                    <menu class="cool">
+                        <li data-i18n title="Hello world!">First item (with tooltip)</li>
+                        <li data-i18n accesskey="^2">Second item<span class="accesskey">Ctrl+<font color="red">2</font></span></li>
+                        <li data-i18n>
+                            Third item
+                            <menu>
+                                <li data-i18n style="background:linear-gradient(left,yellow,red)">First sub-item</li>
+                                <li data-i18n>Second sub-item</li>
+                            </menu>
+                        </li>
+                        <li data-i18n accesskey="^4">Fourth item<span class="accesskey">Ctrl+<font color="red">4</font></span></li>
+                    </menu>
+                </li>
+                <li data-i18n>
+                    Simple 2
+                    <menu class="cool">
+                        <li data-i18n>First item</li>
+                        <li data-i18n>Second item</li>
+                        <li data-i18n>Third item</li>
+                    </menu>
+                </li>
+                <li data-i18n>Inputs
+                    <menu>
+                        <li data-i18n type="radio">First radio item</li>
+                        <li data-i18n type="radio">Second radio item</li>
+                        <li data-i18n type="radio">Third radio item</li>
+                        <hr/>
+                        <li data-i18n type="check">First check item</li>
+                        <li data-i18n type="check">Second check item</li>
+                        <li data-i18n type="check">Third check item</li>
+                        <hr/>
+                        <li data-i18n>Volume is <input type="hslider" max="10" value="0" buddy="volume-buddy" /> <b id="volume-buddy">x</b> Db</li>
+                    </menu>
+                </li>
+
+                <li data-i18n>Complex
+                    <menu class="cool">
+                        <li>
+                            <input type="radio" />First
+                            <input type="radio" />Second
+                            <input type="radio" />Third
+                        </li>
+                        <hr/>
+                        <li data-i18n type="check">First check item</li>
+                        <li data-i18n type="check">Second check item</li>
+                        <li data-i18n type="check">Third check item</li>
+                        <hr/>
+                        <li>
+                            Volume is <input type="hslider" max="10" value="0" step="0.1" buddy="volume-buddy2" /> <b id="volume-buddy2">x</b> Db
+                        </li>
+                        <li>
+                            Value: <input type="number" size=4 step=1 minvalue=0 maxvalue=100 value="25" />
+                        </li>
+                        <li>
+                            <button name="just-a-button">Just a button</button>
+                        </li>
+                        <li data-i18n>dropdown select:
+                            <select>
+                                <option data-i18n>First</option>
+                                <option data-i18n>Second</option>
+                                <option data-i18n>Third</option>
+                            </select>
+                        </li>
+                    </menu>
+                </li>
+            </ul>
+
+            <button data-i18n type="menu">Left click menu
+                <menu class="office">
+                    <li data-i18n title="hello!">First item</li>
+                    <li data-i18n>Second item</li>
+                    <li data-i18n>Third item
+                        <menu>
+                            <li data-i18n>First sub-item</li>
+                            <li data-i18n>Second sub-item</li>
+                        </menu>
+                    </li>
+                    <li data-i18n>Fourth item</li>
+                </menu>
+            </button>
+
+            <button data-i18n .context-menu>Right click menu</button>
+            <menu .context #context>
+                <li data-i18n>First item</li>
+                <li data-i18n>Second item</li>
+                <li data-i18n>Third item</li>
+                <li data-i18n>Fourth item</li>
+                <li data-i18n>
+                    Sub menu
+                    <menu>
+                        <li data-i18n>item</li>
+                        <li data-i18n>item</li>
+                    </menu>
+                </li>
+            </menu>
         </tab>
     </pagecontrol>
     <plaintext #logger />
