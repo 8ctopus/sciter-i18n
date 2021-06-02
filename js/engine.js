@@ -32,6 +32,15 @@ class Engine
                     Engine.placeholder(element);
                     break;
 
+                case "select":
+                    // get select caption
+                    const child = element.$("caption");
+
+                    if (child != null)
+                        Engine.innerHtml(child);
+
+                    break;
+
                 default:
             }
         });
@@ -47,6 +56,6 @@ class Engine
     static placeholder(element)
     {
         if (element.hasAttribute("placeholder"))
-            element.attributes["placeholder"] = element.attributes["placeholder"] + " (i18n)";
+            element.attributes["placeholder"] += " (i18n)";
     }
 }
