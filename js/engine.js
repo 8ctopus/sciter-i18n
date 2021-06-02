@@ -4,37 +4,36 @@ class Engine
 {
     static i18n()
     {
-        // get tabs to translate
-        const tabs = document.$$("pagecontrol div#tab-1");
+        // get all elements to translate
+        document.$$("[data-i18n]").map(function(element) {
+            //console.log(element.tag);
 
-        //console.log("tabs count" + tabs.length);
+            switch (element.tag) {
+                case "button":
+                case "caption":
+                case "checkbox":
+                case "h1":
+                case "h2":
+                case "h3":
+                case "h4":
+                case "h5":
+                case "h6":
+                case "label":
+                case "li":
+                case "option":
+                case "p":
+                case "radio":
+                case "span":
+                    Engine.innerHtml(element);
+                    break;
 
-        tabs.map(function(tab) {
-            //console.log("tab " + tab);
+                case "editbox":
+                case "input":
+                    Engine.placeholder(element);
+                    break;
 
-            // get all tab elements
-            tab.$$("[data-i18n]").map(function(element) {
-                //console.log(element.tag);
-
-                switch (element.tag) {
-                    case "span":
-                    case "p":
-                    case "button":
-                    case "checkbox":
-                    case "radio":
-                    case "caption":
-                    case "option":
-                        Engine.innerHtml(element);
-                        break;
-
-                    case "input":
-                    case "editbox":
-                        Engine.placeholder(element);
-                        break;
-
-                    default:
-                }
-            });
+                default:
+            }
         });
 
         console.log("i18n - OK");
@@ -49,7 +48,5 @@ class Engine
     {
         if (element.hasAttribute("placeholder"))
             element.attributes["placeholder"] = element.attributes["placeholder"] + " (i18n)";
-        else
-            console.log("no placeholder");
     }
 }

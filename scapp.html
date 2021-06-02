@@ -15,6 +15,7 @@ pagecontrol {
     size: *;
 }
 
+label,
 span {
     width: *;
 }
@@ -46,46 +47,129 @@ document.on("ready", function() {
 <body>
     <pagecontrol header="top">
         <tab title="general" selected>
-            <p data-i18n> Testing translation using i18next </p>
-
-            <span data-i18n #howareyou> how are you today? </span>
-
-            <button data-i18n>change language</button>
-
-            <editbox data-i18n placeholder="input with content" maxlength=6 filter="a~z" spellcheck="yes" />
-
+            <h1 data-i18n> i18n engine test </h1>
+            <h1 data-i18n> h1 </h1>
+            <h2 data-i18n> h2 </h2>
+            <h3 data-i18n> h3 </h3>
+            <p data-i18n> p </p>
+            <span data-i18n> span </span>
+            <label data-i18n> label </label>
+            <ol>
+                <li data-i18n> list item </li>
+                <li data-i18n> list item </li>
+            </ol>
+        </tab>
+        <tab title="buttons">
+            <button data-i18n>Do it!</button>
+            <button data-i18n role="default-button">Default</button>
+            <button data-i18n disabled>Disabled</button>
+            <button data-i18n .success>Success</button>
+            <button data-i18n .warning>Warning</button>
+            <button data-i18n .danger>Danger</button>
+        </tab>
+        <tab title="editbox">
+            <editbox data-i18n value="foo" placeholder="input with content" maxlength=6 filter="a~z" spellcheck="yes" />
+            <editbox data-i18n placeholder="input text here" />
+            <editbox data-i18n nullable placeholder="nullable" />
+            <editbox data-i18n disabled value="disabled" />
+            <input|password data-i18n placeholder="password" password-char="*" />
+            <!-- https://github.com/c-smile/sciter-js-sdk/blob/main/docs/md/behaviors/behavior-masked-edit.md -->
+            <input|masked mask="(###) ### - ####" />
+        </tab>
+        <tab title="number">
+            <input|number data-i18n value="42" step="1" min="0" max="999" placeholder="number1" />
             <input|number data-i18n step="1" min="0" max="999" placeholder="number2" />
-
-            <checkbox data-i18n checked value="a">Disabled (Checked)</checkbox>
+            <input|number disabled step="1" min="0" max="999" />
+            <input|decimal value="42.13" />
+            <input|integer value="42" />
+        </tab>
+        <tab title="radio">
+            <!-- as="string | integer | float | numeric | auto" -->
+            <radio (rgroup) data-i18n checked value="true" as="string">Yes</radio>
+            <radio (rgroup) data-i18n value="false" as="string">No</radio>
+            <radio (rgroup) data-i18n value="null" as="string">Undefined</radio>
 
             <radio (rgroupd) data-i18n disabled checked value="a">Disabled (Checked)</radio>
             <radio (rgroupd) data-i18n disabled value="b">Disabled</radio>
+        </tab>
+        <tab title="checkbox">
+            <checkbox data-i18n checked>Checked</checkbox>
+            <checkbox data-i18n>Unchecked</checkbox>
+            <checkbox data-i18n mixed>Mixed</checkbox>
+
+            <checkbox data-i18n disabled checked value="a">Disabled (Checked)</checkbox>
+            <checkbox data-i18n disabled value="b">Disabled</checkbox>
 
             <checkbox #checkbox-label checked>
                 <caption data-i18n .true>checked state</caption>
                 <caption data-i18n .false>unchecked state</caption>
             </checkbox>
-
+        </tab>
+        <tab title="toggle">
             <toggle (foo) checked>
                 <option data-i18n>No</option>
                 <option data-i18n>Yes</option>
             </toggle>
 
+            <hr />
+            <span data-i18n>no label</span>
+            <toggle (bar) />
+
+            <hr />
+            <span data-i18n>group</span>
+            <toggle|radio(group) value="A" />
+            <toggle|radio(group) value="B" checked />
+            <toggle|radio(group) value="C" />
+        </tab>
+
+        <tab title="select|switch">
             <select|switch>
                 <option data-i18n>Left</option>
                 <option data-i18n>Center</option>
                 <option data-i18n>Right</option>
+            </select>
+        </tab>
+
+        <tab title="select|dropdown">
+            <select|dropdown novalue="dropdown">
+                <option data-i18n>Apple</option>
+                <option data-i18n>Apricot</option>
+                <option data-i18n>Currant</option>
+                <option data-i18n>Grapefruit</option>
+                <option data-i18n>Peach</option>
+                <option data-i18n>Pomegranate</option>
+                <option data-i18n>Tamarind</option>
+            </select>
+
+            <select|dropdown editable>
+                <option data-i18n>Apple</option>
+                <option data-i18n>Apricot</option>
+                <option data-i18n>Currant</option>
+                <option data-i18n>Grapefruit</option>
+                <option data-i18n>Peach</option>
+                <option data-i18n>Pomegranate</option>
+                <option data-i18n>Tamarind</option>
+            </select>
+
+            <select|dropdown novalue="disabled" disabled>
+                <option data-i18n>Apple</option>
+                <option data-i18n>Apricot</option>
+                <option data-i18n>Currant</option>
+                <option data-i18n>Grapefruit</option>
+                <option data-i18n>Peach</option>
+                <option data-i18n>Pomegranate</option>
+                <option data-i18n>Tamarind</option>
             </select>
 
             <select|dropdown>
                 <option data-i18n>One</option>
                 <optgroup label="Group 1">
                     <option data-i18n>Two</option>
-                    <option.toset data-i18n>Three</option>
+                    <option.toset>Three</option>
                     <option data-i18n>Four</option>
                 </optgroup>
                 <optgroup>
-                    <caption data-i18n>Group 2</caption>
+                    <caption>Group 2</caption>
                     <option data-i18n>Five</option>
                     <option data-i18n>Six</option>
                     <option data-i18n>Seven</option>
@@ -95,128 +179,6 @@ document.on("ready", function() {
                 <option data-i18n>Ten</option>
                 <option data-i18n>Eleven</option>
                 <option data-i18n>Twelve</option>
-            </select>
-        </tab>
-        <tab title="buttons">
-            <button>Do it!</button>
-            <button role="default-button">Default</button>
-            <button disabled>Disabled</button>
-            <button .success>Success</button>
-            <button .warning>Warning</button>
-            <button .danger>Danger</button>
-        </tab>
-        <tab title="editbox">
-            <editbox value="foo" placeholder="input with content" maxlength=6 filter="a~z" spellcheck="yes" />
-            <editbox placeholder="input text here" />
-            <editbox nullable placeholder="nullable" />
-            <editbox disabled value="disabled" />
-            <input|password placeholder="password" password-char="*" />
-            <!-- https://github.com/c-smile/sciter-js-sdk/blob/main/docs/md/behaviors/behavior-masked-edit.md -->
-            <input|masked mask="(###) ### - ####" />
-        </tab>
-        <tab title="number">
-            <input|number value="42" step="1" min="0" max="999" placeholder="number1" />
-            <input|number step="1" min="0" max="999" placeholder="number2" />
-            <input|number disabled step="1" min="0" max="999" />
-            <input|decimal value="42.13" />
-            <input|integer value="42" />
-        </tab>
-        <tab title="radio">
-            <!-- as="string | integer | float | numeric | auto" -->
-            <radio (rgroup) checked value="true" as="string">Yes</radio>
-            <radio (rgroup) value="false" as="string">No</radio>
-            <radio (rgroup) value="null" as="string">Undefined</radio>
-
-            <radio (rgroupd) disabled checked value="a">Disabled (Checked)</radio>
-            <radio (rgroupd) disabled value="b">Disabled</radio>
-        </tab>
-        <tab title="checkbox">
-            <checkbox checked>Checked</checkbox>
-            <checkbox>Unchecked</checkbox>
-            <checkbox mixed>Mixed</checkbox>
-
-            <checkbox disabled checked value="a">Disabled (Checked)</checkbox>
-            <checkbox disabled value="b">Disabled</checkbox>
-
-            <checkbox #checkbox-label checked>
-                <caption .true>checked state</caption>
-                <caption .false>unchecked state</caption>
-            </checkbox>
-        </tab>
-        <tab title="toggle">
-            <toggle (foo) checked>
-                <option>No</option>
-                <option>Yes</option>
-            </toggle>
-
-            <hr />
-            no label
-            <toggle (bar) />
-
-            <hr />
-            group
-            <toggle|radio(group) value="A" />
-            <toggle|radio(group) value="B" checked />
-            <toggle|radio(group) value="C" />
-        </tab>
-
-        <tab title="select|switch">
-            <select|switch>
-                <option>Left</option>
-                <option>Center</option>
-                <option>Right</option>
-            </select>
-        </tab>
-
-        <tab title="select|dropdown">
-            <select|dropdown novalue="dropdown">
-                <option>Apple</option>
-                <option>Apricot</option>
-                <option>Currant</option>
-                <option>Grapefruit</option>
-                <option>Peach</option>
-                <option>Pomegranate</option>
-                <option>Tamarind</option>
-            </select>
-
-            <select|dropdown editable>
-                <option>Apple</option>
-                <option>Apricot</option>
-                <option>Currant</option>
-                <option>Grapefruit</option>
-                <option>Peach</option>
-                <option>Pomegranate</option>
-                <option>Tamarind</option>
-            </select>
-
-            <select|dropdown novalue="disabled" disabled>
-                <option>Apple</option>
-                <option>Apricot</option>
-                <option>Currant</option>
-                <option>Grapefruit</option>
-                <option>Peach</option>
-                <option>Pomegranate</option>
-                <option>Tamarind</option>
-            </select>
-
-            <select|dropdown>
-                <option>One</option>
-                <optgroup label="Group 1">
-                    <option>Two</option>
-                    <option.toset>Three</option>
-                    <option>Four</option>
-                </optgroup>
-                <optgroup>
-                    <caption>Group 2</caption>
-                    <option>Five</option>
-                    <option>Six</option>
-                    <option>Seven</option>
-                    <option>Eight</option>
-                </optgroup>
-                <option>Nine</option>
-                <option>Ten</option>
-                <option>Eleven</option>
-                <option>Twelve</option>
             </select>
 
         <tab title="">
