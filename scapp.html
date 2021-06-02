@@ -25,6 +25,7 @@ tab > div {
 }
 
 </style>
+<script src="js/i18next.js"></script>
 <script>
 
 /**
@@ -70,7 +71,53 @@ document.ready = function() {
                 break;
         }
     });
+
+    const tabsheets = document.$$("#tabsheet-3");
+
+    tabsheets.map(function(tabsheet) {
+        // get all html elements
+        tabsheet.$$("span,p,button,editbox").map(function(element) {
+            console.log(element.tag);
+
+            switch (element.tag) {
+/*                case "span": */
+                case "p":
+                case "button":
+                    i18nInnerHtml(element);
+                    break;
+
+/*
+                case "editbox":
+                    console.log("editbox");
+                    i18nPlaceHolder(element);
+                    break;
+*/
+                default:
+
+            }
+
+            //console.log(element.tag + " " + element.innerHTML);
+        });
+    });
 };
+
+function i18nInnerHtml(element)
+{
+    element.innerHTML = "translated";
+}
+
+function i18nPlaceHolder(element)
+{
+    console.log("placeholder");
+
+    let placeholder = element.attributes["placeholder"];
+
+    if (placeholder == null)
+        return;
+
+    console.log(placeholder);
+//    placeholder = "translated";
+}
 
 </script>
 </head>
