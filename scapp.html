@@ -85,45 +85,36 @@ document.ready = function() {
         //console.log("tab " + tab);
 
         // get all tab elements
-        tab.$$("span,p,button,editbox").map(function(element) {
+        tab.$$("[data-i18n]").map(function(element) {
+            //console.log(element.tag);
+
             switch (element.tag) {
-/*                case "span": */
+                case "span":
                 case "p":
                 case "button":
+                case "radio":
                     i18nInnerHtml(element);
                     break;
 
-/*
                 case "editbox":
-                    console.log("editbox");
                     i18nPlaceHolder(element);
                     break;
-*/
+
                 default:
-
             }
-
-            //console.log(element.tag + " " + element.innerHTML);
         });
     });
 };
 
 function i18nInnerHtml(element)
 {
-    element.innerHTML = "translated";
+    element.innerHTML = element.innerHTML + " - TR";
 }
 
 function i18nPlaceHolder(element)
 {
-    console.log("placeholder");
-
-    let placeholder = element.attributes["placeholder"];
-
-    if (placeholder == null)
-        return;
-
-    console.log(placeholder);
-//    placeholder = "translated";
+    if (element.hasAttribute("placeholder"))
+        element.attributes["placeholder"] = element.attributes["placeholder"] + " - TR";
 }
 
 </script>
@@ -131,10 +122,13 @@ function i18nPlaceHolder(element)
 <body>
     <pagecontrol header="top">
         <tab title="general" selected>
-            <p> Testing translation using i18next </p>
-            <span #hello> hello </span>
-            <span #howareyou> how are you today? </span>
-            <button>change language</button>
+            <p data-i18n> Testing translation using i18next </p>
+            <span data-i18n #hello> hello </span>
+            <span data-i18n #howareyou> how are you today? </span>
+            <button data-i18n>change language</button>
+            <editbox data-i18n value="foo" placeholder="input with content" maxlength=6 filter="a~z" spellcheck="yes" />
+            <radio (rgroupd) data-i18n disabled checked value="a">Disabled (Checked)</radio>
+            <radio (rgroupd) data-i18n disabled value="b">Disabled</radio>
         </tab>
         <tab title="buttons">
             <button>Do it!</button>
