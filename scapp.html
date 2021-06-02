@@ -26,49 +26,12 @@ tab > div {
 
 </style>
 <script src="js/logger.js"></script>
+<script src="js/engine.js"></script>
 <script>
 
 document.on("ready", function() {
-    // get tabs to translate
-    const tabs = document.$$("pagecontrol div#tab-1");
-
-    //console.log("tabs count" + tabs.length);
-
-    tabs.map(function(tab) {
-        //console.log("tab " + tab);
-
-        // get all tab elements
-        tab.$$("[data-i18n]").map(function(element) {
-            //console.log(element.tag);
-
-            switch (element.tag) {
-                case "span":
-                case "p":
-                case "button":
-                case "radio":
-                    i18nInnerHtml(element);
-                    break;
-
-                case "editbox":
-                    i18nPlaceHolder(element);
-                    break;
-
-                default:
-            }
-        });
-    });
+    Engine.i18n();
 });
-
-function i18nInnerHtml(element)
-{
-    element.innerHTML = element.innerHTML + " - TR";
-}
-
-function i18nPlaceHolder(element)
-{
-    if (element.hasAttribute("placeholder"))
-        element.attributes["placeholder"] = element.attributes["placeholder"] + " - TR";
-}
 
 </script>
 </head>
