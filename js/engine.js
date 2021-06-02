@@ -20,12 +20,16 @@ class Engine
                     case "span":
                     case "p":
                     case "button":
+                    case "checkbox":
                     case "radio":
-                        Engine.i18nInnerHtml(element);
+                    case "caption":
+                    case "option":
+                        Engine.innerHtml(element);
                         break;
 
+                    case "input":
                     case "editbox":
-                        Engine.i18nPlaceHolder(element);
+                        Engine.placeholder(element);
                         break;
 
                     default:
@@ -36,14 +40,16 @@ class Engine
         console.log("i18n - OK");
     }
 
-    static i18nInnerHtml(element)
+    static innerHtml(element)
     {
-        element.innerHTML = element.innerHTML + " - TR";
+        element.innerHTML = element.innerHTML + " (i18n)";
     }
 
-    static i18nPlaceHolder(element)
+    static placeholder(element)
     {
         if (element.hasAttribute("placeholder"))
-            element.attributes["placeholder"] = element.attributes["placeholder"] + " - TR";
+            element.attributes["placeholder"] = element.attributes["placeholder"] + " (i18n)";
+        else
+            console.log("no placeholder");
     }
 }

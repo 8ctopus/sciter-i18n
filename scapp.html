@@ -15,11 +15,15 @@ pagecontrol {
     size: *;
 }
 
+span {
+    width: *;
+}
+
 tab > div {
     flow: vertical;
 
     margin-top: 1em;
-    border-spacing: 1em;
+    border-spacing: 0.5em;
 
     background-color: color(panel);
 }
@@ -43,12 +47,55 @@ document.on("ready", function() {
     <pagecontrol header="top">
         <tab title="general" selected>
             <p data-i18n> Testing translation using i18next </p>
-            <span data-i18n #hello> hello </span>
+
             <span data-i18n #howareyou> how are you today? </span>
+
             <button data-i18n>change language</button>
-            <editbox data-i18n value="foo" placeholder="input with content" maxlength=6 filter="a~z" spellcheck="yes" />
+
+            <editbox data-i18n placeholder="input with content" maxlength=6 filter="a~z" spellcheck="yes" />
+
+            <input|number data-i18n step="1" min="0" max="999" placeholder="number2" />
+
+            <checkbox data-i18n checked value="a">Disabled (Checked)</checkbox>
+
             <radio (rgroupd) data-i18n disabled checked value="a">Disabled (Checked)</radio>
             <radio (rgroupd) data-i18n disabled value="b">Disabled</radio>
+
+            <checkbox #checkbox-label checked>
+                <caption data-i18n .true>checked state</caption>
+                <caption data-i18n .false>unchecked state</caption>
+            </checkbox>
+
+            <toggle (foo) checked>
+                <option data-i18n>No</option>
+                <option data-i18n>Yes</option>
+            </toggle>
+
+            <select|switch>
+                <option data-i18n>Left</option>
+                <option data-i18n>Center</option>
+                <option data-i18n>Right</option>
+            </select>
+
+            <select|dropdown>
+                <option data-i18n>One</option>
+                <optgroup label="Group 1">
+                    <option data-i18n>Two</option>
+                    <option.toset data-i18n>Three</option>
+                    <option data-i18n>Four</option>
+                </optgroup>
+                <optgroup>
+                    <caption data-i18n>Group 2</caption>
+                    <option data-i18n>Five</option>
+                    <option data-i18n>Six</option>
+                    <option data-i18n>Seven</option>
+                    <option data-i18n>Eight</option>
+                </optgroup>
+                <option data-i18n>Nine</option>
+                <option data-i18n>Ten</option>
+                <option data-i18n>Eleven</option>
+                <option data-i18n>Twelve</option>
+            </select>
         </tab>
         <tab title="buttons">
             <button>Do it!</button>
