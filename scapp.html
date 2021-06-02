@@ -35,7 +35,13 @@ import {encode,decode} from "@sciter";
 </head>
 <body>
     <pagecontrol header="top">
-        <tab title="buttons" selected>
+        <tab title="general" selected>
+            <p> Testing translation using i18next </p>
+            <span #hello> hello </span>
+            <span #howareyou> how are you today? </span>
+            <button>change language</button>
+        </tab>
+        <tab title="buttons">
             <button>Do it!</button>
             <button role="default-button">Default</button>
             <button disabled>Disabled</button>
@@ -159,5 +165,6 @@ import {encode,decode} from "@sciter";
 
         <tab title="">
         </tab>
+    </pagecontrol>
 </body>
 </html>
