@@ -21,8 +21,9 @@ const dialogQuestion = (
     <question>
         <content>Be or not to be?</content>
         <buttons>
-            <button id="yes" role="default-button">Yes</button>
-            <button id="no" role="cancel-button">No</button>
+            <button #yes role="default-button">Yes</button>
+            <button #no role="cancel-button">No</button>
+            <button #cancel role="cancel-button">Cancel</button>
         </buttons>
     </question>
 );
