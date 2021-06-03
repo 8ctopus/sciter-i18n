@@ -1,5 +1,5 @@
 // JSX
-// require babel syntax highlightning
+// require babel syntax highlighting
 
 const dialogInfo = <info>Hello world!</info>;
 
