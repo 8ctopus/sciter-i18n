@@ -59,12 +59,46 @@ button.context-menu {
 }
 
 </style>
-<script src="js/logger.js"></script>
-<script src="js/engine.js"></script>
+<script src="js/logger.js" />
+<script src="js/engine.js" />
+<script src="js/dialogs.js" />
 <script>
 
 document.on("ready", function() {
     Engine.i18n();
+});
+
+// set dialog buttons on click event
+document.on("click", "button", function(event, element) {
+    switch (element.id) {
+        case "info":
+            Window.this.modal(dialogInfo);
+            break;
+
+        case "alert":
+            Window.this.modal(dialogAlert);
+            break;
+
+        case "error":
+            Window.this.modal(dialogError);
+            break;
+
+        case "question":
+            Window.this.modal(dialogQuestion);
+            break;
+
+        case "file":
+            const file = Window.this.selectFile("Select file");
+            break;
+
+        case "folder":
+            const folder = Window.this.selectFolder("Select folder");
+            break;
+
+        default:
+            console.error("unknown element");
+            break;
+    }
 });
 
 </script>
@@ -387,6 +421,14 @@ document.on("ready", function() {
                     </menu>
                 </li>
             </menu>
+        </tab>
+        <tab title="dialogs">
+            <button #info>info</button>
+            <button #alert>alert</button>
+            <button #error>error</button>
+            <button #question>question</button>
+            <button #file>select file</button>
+            <button #folder>select folder</button>
         </tab>
     </pagecontrol>
     <plaintext #logger />
