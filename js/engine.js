@@ -22,12 +22,12 @@ export class Engine
                 case "p":
                 case "radio":
                 case "span":
-                    Engine.innerHtml(element);
+                    Engine.#innerHtml(element);
                     break;
 
                 case "editbox":
                 case "input":
-                    Engine.placeholder(element);
+                    Engine.#placeholder(element);
                     break;
 
                 case "select":
@@ -35,7 +35,7 @@ export class Engine
                     const child = element.$("caption");
 
                     if (child != null)
-                        Engine.innerHtml(child);
+                        Engine.#innerHtml(child);
 
                     break;
 
@@ -46,12 +46,12 @@ export class Engine
         console.log("i18n - OK");
     }
 
-    static innerHtml(element)
+    static #innerHtml(element)
     {
         element.innerHTML = element.innerHTML + " (i18n)";
     }
 
-    static placeholder(element)
+    static #placeholder(element)
     {
         if (element.hasAttribute("placeholder"))
             element.attributes["placeholder"] += " (i18n)";
