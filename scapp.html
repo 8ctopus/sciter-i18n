@@ -67,8 +67,22 @@ import {Engine} from "js/engine.js";
 import {showDialog} from "vendor/8ctopus/sciter-dialogs/src/dialog.js";
 
 document.on("ready", function() {
+    // translate window
     Engine.i18n(document);
 });
+
+/**
+ * Dialog callback
+ * @param DOMElement root
+ * @return void
+ */
+function dialogCallback(root)
+{
+    console.log("dialog callback reached");
+
+    // translate dialog
+    Engine.i18n(root);
+}
 
 // set dialog buttons on click event
 document.on("click", "button", function(event, element) {
@@ -76,19 +90,19 @@ document.on("click", "button", function(event, element) {
 
     switch (element.id) {
         case "info":
-            value = showDialog("info", Engine.m("Widget update successful."), "ok");
+            value = showDialog("info", Engine.m("Widget update successful."), "ok", dialogCallback);
             break;
 
         case "error":
-            value = showDialog("error", Engine.m("Widget failed with error 18."), "ok help[https://duckduckgo.com]");
+            value = showDialog("error", Engine.m("Widget failed with error 18."), "ok help[https://duckduckgo.com]", dialogCallback);
             break;
 
         case "warning":
-            value = showDialog("warning", Engine.m("Widget could not be updated. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo ratione molestias optio dolorem blanditiis commodi maiores, libero expedita dolor quo, sequi ipsum iusto! Nostrum quas modi, saepe a aspernatur nemo."), "ok");
+            value = showDialog("warning", Engine.m("Widget could not be updated. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo ratione molestias optio dolorem blanditiis commodi maiores, libero expedita dolor quo, sequi ipsum iusto! Nostrum quas modi, saepe a aspernatur nemo."), "ok", dialogCallback);
             break;
 
         case "question":
-            value = showDialog("question", Engine.m("Do you want to update widget?"), "yes no cancel");
+            value = showDialog("question", Engine.m("Do you want to update widget?"), "yes no cancel", dialogCallback);
             break;
 
         case "file":
