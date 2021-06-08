@@ -46,6 +46,16 @@ export class Engine
         console.log("i18n - OK");
     }
 
+    static message(str)
+    {
+        return str + " (i18n)";
+    }
+
+    static m(str)
+    {
+        return Engine.message(str);
+    }
+
     static #innerHtml(element)
     {
         element.innerHTML = element.innerHTML + " (i18n)";

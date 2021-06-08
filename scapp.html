@@ -76,27 +76,27 @@ document.on("click", "button", function(event, element) {
 
     switch (element.id) {
         case "info":
-            value = showDialog("info", "Widget update successful.", "ok");
+            value = showDialog("info", Engine.m("Widget update successful."), "ok");
             break;
 
         case "error":
-            value = showDialog("error", "Widget failed with error 18.", "ok help[https://duckduckgo.com]");
+            value = showDialog("error", Engine.m("Widget failed with error 18."), "ok help[https://duckduckgo.com]");
             break;
 
         case "warning":
-            value = showDialog("warning", "Widget could not be updated. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo ratione molestias optio dolorem blanditiis commodi maiores, libero expedita dolor quo, sequi ipsum iusto! Nostrum quas modi, saepe a aspernatur nemo.", "ok");
+            value = showDialog("warning", Engine.m("Widget could not be updated. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo ratione molestias optio dolorem blanditiis commodi maiores, libero expedita dolor quo, sequi ipsum iusto! Nostrum quas modi, saepe a aspernatur nemo."), "ok");
             break;
 
         case "question":
-            value = showDialog("question", "Do you want to update widget?", "yes no cancel");
+            value = showDialog("question", Engine.m("Do you want to update widget?"), "yes no cancel");
             break;
 
         case "file":
-            value = Window.this.selectFile("Select file");
+            value = Window.this.selectFile(Engine.m("Select file"));
             break;
 
         case "folder":
-            value = Window.this.selectFolder("Select folder");
+            value = Window.this.selectFolder(Engine.m("Select folder"));
             break;
 
         default:
