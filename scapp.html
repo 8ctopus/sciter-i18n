@@ -59,8 +59,10 @@ button.context-menu {
 
 </style>
 <script src="js/logger.js" />
-<script src="js/engine.js" />
+<script src="js/engine.js" type="module" />
 <script type="module">
+
+import {Engine} from "js/engine.js";
 
 import {showDialog} from "vendor/8ctopus/sciter-dialogs/src/dialog.js";
 
