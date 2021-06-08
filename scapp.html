@@ -61,8 +61,9 @@ button.context-menu {
 </style>
 <script src="js/logger.js" />
 <script src="js/engine.js" />
-<script src="js/dialogs.js" />
-<script>
+<script type="module">
+
+import {showDialog} from "vendor/8ctopus/sciter-dialogs/src/dialog.js";
 
 document.on("ready", function() {
     Engine.i18n();
@@ -74,19 +75,19 @@ document.on("click", "button", function(event, element) {
 
     switch (element.id) {
         case "info":
-            value = Window.this.modal(dialogInfo);
-            break;
-
-        case "alert":
-            value = Window.this.modal(dialogAlert);
+            value = showDialog("info", "Widget update successful.", "ok");
             break;
 
         case "error":
-            value = Window.this.modal(dialogError);
+            value = showDialog("error", "Widget failed with error 18.", "ok help[https://duckduckgo.com]");
+            break;
+
+        case "warning":
+            value = showDialog("warning", "Widget could not be updated. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo ratione molestias optio dolorem blanditiis commodi maiores, libero expedita dolor quo, sequi ipsum iusto! Nostrum quas modi, saepe a aspernatur nemo.", "ok");
             break;
 
         case "question":
-            value = Window.this.modal(dialogQuestion);
+            value = showDialog("question", "Do you want to update widget?", "yes no cancel");
             break;
 
         case "file":
@@ -428,8 +429,8 @@ document.on("click", "button", function(event, element) {
         </tab>
         <tab title="dialogs" selected>
             <button #info>info</button>
-            <button #alert>alert</button>
             <button #error>error</button>
+            <button #warning>warning</button>
             <button #question>question</button>
             <button #file>select file</button>
             <button #folder>select folder</button>
