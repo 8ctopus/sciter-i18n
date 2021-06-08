@@ -1,6 +1,6 @@
 {
     "require": {
         "https://github.com/8ctopus/sciter-fontawesome": "1.0.0",
-        "https://github.com/8ctopus/sciter-dialogs": "1.0.1"
+        "https://github.com/8ctopus/sciter-dialogs": "1.0.3"
     }
 }
