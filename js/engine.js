@@ -1,9 +1,9 @@
 export class Engine
 {
-    static i18n()
+    static i18n(element)
     {
         // get all elements to translate
-        document.$$("[data-i18n]").map(function(element) {
+        element.$$("[data-i18n]").map(function(element) {
             //console.log(element.tag);
 
             switch (element.tag) {
