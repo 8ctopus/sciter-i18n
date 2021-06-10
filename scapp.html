@@ -84,7 +84,10 @@ import {showDialog} from "vendor/8ctopus/sciter-dialogs/src/dialog.js";
 
 document.on("ready", function() {
     // initialize translation engine
-    Engine.init();
+    if (Engine.init())
+        console.log("Engine init - OK");
+    else
+        console.error("Engine init - FAILED");
 
     // translate window
     Engine.i18n(document);

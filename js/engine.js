@@ -79,8 +79,10 @@ export class Engine
 
         Engine.#i18next = i18next;
 
+        let result = false;
+
         // init translation system
-        return i18next.init({
+        i18next.init({
             debug: true,
 
             initImmediate: false,
@@ -92,10 +94,12 @@ export class Engine
             }
         }, function(error, t) {
             if (!error)
-                console.log("Init i18n - OK");
+                result = true;
             else
-                console.error("Init i18n - FAILED - ${error}");
+                console.error(`Init i18n - FAILED - ${error}`);
         });
+
+        return result;
     }
 
     /**
