@@ -31,20 +31,3 @@
         error.apply(console, arguments);
     };
 })();
-
-/**
- * Add event listener
- */
-document.on("parsed ready complete", function(event, element) {
-    const log = document.$("plaintext#logger");
-
-    switch (event.type) {
-        case "contentchange":
-            if (element.tag === "plaintext" && element.id === "logger")
-                break;
-
-        default:
-            log.plaintext.appendLine(`${event.type} on ${element.tag}.${element.className}#${element.id}`);
-            break;
-    }
-});
