@@ -72,7 +72,7 @@ document.on("ready", function() {
     // translate window
     Engine.i18n(document);
 
-    console.log(Engine.t("description"));
+    //console.log(Engine.t("description"));
 });
 
 /**
@@ -102,7 +102,7 @@ document.on("click", "button", function(event, element) {
             break;
 
         case "warning":
-            value = showDialog("warning", Engine.m("Widget could not be updated. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo ratione molestias optio dolorem blanditiis commodi maiores, libero expedita dolor quo, sequi ipsum iusto! Nostrum quas modi, saepe a aspernatur nemo."), "ok", dialogCallback);
+            value = showDialog("warning", Engine.m("Widget could not be updated."), "ok", dialogCallback);
             break;
 
         case "question":
