@@ -93,10 +93,11 @@ export class Engine
                 fr: fr,
             }
         }, function(error, t) {
+            // callback when initialization is complete
             if (!error)
                 result = true;
             else
-                console.error(`Init i18n - FAILED - ${error}`);
+                console.error(`Init i18next - FAILED - ${error}`);
         });
 
         return result;
