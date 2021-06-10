@@ -29,6 +29,12 @@ export class Engine
                 "input text here": "entrer le texte ici",
                 "password": "mot de passe",
                 " list item ": "objet de la liste",
+                "info": "info",
+                "error": "erreur",
+                "warning": "avertissement",
+                "question": "question",
+                "select file": "sélectionner le fichier",
+                "select folder": "sélectionner le dossier",
             }
         };
 
