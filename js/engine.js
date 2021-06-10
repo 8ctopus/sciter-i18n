@@ -1,5 +1,41 @@
+import i18next from "i18next-20.3.1/src/index.js";
+
 export class Engine
 {
+    static #i18next;
+
+    static init()
+    {
+        const fr = {
+            translation: {
+                "description": "Test de traduction basée sur i18next",
+                "hello": "bonjour",
+                "howareyou": "Comment allez-vous aujourd'hui?",
+                "button": "changer la langue",
+            }
+        };
+
+        Engine.i18next = i18next;
+
+        // init translation system
+        return i18next.init({
+            debug: true,
+
+            initImmediate: false,
+
+            lng: "fr",
+
+            resources: {
+                fr: fr,
+            }
+        }, function(error, t) {
+            if (!error)
+                console.log("Init i18n - OK");
+            else
+                console.error("Init i18n - FAILED - ${error}");
+        });
+    }
+
     static i18n(element)
     {
         // get all elements to translate
@@ -42,8 +78,6 @@ export class Engine
                 default:
             }
         });
-
-        console.log("i18n - OK");
     }
 
     static message(str)
