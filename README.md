@@ -1,6 +1,6 @@
 # sciter i18n
 
-This is an attempt to create a translation engine for [sciter.js](https://sciter.com/).
+This is an attempt to create a translation engine for [sciter.js](https://sciter.com/) on top of [i18next](https://www.i18next.com/).
 
 ## demo
 
