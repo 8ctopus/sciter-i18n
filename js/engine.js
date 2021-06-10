@@ -17,9 +17,18 @@ export class Engine
                 "howareyou": "Comment allez-vous aujourd'hui?",
                 "button": "changer la langue",
                 "Widget update successful.": "Succès de la mise-à-jour de widget.",
-                "Widget failed with error 18.": "Widget a généré une erreur 18.",
+                //"Widget failed with error 18.": "Widget a généré une erreur 18.",
                 "Widget could not be updated.": "Widget n'a pas pu être mis-à-jour.",
                 "Do you want to update widget?": "Voulez-vous mettre à jour widget?",
+                "Default": "Défaut",
+                "Do it!": "Fais-le!",
+                "Disabled": "Désactivé",
+                "Success": "Succès",
+                "Warning": "Attention",
+                "Danger": "Danger",
+                "input text here": "entrer le texte ici",
+                "password": "mot de passe",
+                " list item ": "objet de la liste",
             }
         };
 
@@ -130,7 +139,7 @@ export class Engine
      */
     static #innerHtml(element)
     {
-        element.innerHTML = element.innerHTML + " (i18n)";
+        element.innerHTML = Engine.t(element.innerHTML, element.innerHTML + " (i18n)");
     }
 
     /**
@@ -141,6 +150,6 @@ export class Engine
     static #placeholder(element)
     {
         if (element.hasAttribute("placeholder"))
-            element.attributes["placeholder"] += " (i18n)";
+            element.attributes["placeholder"] = Engine.t(element.attributes["placeholder"], element.attributes["placeholder"] + " (i18n)");
     }
 }
