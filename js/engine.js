@@ -17,6 +17,9 @@ export class Engine
                 "howareyou": "Comment allez-vous aujourd'hui?",
                 "button": "changer la langue",
                 "Widget update successful.": "Succès de la mise-à-jour de widget.",
+                "Widget failed with error 18.": "Widget a généré une erreur 18.",
+                "Widget could not be updated.": "Widget n'a pas pu être mis-à-jour.",
+                "Do you want to update widget?": "Voulez-vous mettre à jour widget?",
             }
         };
 
