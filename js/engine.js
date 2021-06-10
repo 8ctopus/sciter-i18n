@@ -4,6 +4,10 @@ export class Engine
 {
     static #i18next;
 
+    /**
+     * Initialize translation engine
+     * @return bool true on success, false otherwise
+     */
     static init()
     {
         const fr = {
@@ -12,10 +16,11 @@ export class Engine
                 "hello": "bonjour",
                 "howareyou": "Comment allez-vous aujourd'hui?",
                 "button": "changer la langue",
+                "Widget update successful.": "Succès de la mise-à-jour de widget.",
             }
         };
 
-        Engine.i18next = i18next;
+        Engine.#i18next = i18next;
 
         // init translation system
         return i18next.init({
@@ -36,6 +41,11 @@ export class Engine
         });
     }
 
+    /**
+     * Translate element
+     * @param element
+     * @return void
+     */
     static i18n(element)
     {
         // get all elements to translate
@@ -80,21 +90,51 @@ export class Engine
         });
     }
 
-    static message(str)
+    /**
+     * Get message translation
+     * @param string msg
+     * @return string translation or original message if the translation does not exist
+     */
+    static message(msg)
     {
-        return str + " (i18n)";
+        return Engine.t(msg, msg);
     }
 
+    /**
+     * Shorter variant of get message translation
+     * @see message()
+     */
     static m(str)
     {
-        return Engine.message(str);
+        return Engine.message(str, { keySeparator: "|", nsSeparator: "#"});
     }
 
+    /**
+     * Get key translation
+     * @param string key
+     * @param object options
+     * @return string
+     */
+    static t(key, options = null)
+    {
+        return Engine.#i18next.t(key, options);
+    }
+
+    /**
+     * Translate inner html
+     * @param element
+     * @return void
+     */
     static #innerHtml(element)
     {
         element.innerHTML = element.innerHTML + " (i18n)";
     }
 
+    /**
+     * Translate placeholder
+     * @param element
+     * @return void
+     */
     static #placeholder(element)
     {
         if (element.hasAttribute("placeholder"))
