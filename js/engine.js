@@ -1,6 +1,7 @@
 import i18next from "../vendor/i18next/i18next/src/index.js";
 import * as sys from "@sys";
 import {encode,decode} from "@sciter";
+import {fr} from "../locales/fr.js";
 
 export class Engine
 {
@@ -12,11 +13,6 @@ export class Engine
      */
     static init()
     {
-        let buffer = sys.fs.$readfile("locales/fr.json");
-        buffer = decode(buffer);
-
-        const fr = JSON.parse(buffer);
-
         Engine.#i18next = i18next;
 
         let result = false;
