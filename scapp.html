@@ -32,6 +32,23 @@ plaintext#logger {
     height: 150dip;
 }
 
+checkbox#checkbox-label {
+    flow: stack;
+}
+
+checkbox#checkbox-label > caption {
+    display:block;
+    visibility:hidden;
+}
+
+checkbox#checkbox-label:checked > caption.true {
+    visibility:visible;
+}
+
+checkbox#checkbox-label:not(:checked) > caption.false {
+    visibility:visible;
+}
+
 select[type="list"]#table {
     flow: table;
     width: 100%;
@@ -130,16 +147,16 @@ document.on("click", "button", function(event, element) {
 <body>
     <pagecontrol header="top">
         <tab title="general">
-            <h1 data-i18n> i18n engine test </h1>
-            <h1 data-i18n> h1 </h1>
-            <h2 data-i18n> h2 </h2>
-            <h3 data-i18n> h3 </h3>
-            <p data-i18n> p </p>
-            <span data-i18n> span </span>
-            <label data-i18n> label </label>
+            <h1 data-i18n>i18n engine test</h1>
+            <h1 data-i18n>h1</h1>
+            <h2 data-i18n>h2</h2>
+            <h3 data-i18n>h3</h3>
+            <p data-i18n>p</p>
+            <span data-i18n>span</span>
+            <label data-i18n>label</label>
             <ol>
-                <li data-i18n> list item </li>
-                <li data-i18n> list item </li>
+                <li data-i18n>list item</li>
+                <li data-i18n>list item</li>
             </ol>
         </tab>
         <tab title="buttons" selected>
@@ -160,8 +177,8 @@ document.on("click", "button", function(event, element) {
             <input|masked mask="(###) ### - ####" />
         </tab>
         <tab title="number">
-            <input|number data-i18n value="42" step="1" min="0" max="999" placeholder="number1" />
-            <input|number data-i18n step="1" min="0" max="999" placeholder="number2" />
+            <input|number data-i18n value="42" step="1" min="0" max="999" placeholder="number" />
+            <input|number data-i18n step="1" min="0" max="999" placeholder="number" />
             <input|number disabled step="1" min="0" max="999" />
             <input|decimal value="42.13" />
             <input|integer value="42" />
