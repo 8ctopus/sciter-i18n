@@ -7,12 +7,13 @@ export class i18n
     static #i18next;
 
     /**
-     * Initialize translation engine
+     * Initialize engine
+     * @param string locale
      * @return bool true on success, false otherwise
      */
-    static init()
+    static init(locale)
     {
-        let buffer = sys.fs.$readfile("locales/fr.json");
+        let buffer = sys.fs.$readfile(`locales/${locale}.json`);
         buffer = decode(buffer);
 
         const fr = JSON.parse(buffer);
@@ -23,14 +24,16 @@ export class i18n
 
         // init translation system
         i18next.init({
-            debug: true,
+            debug: false,
 
+            // wait for resources to be loaded before returning from call
+            // but it does not apply in our case as the translation is already provided for
             initImmediate: false,
 
-            lng: "fr",
+            lng: locale,
 
             resources: {
-                fr: fr,
+                [locale]: fr,
             }
         }, function(error, t) {
             // callback when initialization is complete

@@ -22,7 +22,7 @@ import {i18n} from "src/i18n.js";
 
 document.on("ready", function() {
     // initialize translation engine
-    if (i18n.init())
+    if (i18n.init("fr"))
         console.log("i18n init - OK");
     else
         console.error("i18n init - FAILED");
@@ -30,6 +30,16 @@ document.on("ready", function() {
     // translate window
     i18n.i18n(document);
 });
+```
+
+- create translation file `locales\fr.json`
+
+```json
+{
+    "translation": {
+        "key1": "test du moteur i18n"
+    }
+}
 ```
 
 - then in the html code add attribute `data-i18n` to all elements you want translated. If `data-i18n` value is set then it will be used as the translation key.
