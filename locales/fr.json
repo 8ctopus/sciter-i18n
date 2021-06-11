@@ -50,6 +50,8 @@
 
         "Widget update successful.": "Succès de la mise-à-jour de widget.",
         "Widget could not be updated.": "Widget n'a pas pu être mis-à-jour.",
-        "Do you want to update widget?": "Voulez-vous mettre à jour widget?"
+        "Do you want to update widget?": "Voulez-vous mettre à jour widget?",
+
+        "Cancel": "Annuler"
     }
 }
