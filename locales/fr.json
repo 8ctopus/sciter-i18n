@@ -41,6 +41,20 @@
         "Center": "Centre",
         "Right": "Droite",
 
+        "1": "1",
+        "2": "2",
+        "3": "3",
+
+        "Fox": "Fox",
+        "Bravo": "Bravo",
+        "Alpha": "Alpha",
+
+        "Fruits": "Fruits",
+        "Veggies": "Légumes",
+        "Cabbage": "Chou",
+        "Broccoli": "Brocoli",
+        "Chicory": "Chicorée",
+
         "info": "info",
         "error": "erreur",
         "warning": "avertissement",
