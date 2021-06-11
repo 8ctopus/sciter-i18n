@@ -94,21 +94,25 @@ export class i18n
 
     /**
      * Get message translation
+     * @param string(optional) key
      * @param string msg
      * @return string translation or original message if the translation does not exist
      */
-    static message(msg)
+    static m(msg)
     {
-        return i18n.t(msg, msg);
-    }
+        switch (arguments.length) {
+            case 1:
+                // message is key
+                return i18n.t(arguments[0], arguments[0]);
 
-    /**
-     * Shorter variant of get message translation
-     * @see message()
-     */
-    static m(str)
-    {
-        return i18n.message(str, { keySeparator: "|", nsSeparator: "#"});
+            case 2:
+                // first argument is key, second is default message
+                return i18n.t(arguments[0], arguments[1]);
+
+            default:
+                console.error(`i18n m arguments expects 1 or 2 arguments`);
+                return "";
+        }
     }
 
     /**
@@ -129,7 +133,12 @@ export class i18n
      */
     static #innerHtml(element)
     {
-        element.innerHTML = i18n.t(element.innerHTML, element.innerHTML + " (i18n)");
+        // use data-i18n key if it exists, otherwise element inner html as key
+        const key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : element.innerHTML;
+
+        //console.log("key - " + key);
+
+        element.innerHTML = i18n.t(key, element.innerHTML + " (i18n)");
     }
 
     /**
@@ -139,7 +148,12 @@ export class i18n
      */
     static #placeholder(element)
     {
-        if (element.hasAttribute("placeholder"))
-            element.attributes["placeholder"] = i18n.t(element.attributes["placeholder"], element.attributes["placeholder"] + " (i18n)");
+        if (!element.hasAttribute("placeholder"))
+            return;
+
+        // use data-i18n key if it exists, otherwise element inner html as key
+        let key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] + "placeholder" : element.attributes["placeholder"];
+
+        element.attributes["placeholder"] = i18n.t(key, element.attributes["placeholder"] + " (i18n)");
     }
 }

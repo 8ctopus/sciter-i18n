@@ -1,6 +1,6 @@
 {
     "translation": {
-        "i18n engine test": "test du moteur i18n",
+        "key1": "test du moteur i18n",
         "h1": "h1 (fr)",
         "h2": "h2 (fr)",
         "h3": "h3 (fr)",
@@ -50,6 +50,7 @@
 
         "Widget update successful.": "Succès de la mise-à-jour de widget.",
         "Widget could not be updated.": "Widget n'a pas pu être mis-à-jour.",
+        "no-update": "Widget n'a pas pu être mis-à-jour.",
         "Do you want to update widget?": "Voulez-vous mettre à jour widget?",
 
         "Cancel": "Annuler"
