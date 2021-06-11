@@ -13,25 +13,30 @@ export class i18n
      */
     static init(locale)
     {
+        // load translation file
         let buffer = sys.fs.$readfile(`locales/${locale}.json`);
         buffer = decode(buffer);
 
+        // convert json to javascript object
         const fr = JSON.parse(buffer);
-
-        i18n.#i18next = i18next;
 
         let result = false;
 
         // init translation system
+        i18n.#i18next = i18next;
+
         i18next.init({
+            // i18next debugging
             debug: false,
 
             // wait for resources to be loaded before returning from call
             // but it does not apply in our case as the translation is already provided for
             initImmediate: false,
 
+            // set language
             lng: locale,
 
+            // set translation
             resources: {
                 [locale]: fr,
             }
