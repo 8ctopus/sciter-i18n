@@ -78,19 +78,19 @@ button.context-menu {
 <script src="js/logger.js" />
 <script type="module">
 
-import {Engine} from "src/i18n.js";
+import {i18n} from "src/i18n.js";
 
 import {showDialog} from "vendor/8ctopus/sciter-dialogs/src/dialog.js";
 
 document.on("ready", function() {
     // initialize translation engine
-    if (Engine.init())
+    if (i18n.init())
         console.log("i18n init - OK");
     else
         console.error("i18n init - FAILED");
 
     // translate window
-    Engine.i18n(document);
+    i18n.i18n(document);
 });
 
 /**
@@ -103,7 +103,7 @@ function dialogCallback(root)
     console.log("dialog callback");
 
     // translate dialog
-    Engine.i18n(root);
+    i18n.i18n(root);
 }
 
 // set dialog buttons on click event
@@ -112,27 +112,27 @@ document.on("click", "button", function(event, element) {
 
     switch (element.id) {
         case "info":
-            value = showDialog("info", Engine.m("Widget update successful."), "ok", dialogCallback);
+            value = showDialog("info", i18n.m("Widget update successful."), "ok", dialogCallback);
             break;
 
         case "error":
-            value = showDialog("error", Engine.m("Widget failed with error 18."), "ok help[https://duckduckgo.com]", dialogCallback);
+            value = showDialog("error", i18n.m("Widget failed with error 18."), "ok help[https://duckduckgo.com]", dialogCallback);
             break;
 
         case "warning":
-            value = showDialog("warning", Engine.m("Widget could not be updated."), "ok", dialogCallback);
+            value = showDialog("warning", i18n.m("Widget could not be updated."), "ok", dialogCallback);
             break;
 
         case "question":
-            value = showDialog("question", Engine.m("Do you want to update widget?"), "yes no cancel", dialogCallback);
+            value = showDialog("question", i18n.m("Do you want to update widget?"), "yes no cancel", dialogCallback);
             break;
 
         case "file":
-            value = Window.this.selectFile(Engine.m("Select file"));
+            value = Window.this.selectFile(i18n.m("Select file"));
             break;
 
         case "folder":
-            value = Window.this.selectFolder(Engine.m("Select folder"));
+            value = Window.this.selectFolder(i18n.m("Select folder"));
             break;
 
         default:

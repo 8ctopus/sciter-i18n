@@ -2,7 +2,7 @@ import i18next from "../vendor/i18next/i18next/src/index.js";
 import * as sys from "@sys";
 import {encode,decode} from "@sciter";
 
-export class Engine
+export class i18n
 {
     static #i18next;
 
@@ -17,7 +17,7 @@ export class Engine
 
         const fr = JSON.parse(buffer);
 
-        Engine.#i18next = i18next;
+        i18n.#i18next = i18next;
 
         let result = false;
 
@@ -37,7 +37,7 @@ export class Engine
             if (!error)
                 result = true;
             else
-                console.error(`Engine init - ${error}`);
+                console.error(`i18n init - ${error}`);
         });
 
         return result;
@@ -68,12 +68,12 @@ export class Engine
                 case "p":
                 case "radio":
                 case "span":
-                    Engine.#innerHtml(element);
+                    i18n.#innerHtml(element);
                     break;
 
                 case "editbox":
                 case "input":
-                    Engine.#placeholder(element);
+                    i18n.#placeholder(element);
                     break;
 
                 case "select":
@@ -81,12 +81,12 @@ export class Engine
                     const child = element.$("caption");
 
                     if (child != null)
-                        Engine.#innerHtml(child);
+                        i18n.#innerHtml(child);
 
                     break;
 
                 default:
-                    console.warning(`Engine - unknown element - ${element.tag}`);
+                    console.warning(`i18n - unknown element - ${element.tag}`);
                     break;
             }
         });
@@ -99,7 +99,7 @@ export class Engine
      */
     static message(msg)
     {
-        return Engine.t(msg, msg);
+        return i18n.t(msg, msg);
     }
 
     /**
@@ -108,7 +108,7 @@ export class Engine
      */
     static m(str)
     {
-        return Engine.message(str, { keySeparator: "|", nsSeparator: "#"});
+        return i18n.message(str, { keySeparator: "|", nsSeparator: "#"});
     }
 
     /**
@@ -119,7 +119,7 @@ export class Engine
      */
     static t(key, options = null)
     {
-        return Engine.#i18next.t(key, options);
+        return i18n.#i18next.t(key, options);
     }
 
     /**
@@ -129,7 +129,7 @@ export class Engine
      */
     static #innerHtml(element)
     {
-        element.innerHTML = Engine.t(element.innerHTML, element.innerHTML + " (i18n)");
+        element.innerHTML = i18n.t(element.innerHTML, element.innerHTML + " (i18n)");
     }
 
     /**
@@ -140,6 +140,6 @@ export class Engine
     static #placeholder(element)
     {
         if (element.hasAttribute("placeholder"))
-            element.attributes["placeholder"] = Engine.t(element.attributes["placeholder"], element.attributes["placeholder"] + " (i18n)");
+            element.attributes["placeholder"] = i18n.t(element.attributes["placeholder"], element.attributes["placeholder"] + " (i18n)");
     }
 }
