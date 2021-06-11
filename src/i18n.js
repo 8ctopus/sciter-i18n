@@ -7,30 +7,38 @@ export class i18n
     static #i18next;
 
     /**
-     * Initialize translation engine
+     * Initialize engine
+     * @param string locale
      * @return bool true on success, false otherwise
      */
-    static init()
+    static init(locale)
     {
-        let buffer = sys.fs.$readfile("locales/fr.json");
+        // load translation file
+        let buffer = sys.fs.$readfile(`locales/${locale}.json`);
         buffer = decode(buffer);
 
+        // convert json to javascript object
         const fr = JSON.parse(buffer);
-
-        i18n.#i18next = i18next;
 
         let result = false;
 
         // init translation system
-        i18next.init({
-            debug: true,
+        i18n.#i18next = i18next;
 
+        i18next.init({
+            // i18next debugging
+            debug: false,
+
+            // wait for resources to be loaded before returning from call
+            // but it does not apply in our case as the translation is already provided for
             initImmediate: false,
 
-            lng: "fr",
+            // set language
+            lng: locale,
 
+            // set translation
             resources: {
-                fr: fr,
+                [locale]: fr,
             }
         }, function(error, t) {
             // callback when initialization is complete
@@ -56,6 +64,7 @@ export class i18n
                 case "button":
                 case "caption":
                 case "checkbox":
+                case "div":
                 case "h1":
                 case "h2":
                 case "h3":
@@ -86,7 +95,7 @@ export class i18n
                     break;
 
                 default:
-                    console.warning(`i18n - unknown element - ${element.tag}`);
+                    console.warn(`i18n - unknown element - ${element.tag}`);
                     break;
             }
         });
@@ -94,21 +103,25 @@ export class i18n
 
     /**
      * Get message translation
+     * @param string(optional) key
      * @param string msg
      * @return string translation or original message if the translation does not exist
      */
-    static message(msg)
+    static m(msg)
     {
-        return i18n.t(msg, msg);
-    }
+        switch (arguments.length) {
+            case 1:
+                // message is key
+                return i18n.t(arguments[0], arguments[0]);
 
-    /**
-     * Shorter variant of get message translation
-     * @see message()
-     */
-    static m(str)
-    {
-        return i18n.message(str, { keySeparator: "|", nsSeparator: "#"});
+            case 2:
+                // first argument is key, second is default message
+                return i18n.t(arguments[0], arguments[1]);
+
+            default:
+                console.error(`i18n m arguments expects 1 or 2 arguments`);
+                return "";
+        }
     }
 
     /**
@@ -129,7 +142,12 @@ export class i18n
      */
     static #innerHtml(element)
     {
-        element.innerHTML = i18n.t(element.innerHTML, element.innerHTML + " (i18n)");
+        // use data-i18n key if it exists, otherwise element inner html as key
+        const key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : element.innerHTML;
+
+        //console.log("key - " + key);
+
+        element.innerHTML = i18n.t(key, element.innerHTML + " (i18n)");
     }
 
     /**
@@ -139,7 +157,12 @@ export class i18n
      */
     static #placeholder(element)
     {
-        if (element.hasAttribute("placeholder"))
-            element.attributes["placeholder"] = i18n.t(element.attributes["placeholder"], element.attributes["placeholder"] + " (i18n)");
+        if (!element.hasAttribute("placeholder"))
+            return;
+
+        // use data-i18n key if it exists, otherwise element inner html as key
+        let key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] + "placeholder" : element.attributes["placeholder"];
+
+        element.attributes["placeholder"] = i18n.t(key, element.attributes["placeholder"] + " (i18n)");
     }
 }

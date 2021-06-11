@@ -84,7 +84,7 @@ import {showDialog} from "vendor/8ctopus/sciter-dialogs/src/dialog.js";
 
 document.on("ready", function() {
     // initialize translation engine
-    if (i18n.init())
+    if (i18n.init("fr"))
         console.log("i18n init - OK");
     else
         console.error("i18n init - FAILED");
@@ -120,7 +120,7 @@ document.on("click", "button", function(event, element) {
             break;
 
         case "warning":
-            value = showDialog("warning", i18n.m("Widget could not be updated."), "ok", dialogCallback);
+            value = showDialog("warning", i18n.m("no-update", "Widget could not be updated."), "ok", dialogCallback);
             break;
 
         case "question":
@@ -148,7 +148,7 @@ document.on("click", "button", function(event, element) {
 <body>
     <pagecontrol header="top">
         <tab title="general">
-            <h1 data-i18n>i18n engine test</h1>
+            <h1 data-i18n="key1">i18n engine test</h1>
             <h1 data-i18n>h1</h1>
             <h2 data-i18n>h2</h2>
             <h3 data-i18n>h3</h3>
@@ -252,7 +252,7 @@ document.on("click", "button", function(event, element) {
                 <option data-i18n>Tamarind</option>
             </select>
 
-            <select|dropdown novalue="disabled" disabled>
+            <select|dropdown data-i18n novalue="disabled" disabled>
                 <option data-i18n>Apple</option>
                 <option data-i18n>Apricot</option>
                 <option data-i18n>Currant</option>
@@ -266,11 +266,11 @@ document.on("click", "button", function(event, element) {
                 <option data-i18n>One</option>
                 <optgroup label="Group 1">
                     <option data-i18n>Two</option>
-                    <option .toset>Three</option>
+                    <option data-i18n .toset>Three</option>
                     <option data-i18n>Four</option>
                 </optgroup>
                 <optgroup>
-                    <caption>Group 2</caption>
+                    <caption data-i18n>Group 2</caption>
                     <option data-i18n>Five</option>
                     <option data-i18n>Six</option>
                     <option data-i18n>Seven</option>

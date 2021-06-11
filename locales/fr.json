@@ -1,6 +1,9 @@
 {
     "translation": {
-        "i18n engine test": "test du moteur i18n",
+        "general": "général",
+        "buttons": "boutons",
+
+        "key1": "test du moteur i18n",
         "h1": "h1 (fr)",
         "h2": "h2 (fr)",
         "h3": "h3 (fr)",
@@ -55,6 +58,31 @@
         "Broccoli": "Brocoli",
         "Chicory": "Chicorée",
 
+        "dropdown": "menu déroulant",
+        "disabled": "désactivé",
+        "Group 2": "Groupe 2",
+
+        "Apple": "Pomme",
+        "Apricot": "Abricot",
+        "Currant": "Groseille",
+        "Grapefruit": "Pamplemousse",
+        "Peach": "Pêche",
+        "Pomegranate": "Grenade",
+        "Tamarind": "Tamarin",
+
+        "One": "Un",
+        "Two": "Deux",
+        "Three": "Trois",
+        "Four": "Quatre",
+        "Five": "Cinq",
+        "Six": "Six",
+        "Seven": "Sept",
+        "Eight": "Huit",
+        "Nine": "Neuf",
+        "Ten": "Dix",
+        "Eleven": "Onze",
+        "Twelve": "Douze",
+
         "info": "info",
         "error": "erreur",
         "warning": "avertissement",
@@ -64,6 +92,7 @@
 
         "Widget update successful.": "Succès de la mise-à-jour de widget.",
         "Widget could not be updated.": "Widget n'a pas pu être mis-à-jour.",
+        "no-update": "Widget n'a pas pu être mis-à-jour.",
         "Do you want to update widget?": "Voulez-vous mettre à jour widget?",
 
         "Cancel": "Annuler"
