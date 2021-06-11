@@ -13,6 +13,25 @@ This is an attempt to create a translation engine for [sciter.js](https://sciter
 ## install
 
 - add the `src` dir to your project
+- add to script
+
+```js
+<script type="module">
+
+import {i18n} from "src/i18n.js";
+
+document.on("ready", function() {
+    // initialize translation engine
+    if (i18n.init())
+        console.log("i18n init - OK");
+    else
+        console.error("i18n init - FAILED");
+
+    // translate window
+    i18n.i18n(document);
+});
+```
+
 - then in the html code add attribute `data-i18n` to all elements you want translated. If `data-i18n` value is set then it will be used as the translation key.
 
 ```html
