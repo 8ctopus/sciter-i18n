@@ -37,7 +37,7 @@ export class Engine
             if (!error)
                 result = true;
             else
-                console.error(`Init i18next - FAILED - ${error}`);
+                console.error(`Engine init - ${error}`);
         });
 
         return result;
@@ -52,8 +52,6 @@ export class Engine
     {
         // get all elements to translate
         element.$$("[data-i18n]").map(function(element) {
-            //console.log(element.tag);
-
             switch (element.tag) {
                 case "button":
                 case "caption":
@@ -88,6 +86,8 @@ export class Engine
                     break;
 
                 default:
+                    console.warning(`Engine - unknown element - ${element.tag}`);
+                    break;
             }
         });
     }
