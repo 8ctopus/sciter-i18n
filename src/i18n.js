@@ -64,6 +64,7 @@ export class i18n
                 case "button":
                 case "caption":
                 case "checkbox":
+                case "div":
                 case "h1":
                 case "h2":
                 case "h3":
@@ -94,7 +95,7 @@ export class i18n
                     break;
 
                 default:
-                    console.warning(`i18n - unknown element - ${element.tag}`);
+                    console.warn(`i18n - unknown element - ${element.tag}`);
                     break;
             }
         });

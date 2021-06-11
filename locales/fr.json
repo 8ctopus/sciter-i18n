@@ -1,5 +1,8 @@
 {
     "translation": {
+        "general": "général",
+        "buttons": "boutons",
+
         "key1": "test du moteur i18n",
         "h1": "h1 (fr)",
         "h2": "h2 (fr)",
