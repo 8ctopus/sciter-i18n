@@ -78,21 +78,19 @@ button.context-menu {
 <script src="js/logger.js" />
 <script type="module">
 
-import {Engine} from "js/engine.js";
+import {Engine} from "src/i18n.js";
 
 import {showDialog} from "vendor/8ctopus/sciter-dialogs/src/dialog.js";
 
 document.on("ready", function() {
     // initialize translation engine
     if (Engine.init())
-        console.log("Engine init - OK");
+        console.log("i18n init - OK");
     else
-        console.error("Engine init - FAILED");
+        console.error("i18n init - FAILED");
 
     // translate window
     Engine.i18n(document);
-
-    //console.log(Engine.t("description"));
 });
 
 /**
@@ -102,7 +100,7 @@ document.on("ready", function() {
  */
 function dialogCallback(root)
 {
-    console.log("dialog callback reached");
+    console.log("dialog callback");
 
     // translate dialog
     Engine.i18n(root);
