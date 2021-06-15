@@ -13,8 +13,20 @@ export class i18n
      */
     static init(locale)
     {
+        const file = `locales/${locale}.json`;
+
+        // check that file exists
+        const stat = sys.fs.$stat(file);
+
+        if (!stat) {
+            console.error(`locale ${file} does not exist`);
+            return false;
+        }
+
         // load translation file
-        let buffer = sys.fs.$readfile(`locales/${locale}.json`);
+        let buffer = sys.fs.$readfile(file);
+
+        // decode buffer
         buffer = decode(buffer);
 
         // convert json to javascript object
