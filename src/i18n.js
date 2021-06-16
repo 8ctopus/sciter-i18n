@@ -13,7 +13,10 @@ export class i18n
      */
     static init(locale)
     {
-        const file = `locales/${locale}.json`;
+        // to find current working directory
+        //console.log(sys.cwd());
+
+        const file = `res/locales/${locale}.json`;
 
         // check that file exists
         const stat = sys.fs.$stat(file);
