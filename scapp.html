@@ -126,11 +126,12 @@ document.on("click", "button", function(event, element) {
             break;
 
         case "warning":
-            value = showDialog("warning", i18n.m("no-update", "Widget could not be updated."), "ok", dialogCallback);
+            // get message using namespace:key and default message
+            value = showDialog("warning", i18n.m("messages:no-update", "Widget could not be updated."), "ok", dialogCallback);
             break;
 
         case "question":
-            value = showDialog("question", i18n.m("Do you want to update widget?"), "yes no cancel", dialogCallback);
+            value = showDialog("question", i18n.m("messages:update-question", "Do you want to update widget?"), "yes no cancel", dialogCallback);
             break;
 
         case "file":

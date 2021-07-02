@@ -121,7 +121,7 @@ export class i18n
      * @param string msg
      * @return string translation or original message if the translation does not exist
      */
-    static m(msg)
+    static m()
     {
         switch (arguments.length) {
             case 1:
