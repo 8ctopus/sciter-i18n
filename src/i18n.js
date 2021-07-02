@@ -90,6 +90,7 @@ export class i18n
                 case "li":
                 case "option":
                 case "p":
+                case "plaintext":
                 case "radio":
                 case "span":
                     i18n.#innerHtml(element);
