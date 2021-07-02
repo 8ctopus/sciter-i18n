@@ -82,9 +82,14 @@ import {i18n} from "src/i18n.js";
 
 import {showDialog} from "vendor/8ctopus/sciter-dialogs/src/dialog.js";
 
+import * as sys from "@sys";
+
 document.on("ready", function() {
     // initialize translation engine
-    if (i18n.init("fr")) {
+    const locale = "fr";
+    const file   = sys.cwd() + `\\locales\\${locale}.json`;
+
+    if (i18n.init(locale, file)) {
         console.log("i18n init - OK");
 
         // translate window

@@ -9,14 +9,12 @@ export class i18n
     /**
      * Initialize engine
      * @param string locale
+     * @param string file locale file path
      * @return bool true on success, false otherwise
      */
-    static init(locale)
+    static init(locale, file)
     {
-        // to find current working directory
-        //console.log(sys.cwd());
-
-        const file = `res/locales/${locale}.json`;
+        console.log(file);
 
         // check that file exists
         const stat = sys.fs.$stat(file);
