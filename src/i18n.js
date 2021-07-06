@@ -9,31 +9,30 @@ export class i18n
     /**
      * Initialize engine
      * @param string locale
-     * @param string file locale file path
+     * @param string url locale url or file
      * @return bool true on success, false otherwise
      */
-    static init(locale, file)
+    static init(locale, url)
     {
-        console.log(file);
+        // get url content
+        let result = fetch(url, {sync: true});
 
-        // check that file exists
-        const stat = sys.fs.$stat(file);
-
-        if (!stat) {
-            console.error(`locale ${file} does not exist`);
+        if (!result.ok) {
+            console.error(`i18n init - FAILED - fetch - ${result.status} - ${url}`);
             return false;
         }
 
-        // load translation file
-        let buffer = sys.fs.$readfile(file);
+        // convert to json
+        let json;
 
-        // decode buffer
-        buffer = decode(buffer);
+        try {
+            json = result.json();
+        } catch (e) {
+            console.error(`i18n init - FAILED - json - ${e.message} ${e.stack}`);
+            return false;
+        }
 
-        // convert json to javascript object
-        const fr = JSON.parse(buffer);
-
-        let result = false;
+        result = false;
 
         // init translation system
         i18n.#i18next = i18next;
@@ -51,7 +50,7 @@ export class i18n
 
             // set translation
             resources: {
-                [locale]: fr,
+                [locale]: json,
             }
         }, function(error, t) {
             // callback when initialization is complete
