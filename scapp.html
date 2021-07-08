@@ -9,6 +9,7 @@
 
 @import url("css/controls.css");
 @import url("./vendor/8ctopus/sciter-pagecontrol/src/pagecontrol.css");
+@import url("./vendor/8ctopus/sciter-fontawesome/src/css/fontawesome.css");
 
 pagecontrol {
     size: *;
@@ -154,11 +155,13 @@ document.on("click", "button", function(event, element) {
 </head>
 <body>
     <pagecontrol header="top">
-        <tab title="general">
+        <tab title="general" selected>
             <h1 data-i18n="key1">i18n engine test</h1>
             <h1 data-i18n>h1</h1>
             <h2 data-i18n>h2</h2>
             <h3 data-i18n>h3</h3>
+            <div data-i18n><i class="fas fa-anchor"></i> Not translated</div>
+            <div data-i18n>Not translated <span>span</span></div>
             <p data-i18n>p</p>
             <span data-i18n>span</span>
             <label data-i18n>label</label>
@@ -167,7 +170,7 @@ document.on("click", "button", function(event, element) {
                 <li data-i18n>list item</li>
             </ol>
         </tab>
-        <tab title="buttons" selected>
+        <tab title="buttons">
             <button data-i18n>Do it!</button>
             <button data-i18n role="default-button">Default</button>
             <button data-i18n disabled>Disabled</button>
