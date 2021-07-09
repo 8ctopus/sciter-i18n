@@ -76,7 +76,6 @@ export class i18n
                 case "button":
                 case "caption":
                 case "checkbox":
-                case "div":
                 case "h1":
                 case "h2":
                 case "h3":
@@ -93,6 +92,10 @@ export class i18n
                     i18n.#innerHtml(element);
                     break;
 
+                case "div":
+                    i18n.#special(element);
+                    break;                
+                    
                 case "editbox":
                 case "input":
                     i18n.#placeholder(element);
@@ -161,6 +164,47 @@ export class i18n
         //console.log("key - " + key);
 
         element.innerHTML = i18n.t(key, element.innerHTML + " (i18n)");
+    }
+
+    /**
+     * Translate elements with an element inside inner html
+     * @param element
+     * @return void
+     */
+    static #special(element)
+    {
+        // check if element has icons in inner html
+        if (element.innerHTML.indexOf('</') !== -1) {
+
+            // search for the first opening tag
+            let start = element.innerHTML.indexOf('<');
+
+            // search for the last closing tag
+            let end = (element.innerHTML.lastIndexOf('>') + 1);
+
+            // extract inner element between those tags
+            let innerElement = element.innerHTML.substring(start, end);
+
+            // remove inner element from inner html
+            let innerText = element.innerHTML.replace(innerElement, '');
+
+            // trim all spaces
+            let nospaces = innerText.trim();
+
+            // use data-i18n key if it exists, otherwise nospaces as key
+            const key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : nospaces;
+
+            let translated = i18n.t(key, nospaces + " (i18n)");
+            
+            // add inner element and translated text inside inner html
+            let translatedElement = element.innerHTML.replace(nospaces, translated);
+
+            console.log(translatedElement);
+
+            element.innerHTML = translatedElement;
+        }
+        else
+            element.innerHTML = element.innerHTML;
     }
 
     /**
