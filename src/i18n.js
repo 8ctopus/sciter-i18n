@@ -73,7 +73,6 @@ export class i18n
         // get all elements to translate
         element.$$("[data-i18n]").map(function(element) {
             switch (element.tag) {
-                case "button":
                 case "caption":
                 case "checkbox":
                 case "h1":
@@ -83,7 +82,6 @@ export class i18n
                 case "h5":
                 case "h6":
                 case "label":
-                case "li":
                 case "option":
                 case "p":
                 case "plaintext":
@@ -92,7 +90,9 @@ export class i18n
                     i18n.#innerHtml(element);
                     break;
 
+                case "button":
                 case "div":
+                case "li":
                     i18n.#special(element);
                     break;                
                     
