@@ -23,13 +23,17 @@ import {i18n} from "src/i18n.js";
 
 document.on("ready", function() {
     // initialize translation engine
-    if (i18n.init("fr"))
+    const locale = "fr";
+    const file   = sys.cwd() + `\\locales\\${locale}.json`;
+
+    if (i18n.init(locale, file)) {
         console.log("i18n init - OK");
+
+        // translate window
+        i18n.i18n(document);
+    }
     else
         console.error("i18n init - FAILED");
-
-    // translate window
-    i18n.i18n(document);
 });
 ```
 
