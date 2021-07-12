@@ -84,6 +84,15 @@
         "Eleven": "Onze",
         "Twelve": "Douze",
 
+        "File": "Fichier",
+        "Edit": "Editer",
+        "Open": "Ouvrir",
+        "Save": "Enregistrer",
+        "Cut": "Couper",
+        "Copy": "Copier",
+        "Paste": "Coller",
+        "Convert": "Convertir",
+
         "info": "info",
         "error": "erreur",
         "warning": "avertissement",
