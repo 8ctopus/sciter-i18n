@@ -73,8 +73,10 @@ export class i18n
         // get all elements to translate
         element.$$("[data-i18n]").map(function(element) {
             switch (element.tag) {
+                case "button":
                 case "caption":
                 case "checkbox":
+                case "div":
                 case "h1":
                 case "h2":
                 case "h3":
@@ -82,18 +84,17 @@ export class i18n
                 case "h5":
                 case "h6":
                 case "label":
+                case "li":
                 case "option":
                 case "p":
                 case "plaintext":
                 case "radio":
                 case "span":
-                    i18n.#innerHtml(element);
-                    break;
+                    if (element.innerText === element.innerHTML)
+                        i18n.#innerText(element);
+                    else
+                        i18n.#innerHtml(element);
 
-                case "button":
-                case "div":
-                case "li":
-                    i18n.#special(element);
                     break;
 
                 case "editbox":
@@ -105,8 +106,8 @@ export class i18n
                     // get select caption
                     const child = element.$("caption");
 
-                    if (child != null)
-                        i18n.#innerHtml(child);
+                    if (child !== null)
+                        i18n.#innerText(child);
 
                     break;
 
@@ -152,57 +153,48 @@ export class i18n
     }
 
     /**
+     * Translate inner text
+     * @param element
+     * @return void
+     */
+    static #innerText(element)
+    {
+        // use data-i18n key if it exists, otherwise element inner text as key
+        const key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : element.innerText;
+
+        element.innerText = i18n.t(key, element.innerText + " (i18n)");
+    }
+
+    /**
      * Translate inner html
      * @param element
      * @return void
      */
     static #innerHtml(element)
     {
-        // use data-i18n key if it exists, otherwise element inner html as key
-        const key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : element.innerHTML;
+        // get all html elements
+        let content = element.innerHTML;
 
-        element.innerHTML = i18n.t(key, element.innerHTML + " (i18n)");
-    }
+        let matches = Array.from(content.matchAll(/^([^<]*)<.*>([^<]*)$/gm));
 
-    /**
-     * Translate elements with an element inside inner html
-     * @param element
-     * @return void
-     */
-    static #special(element)
-    {
-        // check if element has icons in inner html
-        if (element.innerHTML.indexOf('</') !== -1) {
+        matches.forEach(function(match) {
+            let key = match[1].trim();
 
-            // search for the first opening tag
-            let start = element.innerHTML.indexOf('<');
+            if (key.length !== 0) {
+                //console.log(`full - ${match[0]} - key - "${key}"`);
+                content = content.replace(key, i18n.t(key, key + " (i18n)"));
+            }
 
-            // search for the last closing tag
-            let end = (element.innerHTML.lastIndexOf('>') + 1);
+            key = match[2].trim();
 
-            // extract inner element between those tags
-            let innerElement = element.innerHTML.substring(start, end);
+            if (key.length !== 0) {
+                //console.log(`full - ${match[0]} - key - "${key}"`);
+                content = content.replace(key, i18n.t(key, key + " (i18n)"));
+            }
+        });
 
-            // remove inner element from inner html
-            let innerText = element.innerHTML.replace(innerElement, '');
-
-            // trim all spaces
-            let nospaces = innerText.trim();
-
-            // use data-i18n key if it exists, otherwise nospaces as key
-            const key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : nospaces;
-
-            let translated = i18n.t(key, nospaces + " (i18n)");
-
-            // add inner element and translated text inside inner html
-            let translatedElement = element.innerHTML.replace(nospaces, translated);
-
-            //console.log(translatedElement);
-
-            element.innerHTML = translatedElement;
-        }
-        else
-            element.innerHTML = element.innerHTML;
+        if (matches)
+            element.innerHTML = content;
     }
 
     /**
