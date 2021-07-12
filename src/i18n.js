@@ -162,7 +162,7 @@ export class i18n
         // use data-i18n key if it exists, otherwise element inner text as key
         const key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : element.innerText;
 
-        element.innerText = i18n.t(key, element.innerText + " (i18n)");
+        element.innerHTML = i18n.t(key, element.innerText + " (i18n)");
     }
 
     /**
