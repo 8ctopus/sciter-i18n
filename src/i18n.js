@@ -94,8 +94,8 @@ export class i18n
                 case "div":
                 case "li":
                     i18n.#special(element);
-                    break;                
-                    
+                    break;
+
                 case "editbox":
                 case "input":
                     i18n.#placeholder(element);
@@ -161,8 +161,6 @@ export class i18n
         // use data-i18n key if it exists, otherwise element inner html as key
         const key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : element.innerHTML;
 
-        //console.log("key - " + key);
-
         element.innerHTML = i18n.t(key, element.innerHTML + " (i18n)");
     }
 
@@ -195,11 +193,11 @@ export class i18n
             const key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : nospaces;
 
             let translated = i18n.t(key, nospaces + " (i18n)");
-            
+
             // add inner element and translated text inside inner html
             let translatedElement = element.innerHTML.replace(nospaces, translated);
 
-            console.log(translatedElement);
+            //console.log(translatedElement);
 
             element.innerHTML = translatedElement;
         }
