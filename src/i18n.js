@@ -99,7 +99,6 @@ export class i18n
                 case "li":
                 case "option":
                 case "p":
-                case "plaintext":
                 case "radio":
                 case "span":
                     if (element.innerText === element.innerHTML)
@@ -121,6 +120,10 @@ export class i18n
                     if (child !== null)
                         i18n.#innerText(child);
 
+                    break;
+
+                case "plaintext":
+                    i18n.#plaintext(element);
                     break;
 
                 default:
@@ -227,7 +230,7 @@ export class i18n
 
     /**
      * Translate placeholder
-     * @param element
+     * @param DOMElement element
      * @return void
      */
     static #placeholder(element)
@@ -236,8 +239,21 @@ export class i18n
             return;
 
         // use data-i18n key if it exists, otherwise element inner html as key
-        let key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] + "placeholder" : element.attributes["placeholder"];
+        const key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] + "placeholder" : element.attributes["placeholder"];
 
         element.attributes["placeholder"] = i18n.#t(key, element.attributes["placeholder"] + " (i18n)");
+    }
+
+    /**
+     * Translate plaintext
+     * @param DOMElement element
+     * @return void
+     */
+    static #plaintext(element)
+    {
+        // use data-i18n key if it exists, otherwise content as key
+        const key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : element.plaintext.content;
+
+        element.plaintext.content = i18n.#t(key, key + " (i18n)");
     }
 }
