@@ -140,7 +140,25 @@
         "Left click menu": "Menu clic gauche",
         "Right click menu": "Menu clic droite",
 
-        "Sub menu": "Sous-menu"
+        "Sub menu": "Sous-menu",
+
+        "notepad.exe": "notepad.exe",
+        "regedit.exe": "regedit.exe",
+        "explorer.exe": "explorer.exe",
+        "First item (with tooltip)": "Premier élément (avec tooltip)",
+        "First sub-item": "Premier sous-élément",
+        "Second sub-item": "Second sous-élément",
+        "First radio item": "Premier radio élément",
+        "Second radio item": "Second radio élément",
+        "Third radio item": "Troisième radio élément",
+        "First check item": "Premier check élément",
+        "Second check item": "Second check élément",
+        "Third check item": "Troisième check élément",
+        "First check item": "Premier check élément",
+        "Second check item": "Second check élément",
+        "Third check item": "Troisième check élément",
+        "First sub-item": "Premier sous-élément",
+        "Second sub-item": "Second sous-élément"
     },
 
     "messages": {
