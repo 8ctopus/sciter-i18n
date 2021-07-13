@@ -161,7 +161,7 @@ export class i18n
     /**
      * Get translation
      * @param string key
-     * @param object options
+     * @param string|object options
      * @return string
      */
     static #t(key, options = null)
@@ -209,7 +209,7 @@ export class i18n
 
                 if (key.length > 0)
                     //console.log(`source - ${source} - key - ${key} - ` + i18n.m(key, source + " (i18n)"));
-                    content = content.replace(source, i18n.m(key, source + " (i18n)"));
+                    content = content.replace(source, i18n.#t(key, source + " (i18n)"));
             }
 
             // get text to translate
@@ -220,7 +220,7 @@ export class i18n
                 let key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : source;
 
                 if (key.length > 0)
-                    content = content.replace(source, i18n.m(key, source + " (i18n)"));
+                    content = content.replace(source, i18n.#t(key, source + " (i18n)"));
             }
         });
 
