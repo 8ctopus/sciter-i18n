@@ -90,7 +90,7 @@ document.on("ready", function() {
     const locale = "fr";
     const file   = sys.cwd() + `\\locales\\${locale}.json`;
 
-    if (i18n.init(locale, file)) {
+    if (i18n.init(locale, file, true)) {
         console.log("i18n init - OK");
 
         // translate window

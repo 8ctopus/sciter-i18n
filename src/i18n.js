@@ -5,15 +5,21 @@ import {encode,decode} from "@sciter";
 export class i18n
 {
     static #i18next;
+    static #timer;
+    static #debug;
 
     /**
      * Initialize engine
      * @param string locale
      * @param string url locale url or file
+     * @param bool debug
      * @return bool true on success, false otherwise
      */
-    static init(locale, url)
+    static init(locale, url, debug)
     {
+        if (debug)
+            i18n.#debug = true;
+
         // get url content
         let result = fetch(url, {sync: true});
 
@@ -70,6 +76,8 @@ export class i18n
      */
     static i18n(element)
     {
+        i18n.#timer = new Date();
+
         // get all elements to translate
         element.$$("[data-i18n]").map(function(element) {
             switch (element.tag) {
@@ -116,6 +124,11 @@ export class i18n
                     break;
             }
         });
+
+        i18n.#timer = new Date() - i18n.#timer;
+
+        if (i18n.#debug)
+            console.log(`i18n - ${i18n.#timer} ms`);
     }
 
     /**
@@ -186,10 +199,9 @@ export class i18n
                 // use data-i18n key if it exists, otherwise source as key
                 let key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : source;
 
-                if (key.length > 0) {
-                    console.log(`source - ${source} - key - ${key} - ` + i18n.m(key, source + " (i18n)"));
+                if (key.length > 0)
+                    //console.log(`source - ${source} - key - ${key} - ` + i18n.m(key, source + " (i18n)"));
                     content = content.replace(source, i18n.m(key, source + " (i18n)"));
-                }
             }
 
             // get text to translate
@@ -199,10 +211,8 @@ export class i18n
                 // use data-i18n key if it exists, otherwise source as key
                 let key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : source;
 
-                if (key.length > 0) {
-                    console.log(`source - ${source} - key - ${key} - ` + i18n.m(key, source + " (i18n)"));
+                if (key.length > 0)
                     content = content.replace(source, i18n.m(key, source + " (i18n)"));
-                }
             }
         });
 
