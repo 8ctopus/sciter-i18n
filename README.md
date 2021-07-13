@@ -25,8 +25,9 @@ document.on("ready", function() {
     // initialize translation engine
     const locale = "fr";
     const file   = sys.cwd() + `\\locales\\${locale}.json`;
+    const debug  = true;
 
-    if (i18n.init(locale, file)) {
+    if (i18n.init(locale, file, debug)) {
         console.log("i18n init - OK");
 
         // translate window
@@ -68,7 +69,3 @@ let message = i18n.m("no-update", "Widget could not be updated.");
 // with a single argument, it's both the key and the default value
 let message = i18n.m("Widget could not be updated.");
 ```
-
-## known issues
-
-- menus don't get translated because `innerHTML` contains html
