@@ -264,6 +264,10 @@ export class i18n
      */
     static #plaintext(element)
     {
+        // sometimes plaintext is undefined for some reason, this fixes it
+        if (typeof element.plaintext === "undefined")
+            return;
+
         // use data-i18n key if it exists, otherwise content as key
         const key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : element.plaintext.content;
 
