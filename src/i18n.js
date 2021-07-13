@@ -137,7 +137,7 @@ export class i18n
 
     /**
      * Get message translation
-     * @param string(optional) key
+     * @param string (optional) key
      * @param string msg
      * @return string translation or original message if the translation does not exist
      */
@@ -169,6 +169,7 @@ export class i18n
         if (i18n.#debug)
             i18n.#count++;
 
+        // https://www.i18next.com/translation-function/essentials#essentials
         return i18n.#i18next.t(key, options);
     }
 
