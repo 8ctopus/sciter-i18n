@@ -175,21 +175,34 @@ export class i18n
         // get all html elements
         let content = element.innerHTML;
 
+        // search
         let matches = Array.from(content.matchAll(/^([^<]*)<.*>([^<]*)$/gm));
 
         matches.forEach(function(match) {
-            let key = match[1].trim();
+            // get text to translate
+            let source = match[1].trim();
 
-            if (key.length !== 0) {
-                //console.log(`full - ${match[0]} - key - "${key}"`);
-                content = content.replace(key, i18n.t(key, key + " (i18n)"));
+            if (source.length > 0) {
+                // use data-i18n key if it exists, otherwise source as key
+                let key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : source;
+
+                if (key.length > 0) {
+                    console.log(`source - ${source} - key - ${key} - ` + i18n.m(key, source + " (i18n)"));
+                    content = content.replace(source, i18n.m(key, source + " (i18n)"));
+                }
             }
 
-            key = match[2].trim();
+            // get text to translate
+            source = match[2].trim();
 
-            if (key.length !== 0) {
-                //console.log(`full - ${match[0]} - key - "${key}"`);
-                content = content.replace(key, i18n.t(key, key + " (i18n)"));
+            if (source.length > 0) {
+                // use data-i18n key if it exists, otherwise source as key
+                let key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : source;
+
+                if (key.length > 0) {
+                    console.log(`source - ${source} - key - ${key} - ` + i18n.m(key, source + " (i18n)"));
+                    content = content.replace(source, i18n.m(key, source + " (i18n)"));
+                }
             }
         });
 

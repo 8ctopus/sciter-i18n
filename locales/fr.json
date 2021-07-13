@@ -110,5 +110,9 @@
     "messages": {
         "no-update": "Widget n'a pas pu être mis-à-jour.",
         "update-question": "Voulez-vous mettre à jour widget?"
+    },
+
+    "complex": {
+        "test": "Traduit"
     }
 }
