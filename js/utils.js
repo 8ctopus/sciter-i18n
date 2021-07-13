@@ -34,3 +34,21 @@ document.on("ready", function() {
     // set focus
     document.body.state.focus = true;
 });
+
+// add event listener
+document.on("showtab ", function(event, element) {
+    const log = document.$("plaintext#logger");
+
+    switch (event.type) {
+        case "showtab":
+            log.plaintext.appendLine(`${event.type} ${event.detail.tab} on ${element.tag}.${element.className}#${element.id}`);
+            break;
+
+        default:
+            log.plaintext.appendLine(`${event.type} on ${element.tag}.${element.className}#${element.id}`);
+            break;
+    }
+
+    // scroll to last item
+    log.lastElementChild.scrollIntoView({behavior: "smooth"});
+});
