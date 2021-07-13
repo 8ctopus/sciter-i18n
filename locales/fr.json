@@ -2,6 +2,18 @@
     "translation": {
         "general": "général",
         "buttons": "boutons",
+        "editbox": "edit",
+        "radio": "radio",
+        "checkbox": "coches",
+        "toggle": "interrupteur",
+        "select|switch": "select|switch",
+        "select|dropdown": "select|dropdown",
+        "select|list": "select|list",
+        "select|tree": "select|tree",
+        "menu": "menu",
+        "dialogs": "dialogues",
+        "plaintext": "plaintext",
+        "input with content": "input with content",
 
         "key1": "test du moteur i18n",
         "h1": "h1 (fr)",
@@ -104,7 +116,32 @@
 
         "This small text should get translated without too many issues.": "Ce petit texte devrait être traduit sans trop de problèmes.",
         "Widget update successful.": "Succès de la mise-à-jour de widget.",
-        "Widget could not be updated.": "Widget n'a pas pu être mis-à-jour."
+        "Widget could not be updated.": "Widget n'a pas pu être mis-à-jour.",
+
+        "Uppercase": "Majuscules",
+        "Lowercase": "Minuscules",
+
+        "First": "Premier",
+        "Second": "Deuxième",
+        "Third": "Troisième",
+
+        "First item": "Premier élément",
+        "Second item": "Deuxième élément",
+        "Third item": "Troisième élément",
+        "Fourth item": "Quatrième élément",
+
+        "item": "élement",
+        "Simple": "Simple",
+        "Simple 2": "Simple 2",
+        "Complex": "Complexe",
+        "Db": "BD",
+        "Volume is": "Volume de",
+        "Value:": "Valeur:",
+
+        "Left click menu": "Menu clic gauche",
+        "Right click menu": "Menu clic droite",
+
+        "Sub menu": "Sous-menu"
     },
 
     "messages": {

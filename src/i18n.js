@@ -153,7 +153,7 @@ export class i18n
                 return i18n.#t(arguments[0], arguments[1]);
 
             default:
-                console.error(`i18n m arguments expects 1 or 2 arguments`);
+                console.error(`i18n::m expects 1 or 2 arguments`);
                 return "";
         }
     }
@@ -161,16 +161,20 @@ export class i18n
     /**
      * Get translation
      * @param string key
-     * @param string|object options
+     * @param string value default value
      * @return string
      */
-    static #t(key, options = null)
+    static #t(key, value)
     {
-        if (i18n.#debug)
-            i18n.#count++;
+        if (i18n.#debug) {
+            if (!i18n.#i18next.exists(key))
+                console.log("i18n - translation missing - " + key);
+            else
+                i18n.#count++;
+        }
 
         // https://www.i18next.com/translation-function/essentials#essentials
-        return i18n.#i18next.t(key, options);
+        return i18n.#i18next.t(key, value);
     }
 
     /**
