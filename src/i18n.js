@@ -146,11 +146,11 @@ export class i18n
         switch (arguments.length) {
             case 1:
                 // message is key
-                return i18n.t(arguments[0], arguments[0]);
+                return i18n.#t(arguments[0], arguments[0]);
 
             case 2:
                 // first argument is key, second is default message
-                return i18n.t(arguments[0], arguments[1]);
+                return i18n.#t(arguments[0], arguments[1]);
 
             default:
                 console.error(`i18n m arguments expects 1 or 2 arguments`);
@@ -159,12 +159,12 @@ export class i18n
     }
 
     /**
-     * Get key translation
+     * Get translation
      * @param string key
      * @param object options
      * @return string
      */
-    static t(key, options = null)
+    static #t(key, options = null)
     {
         if (i18n.#debug)
             i18n.#count++;
@@ -183,7 +183,7 @@ export class i18n
         // use data-i18n key if it exists, otherwise element inner text as key
         const key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : element.innerText;
 
-        element.innerHTML = i18n.t(key, element.innerText + " (i18n)");
+        element.innerHTML = i18n.#t(key, element.innerText + " (i18n)");
     }
 
     /**
@@ -241,6 +241,6 @@ export class i18n
         // use data-i18n key if it exists, otherwise element inner html as key
         let key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] + "placeholder" : element.attributes["placeholder"];
 
-        element.attributes["placeholder"] = i18n.t(key, element.attributes["placeholder"] + " (i18n)");
+        element.attributes["placeholder"] = i18n.#t(key, element.attributes["placeholder"] + " (i18n)");
     }
 }
