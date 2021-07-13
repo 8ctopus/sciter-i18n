@@ -5,9 +5,11 @@ import {encode,decode} from "@sciter";
 export class i18n
 {
     static #i18next;
-    static #timer;
+
     static #debug;
-    static #count;
+    static #timer;
+    static #translated;
+    static #missing;
 
     /**
      * Initialize engine
@@ -78,8 +80,9 @@ export class i18n
     static i18n(element)
     {
         if (i18n.#debug) {
-            i18n.#timer = new Date();
-            i18n.#count = 0;
+            i18n.#timer      = new Date();
+            i18n.#translated = 0;
+            i18n.#missing    = [];
         }
 
         // get all elements to translate
@@ -134,8 +137,18 @@ export class i18n
 
         i18n.#timer = new Date() - i18n.#timer;
 
-        if (i18n.#debug)
-            console.log(`i18n - ${i18n.#count} elements - ${i18n.#timer} ms`);
+        if (i18n.#debug) {
+            let total = i18n.#translated + i18n.#missing.length;
+
+            let percentage = Math.round(i18n.#translated / total * 100, 1);
+
+            console.log(`i18n translate - OK - ${i18n.#translated} / ${total} (${percentage}%) - ${i18n.#timer} ms`);
+
+            i18n.#missing.forEach(function(key) {
+                console.log(`i18n - missing - ${key}`);
+            });
+        }
+
     }
 
     /**
@@ -171,9 +184,9 @@ export class i18n
     {
         if (i18n.#debug) {
             if (!i18n.#i18next.exists(key))
-                console.log("i18n - translation missing - " + key);
+                i18n.#missing.push(key);
             else
-                i18n.#count++;
+                i18n.#translated++;
         }
 
         // https://www.i18next.com/translation-function/essentials#essentials
