@@ -7,6 +7,7 @@ export class i18n
     static #i18next;
     static #timer;
     static #debug;
+    static #count;
 
     /**
      * Initialize engine
@@ -76,7 +77,10 @@ export class i18n
      */
     static i18n(element)
     {
-        i18n.#timer = new Date();
+        if (i18n.#debug) {
+            i18n.#timer = new Date();
+            i18n.#count = 0;
+        }
 
         // get all elements to translate
         element.$$("[data-i18n]").map(function(element) {
@@ -128,7 +132,7 @@ export class i18n
         i18n.#timer = new Date() - i18n.#timer;
 
         if (i18n.#debug)
-            console.log(`i18n - ${i18n.#timer} ms`);
+            console.log(`i18n - ${i18n.#count} elements - ${i18n.#timer} ms`);
     }
 
     /**
@@ -162,6 +166,9 @@ export class i18n
      */
     static t(key, options = null)
     {
+        if (i18n.#debug)
+            i18n.#count++;
+
         return i18n.#i18next.t(key, options);
     }
 
