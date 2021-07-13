@@ -197,39 +197,32 @@ export class i18n
      */
     static #innerHtml(element)
     {
-        // get all html elements
-        let content = element.innerHTML;
-
         // search
-        let matches = Array.from(content.matchAll(/^([^<]*)<.*>([^<]*)$/gm));
+        let match = element.innerHTML.match(/^([^<]*)<.*>([^<]*)$/);
 
-        matches.forEach(function(match) {
-            // get text to translate
-            let source = match[1].trim();
+        // nothing to translate
+        if (match === null)
+            return;
 
-            if (source.length > 0) {
-                // use data-i18n key if it exists, otherwise source as key
-                let key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : source;
-
-                if (key.length > 0)
-                    //console.log(`source - ${source} - key - ${key} - ` + i18n.m(key, source + " (i18n)"));
-                    content = content.replace(source, i18n.#t(key, source + " (i18n)"));
-            }
+        for (let i = 1; i <= 2; ++i) {
+            if (!match[i])
+                continue;
 
             // get text to translate
-            source = match[2].trim();
+            let source = match[i].trim();
 
-            if (source.length > 0) {
-                // use data-i18n key if it exists, otherwise source as key
-                let key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : source;
+            if (source.length === 0)
+                continue;
 
-                if (key.length > 0)
-                    content = content.replace(source, i18n.#t(key, source + " (i18n)"));
-            }
-        });
+            // use data-i18n key if it exists, otherwise source as key
+            let key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : source;
 
-        if (matches)
-            element.innerHTML = content;
+            if (key.length === 0)
+                continue;
+
+            //console.log(`source - ${source} - key - ${key} - ` + i18n.m(key, source + " (i18n)"));
+            element.innerHTML = element.innerHTML.replace(source, i18n.#t(key, source + " (i18n)"));
+        }
     }
 
     /**
