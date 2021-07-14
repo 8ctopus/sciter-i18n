@@ -115,11 +115,7 @@ export class i18n
                         break;
 
                     case "editbox":
-                        i18n.#placeholder(element);
-                        break;
-
                     case "input":
-                        i18n.#innerText(element);
                         i18n.#placeholder(element);
                         break;
 
