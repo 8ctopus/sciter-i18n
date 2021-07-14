@@ -161,15 +161,10 @@ export class i18n
     {
         switch (arguments.length) {
             case 1:
-                // message is key
-                return i18n.#t(arguments[0], {
-                    defaultValue: arguments[0]
-                });
-
             case 2:
                 // first argument is key, second is default message
                 return i18n.#t(arguments[0], {
-                    defaultValue: arguments[1]
+                    defaultValue: arguments.length == 2 ? arguments[1] : arguments[0],
                 });
 
             default:
