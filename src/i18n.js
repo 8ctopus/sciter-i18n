@@ -162,11 +162,15 @@ export class i18n
         switch (arguments.length) {
             case 1:
                 // message is key
-                return i18n.#t(arguments[0], arguments[0]);
+                return i18n.#t(arguments[0], {
+                    defaultValue: arguments[0]
+                });
 
             case 2:
                 // first argument is key, second is default message
-                return i18n.#t(arguments[0], arguments[1]);
+                return i18n.#t(arguments[0], {
+                    defaultValue: arguments[1]
+                });
 
             default:
                 console.error(`i18n::m expects 1 or 2 arguments`);
@@ -177,10 +181,10 @@ export class i18n
     /**
      * Get translation
      * @param string key
-     * @param string value default value
+     * @param object options
      * @return string
      */
-    static #t(key, value)
+    static #t(key, options)
     {
         if (i18n.#debug) {
             if (!i18n.#i18next.exists(key))
@@ -190,7 +194,7 @@ export class i18n
         }
 
         // https://www.i18next.com/translation-function/essentials#essentials
-        return i18n.#i18next.t(key, value);
+        return i18n.#i18next.t(key, options);
     }
 
     /**
@@ -203,7 +207,9 @@ export class i18n
         // use data-i18n key if it exists, otherwise element inner text as key
         const key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : element.innerText;
 
-        element.innerHTML = i18n.#t(key, element.innerText + " (i18n)");
+        element.innerHTML = i18n.#t(key, {
+            defaultValue: element.innerText + " (i18n)"
+        });
     }
 
     /**
@@ -237,7 +243,9 @@ export class i18n
                 continue;
 
             //console.log(`source - ${source} - key - ${key} - ` + i18n.m(key, source + " (i18n)"));
-            element.innerHTML = element.innerHTML.replace(source, i18n.#t(key, source + " (i18n)"));
+            element.innerHTML = element.innerHTML.replace(source, i18n.#t(key, {
+                defaultValue: source + " (i18n)",
+            }));
         }
     }
 
@@ -254,7 +262,9 @@ export class i18n
         // use data-i18n key if it exists, otherwise element inner html as key
         const key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] + "placeholder" : element.attributes["placeholder"];
 
-        element.attributes["placeholder"] = i18n.#t(key, element.attributes["placeholder"] + " (i18n)");
+        element.attributes["placeholder"] = i18n.#t(key, {
+            defaultValue: element.attributes["placeholder"] + " (i18n)",
+        });
     }
 
     /**
@@ -271,6 +281,8 @@ export class i18n
         // use data-i18n key if it exists, otherwise content as key
         const key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : element.plaintext.content;
 
-        element.plaintext.content = i18n.#t(key, key + " (i18n)");
+        element.plaintext.content = i18n.#t(key, {
+            defaultValue: key + " (i18n)"
+        });
     }
 }
