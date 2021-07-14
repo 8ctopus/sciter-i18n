@@ -115,7 +115,11 @@ export class i18n
                         break;
 
                     case "editbox":
+                        i18n.#placeholder(element);
+                        break;
+
                     case "input":
+                        i18n.#innerText(element);
                         i18n.#placeholder(element);
                         break;
 
@@ -223,7 +227,13 @@ export class i18n
      */
     static #innerText(element)
     {
-        element.innerText = i18n.#t(element.attributes["data-i18n"] ?? "", element.innerText);
+        const str = element.innerText.trim();
+
+        // do not translate empty and numeric strings
+        if (str === "" || i18n.#isNumeric(str))
+            return;
+
+        element.innerText = i18n.#t(element.attributes["data-i18n"] ?? "", str);
     }
 
     /**
@@ -285,5 +295,19 @@ export class i18n
             return;
 
         element.plaintext.content = i18n.#t(element.attributes["data-i18n"] ?? "", element.plaintext.content);
+    }
+
+    /**
+     * Check if string is a number
+     * @param string str
+     * @return true if number, false otherwise
+     * @note https://stackoverflow.com/a/175787/10126479
+     */
+    static #isNumeric(str)
+    {
+        if (typeof str !== "string")
+            return false;
+
+        return !isNaN(str) && !isNaN(parseFloat(str))
     }
 }
