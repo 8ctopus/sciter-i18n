@@ -99,6 +99,11 @@ document.on("ready", function() {
     }
     else
         console.error("i18n init - FAILED");
+
+    // set dialogs translation callback
+    dialogs.setOptions({
+        callback: dialogCallback,
+    });
 });
 
 /**
@@ -120,20 +125,20 @@ document.on("click", "button", function(event, element) {
 
     switch (element.id) {
         case "info":
-            value = dialogs.show("info", i18n.m("Widget update successful."), "ok", dialogCallback);
+            value = dialogs.show("info", i18n.m("Widget update successful."), "ok");
             break;
 
         case "error":
-            value = dialogs.show("error", i18n.m("Widget failed with error 18."), "ok help[https://duckduckgo.com]", dialogCallback);
+            value = dialogs.show("error", i18n.m("Widget failed with error 18."), "ok help[https://duckduckgo.com]");
             break;
 
         case "warning":
             // get message using namespace:key and default message
-            value = dialogs.show("warning", i18n.m("messages:no-update", "Widget could not be updated."), "ok", dialogCallback);
+            value = dialogs.show("warning", i18n.m("messages:no-update", "Widget could not be updated."), "ok");
             break;
 
         case "question":
-            value = dialogs.show("question", i18n.m("messages:update-question", "Do you want to update widget?"), "yes no cancel", dialogCallback);
+            value = dialogs.show("question", i18n.m("messages:update-question", "Do you want to update widget?"), "yes no cancel");
             break;
 
         case "file":

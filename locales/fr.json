@@ -116,6 +116,7 @@
 
         "Widget update successful.": "Succès de la mise-à-jour de widget.",
         "Widget could not be updated.": "Widget n'a pas pu être mis-à-jour.",
+        "Widget failed with error 18.": "Widget a échoué avec une erreur 18.",
 
         "Uppercase": "Majuscules",
         "Lowercase": "Minuscules",
@@ -172,5 +173,17 @@
 
     "plaintext": {
         "plaintext": "Ce petit texte devrait être traduit sans trop de problèmes.\r\nMême si sur plusieurs lignes."
+    },
+
+    "dialogs": {
+        "Information": "Information",
+        "Error": "Erreur",
+        "Warning": "Avertisssement",
+        "Question": "Question",
+        "ok": "OK",
+        "yes": "Oui",
+        "no": "Non",
+        "cancel": "Annuler",
+        "help": "Aide"
     }
 }
