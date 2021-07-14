@@ -86,7 +86,8 @@ export class i18n
         }
 
         // get all elements to translate
-        element.$$("[data-i18n]").forEach(function(element) {
+        // reversing the array fixes translation of menus within menus
+        element.$$("[data-i18n]").reverse().forEach(function(element) {
             switch (element.tag) {
                 case "button":
                 case "caption":
