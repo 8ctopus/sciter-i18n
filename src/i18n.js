@@ -79,77 +79,82 @@ export class i18n
      */
     static i18n(element)
     {
-        if (i18n.#debug) {
-            i18n.#timer      = new Date();
-            i18n.#translated = 0;
-            i18n.#missing    = [];
-        }
+        try {
 
-        // get all elements to translate
-        // reversing the array fixes translation of menus within menus
-        element.$$("[data-i18n]").reverse().forEach(function(element) {
-            switch (element.tag) {
-                case "button":
-                case "caption":
-                case "checkbox":
-                case "div":
-                case "h1":
-                case "h2":
-                case "h3":
-                case "h4":
-                case "h5":
-                case "h6":
-                case "label":
-                case "li":
-                case "option":
-                case "p":
-                case "radio":
-                case "span":
-                    if (element.innerHTML.indexOf("<") === -1)
-                        i18n.#innerText(element);
-                    else
-                        i18n.#innerHtml(element);
-
-                    break;
-
-                case "editbox":
-                case "input":
-                    i18n.#placeholder(element);
-                    break;
-
-                case "select":
-                    // get select caption
-                    const child = element.$("caption");
-
-                    if (child !== null)
-                        i18n.#innerText(child);
-
-                    break;
-
-                case "plaintext":
-                    i18n.#plaintext(element);
-                    break;
-
-                default:
-                    console.warn(`i18n - unknown element - ${element.tag}`);
-                    break;
+            if (i18n.#debug) {
+                i18n.#timer      = new Date();
+                i18n.#translated = 0;
+                i18n.#missing    = [];
             }
-        });
 
-        i18n.#timer = new Date() - i18n.#timer;
+            // get all elements to translate
+            // reversing the array fixes translation of menus within menus
+            element.$$("[data-i18n]").reverse().forEach(function(element) {
+                switch (element.tag) {
+                    case "button":
+                    case "caption":
+                    case "checkbox":
+                    case "div":
+                    case "h1":
+                    case "h2":
+                    case "h3":
+                    case "h4":
+                    case "h5":
+                    case "h6":
+                    case "label":
+                    case "li":
+                    case "option":
+                    case "p":
+                    case "radio":
+                    case "span":
+                        if (element.innerHTML.indexOf("<") === -1)
+                            i18n.#innerText(element);
+                        else
+                            i18n.#innerHtml(element);
 
-        if (i18n.#debug) {
-            let total = i18n.#translated + i18n.#missing.length;
+                        break;
 
-            let percentage = Math.round(i18n.#translated / total * 100, 1);
+                    case "editbox":
+                    case "input":
+                        i18n.#placeholder(element);
+                        break;
 
-            console.log(`i18n translate - OK - ${i18n.#translated} / ${total} (${percentage}%) - ${i18n.#timer} ms`);
+                    case "select":
+                        // get select caption
+                        const child = element.$("caption");
 
-            i18n.#missing.forEach(function(key) {
-                console.log(`i18n missing - ${key}`);
+                        if (child !== null)
+                            i18n.#innerText(child);
+
+                        break;
+
+                    case "plaintext":
+                        i18n.#plaintext(element);
+                        break;
+
+                    default:
+                        console.warn(`i18n - unknown element - ${element.tag}`);
+                        break;
+                }
             });
-        }
 
+            i18n.#timer = new Date() - i18n.#timer;
+
+            if (i18n.#debug) {
+                let total = i18n.#translated + i18n.#missing.length;
+
+                let percentage = Math.round(i18n.#translated / total * 100, 1);
+
+                console.log(`i18n translate - OK - ${i18n.#translated} / ${total} (${percentage}%) - ${i18n.#timer} ms`);
+
+                i18n.#missing.forEach(function(key) {
+                    console.log(`i18n missing - ${key}`);
+                });
+            }
+        }
+        catch (e) {
+            console.error(`i18n exception - ${e.message} - ${e.stack}`);
+        }
     }
 
     /**
