@@ -2,6 +2,8 @@
 
 This is an attempt to create a translation engine for [sciter.js](https://sciter.com/) on top of [i18next](https://www.i18next.com/).
 
+![sciter i18n screenshot](screenshot.png)
+
 ## demo
 
 - git clone the repository
