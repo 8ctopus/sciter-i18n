@@ -248,6 +248,7 @@ export class i18n
             //console.log(`source "${source}"`);
 
             element.innerHTML = element.innerHTML.replace(source, i18n.#t(element.attributes["data-i18n"] ?? "", source));
+            break;
         }
     }
 
