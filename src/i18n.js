@@ -163,9 +163,10 @@ export class i18n
             case 1:
             case 2:
                 // first argument is key, second is default message
-                return i18n.#t(arguments[0], {
-                    defaultValue: arguments.length == 2 ? arguments[1] : arguments[0],
-                });
+                return i18n.#t(
+                    arguments.length === 2 ? arguments[0] : "",
+                    arguments.length === 2 ? arguments[1] : arguments[0],
+                );
 
             default:
                 console.error(`i18n::m expects 1 or 2 arguments`);
@@ -175,21 +176,38 @@ export class i18n
 
     /**
      * Get translation
-     * @param string key
-     * @param object options
-     * @return string
+     * @param string data - data-i18n attribute value
+     * @param string text - text to translate
+     * @return string translated text
      */
-    static #t(key, options)
+    static #t(data, text)
     {
+        let key, options;
+
+        if (data.length)
+            key = data;
+        else {
+            key = text;
+
+            // text may contain : and . which are used internally by i18next
+            options = {
+                nsSeparator: false,
+                keySeparator: false,
+            };
+        }
+
         if (i18n.#debug) {
-            if (!i18n.#i18next.exists(key))
+            if (!i18n.#i18next.exists(key, options))
                 i18n.#missing.push(key);
             else
                 i18n.#translated++;
         }
 
         // https://www.i18next.com/translation-function/essentials#essentials
-        return i18n.#i18next.t(key, options);
+        return i18n.#i18next.t(key, {
+            defaultValue: text + " (i18n)",
+            ...options,
+        });
     }
 
     /**
@@ -199,12 +217,7 @@ export class i18n
      */
     static #innerText(element)
     {
-        // use data-i18n key if it exists, otherwise element inner text as key
-        const key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : element.innerText;
-
-        element.innerHTML = i18n.#t(key, {
-            defaultValue: element.innerText + " (i18n)"
-        });
+        element.innerHTML = i18n.#t(element.attributes["data-i18n"] ?? "", element.innerText);
     }
 
     /**
@@ -231,16 +244,8 @@ export class i18n
             if (source.length === 0)
                 continue;
 
-            // use data-i18n key if it exists, otherwise source as key
-            let key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : source;
-
-            if (key.length === 0)
-                continue;
-
             //console.log(`source - ${source} - key - ${key} - ` + i18n.m(key, source + " (i18n)"));
-            element.innerHTML = element.innerHTML.replace(source, i18n.#t(key, {
-                defaultValue: source + " (i18n)",
-            }));
+            element.innerHTML = element.innerHTML.replace(source, i18n.#t(element.attributes["data-i18n"] ?? "", source));
         }
     }
 
@@ -254,12 +259,9 @@ export class i18n
         if (!element.hasAttribute("placeholder"))
             return;
 
-        // use data-i18n key if it exists, otherwise element inner html as key
-        const key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] + "placeholder" : element.attributes["placeholder"];
+        const key = element.attributes["data-i18n"] ? element.attributes["data-i18n"] + "-placeholder" : "";
 
-        element.attributes["placeholder"] = i18n.#t(key, {
-            defaultValue: element.attributes["placeholder"] + " (i18n)",
-        });
+        element.attributes["placeholder"] = i18n.#t(key, element.attributes["placeholder"]);
     }
 
     /**
@@ -273,11 +275,6 @@ export class i18n
         if (typeof element.plaintext === "undefined")
             return;
 
-        // use data-i18n key if it exists, otherwise content as key
-        const key = !!element.attributes["data-i18n"] ? element.attributes["data-i18n"] : element.plaintext.content;
-
-        element.plaintext.content = i18n.#t(key, {
-            defaultValue: key + " (i18n)"
-        });
+        element.plaintext.content = i18n.#t(element.attributes["data-i18n"] ?? "", element.plaintext.content);
     }
 }
