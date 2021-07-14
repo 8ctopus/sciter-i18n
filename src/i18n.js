@@ -145,7 +145,7 @@ export class i18n
             console.log(`i18n translate - OK - ${i18n.#translated} / ${total} (${percentage}%) - ${i18n.#timer} ms`);
 
             i18n.#missing.forEach(function(key) {
-                console.log(`i18n - missing - ${key}`);
+                console.log(`i18n missing - ${key}`);
             });
         }
 
