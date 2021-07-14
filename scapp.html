@@ -15,11 +15,6 @@ pagecontrol {
     size: *;
 }
 
-label,
-span {
-    width: *;
-}
-
 tab > div {
     flow: vertical;
 
@@ -29,8 +24,9 @@ tab > div {
     background-color: color(panel);
 }
 
-plaintext#logger {
-    height: 150dip;
+label,
+span {
+    width: *;
 }
 
 checkbox#checkbox-label {
@@ -48,6 +44,10 @@ checkbox#checkbox-label:checked > caption.true {
 
 checkbox#checkbox-label:not(:checked) > caption.false {
     visibility:visible;
+}
+
+input[type="number"] {
+    width: 200dip;
 }
 
 select[type="list"]#table {
@@ -73,6 +73,10 @@ menu.bar {
 
 button.context-menu {
     context-menu: selector(menu#context);
+}
+
+plaintext#logger {
+    height: 150dip;
 }
 
 </style>
