@@ -74,7 +74,6 @@
         "Chicory": "Chicorée",
 
         "dropdown": "menu déroulant",
-        "disabled": "désactivé",
         "Group 2": "Groupe 2",
 
         "Apple": "Pomme",
@@ -139,6 +138,8 @@
         "Db": "Db",
         "Volume is": "Volume de",
         "Value:": "Valeur:",
+        "Inputs": "Entrées",
+        "dropdown select:": "dropdown select:",
 
         "Left click menu": "Menu clic gauche",
         "Right click menu": "Menu clic droite",
