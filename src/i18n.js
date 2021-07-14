@@ -104,7 +104,7 @@ export class i18n
                 case "p":
                 case "radio":
                 case "span":
-                    if (element.innerText === element.innerHTML)
+                    if (element.innerHTML.indexOf("<") === -1)
                         i18n.#innerText(element);
                     else
                         i18n.#innerHtml(element);
@@ -227,24 +227,26 @@ export class i18n
      */
     static #innerHtml(element)
     {
-        // search
-        let match = element.innerHTML.match(/^([^<]*)<.*>([^<]*)$/);
+        // search parts to translate
+        const match = element.innerHTML.match(/^([^<]*)<.*>([^<]*)$/);
 
         // nothing to translate
         if (match === null)
             return;
 
+        // loop through matches
         for (let i = 1; i <= 2; ++i) {
             if (!match[i])
                 continue;
 
             // get text to translate
-            let source = match[i].trim();
+            const source = match[i].trim();
 
             if (source.length === 0)
                 continue;
 
-            //console.log(`source - ${source} - key - ${key} - ` + i18n.m(key, source + " (i18n)"));
+            //console.log(`source "${source}"`);
+
             element.innerHTML = element.innerHTML.replace(source, i18n.#t(element.attributes["data-i18n"] ?? "", source));
         }
     }
