@@ -427,30 +427,37 @@ document.on("click", "button", function(event, element) {
                         <li data-i18n type="check">Second check item</li>
                         <li data-i18n type="check">Third check item</li>
                         <hr/>
-                        <li data-i18n>Volume is <input type="hslider" max="10" value="0" buddy="volume-buddy" /> <b id="volume-buddy">x</b> Db</li>
+                        <li data-i18n>
+                            Volume is
+                            <input type="hslider" max="10" value="0" buddy="volume-buddy" />
+                            <b id="volume-buddy">x</b> Db
+                        </li>
                     </menu>
                 </li>
 
                 <li data-i18n>Complex
                     <menu class="cool">
                         <li>
-                            <input type="radio" />First
-                            <input type="radio" />Second
-                            <input type="radio" />Third
+                            <input data-i18n type="radio">First</input>
+                            <input data-i18n type="radio">Second</input>
+                            <input data-i18n type="radio">Third</input>
                         </li>
-                        <hr/>
+                        <hr />
                         <li data-i18n type="check">First check item</li>
                         <li data-i18n type="check">Second check item</li>
                         <li data-i18n type="check">Third check item</li>
-                        <hr/>
-                        <li>
-                            Volume is <input type="hslider" max="10" value="0" step="0.1" buddy="volume-buddy2" /> <b id="volume-buddy2">x</b> Db
+                        <hr />
+                        <li data-i18n>
+                            Volume is
+                            <input type="hslider" max="10" value="0" step="0.1" buddy="volume-buddy2" />
+                            <b id="volume-buddy2">x</b> Db
+                        </li>
+                        <li data-i18n>
+                            Value:
+                            <input type="number" size=4 step=1 minvalue=0 maxvalue=100 value="25" />
                         </li>
                         <li>
-                            Value: <input type="number" size=4 step=1 minvalue=0 maxvalue=100 value="25" />
-                        </li>
-                        <li>
-                            <button name="just-a-button">Just a button</button>
+                            <button data-i18n name="just-a-button">Just a button</button>
                         </li>
                         <li data-i18n>dropdown select:
                             <select>

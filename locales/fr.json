@@ -7,7 +7,7 @@
         "checkbox": "coches",
         "toggle": "toggle",
         "switch": "switch",
-        "dropdown": "dropdown",
+        "dropdown": "menu déroulant",
         "list": "liste",
         "tree": "arbre",
         "menu": "menu",
@@ -141,7 +141,7 @@
         "Volume is": "Volume de",
         "Value:": "Valeur:",
         "Inputs": "Entrées",
-        "dropdown select:": "dropdown select:",
+        "dropdown select:": "dropdown select (fr):",
 
         "Left click menu": "Menu clic gauche",
         "Right click menu": "Menu clic droite",
@@ -157,14 +157,16 @@
         "First radio item": "Premier radio élément",
         "Second radio item": "Second radio élément",
         "Third radio item": "Troisième radio élément",
-        "First check item": "Premier check élément",
-        "Second check item": "Second check élément",
-        "Third check item": "Troisième check élément",
+        "First check item": "Premier élément coché",
+        "Second check item": "Second élément coché",
+        "Third check item": "Troisième élément coché",
         "First check item": "Premier check élément",
         "Second check item": "Second check élément",
         "Third check item": "Troisième check élément",
         "First sub-item": "Premier sous-élément",
         "Second sub-item": "Second sous-élément",
+
+        "Just a button": "Juste un bouton",
 
         "This is a string.": "Ceci est une phrase."
     },
