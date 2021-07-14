@@ -171,7 +171,8 @@ document.on("click", "button", function(event, element) {
                 <li data-i18n>list item</li>
             </ol>
         </tab>
-        <tab title="buttons">
+
+        <tab title="button">
             <button data-i18n>Do it!</button>
             <button data-i18n role="default-button">Default</button>
             <button data-i18n disabled>Disabled</button>
@@ -179,6 +180,7 @@ document.on("click", "button", function(event, element) {
             <button data-i18n .warning>Warning</button>
             <button data-i18n .danger>Danger</button>
         </tab>
+
         <tab title="editbox">
             <editbox data-i18n value="foo" placeholder="input with content" maxlength=6 filter="a~z" spellcheck="yes" />
             <editbox data-i18n placeholder="input text here" />
@@ -188,6 +190,7 @@ document.on("click", "button", function(event, element) {
             <!-- https://github.com/c-smile/sciter-js-sdk/blob/main/docs/md/behaviors/behavior-masked-edit.md -->
             <input|masked mask="(###) ### - ####" />
         </tab>
+
         <tab title="number">
             <input|number data-i18n value="42" step="1" min="0" max="999" placeholder="number" />
             <input|number data-i18n step="1" min="0" max="999" placeholder="number" />
@@ -195,6 +198,7 @@ document.on("click", "button", function(event, element) {
             <input|decimal value="42.13" />
             <input|integer value="42" />
         </tab>
+
         <tab title="radio">
             <!-- as="string | integer | float | numeric | auto" -->
             <radio (rgroup) data-i18n checked value="true" as="string">Yes</radio>
@@ -204,6 +208,7 @@ document.on("click", "button", function(event, element) {
             <radio (rgroupd) data-i18n disabled checked value="a">Disabled (Checked)</radio>
             <radio (rgroupd) data-i18n disabled value="b">Disabled</radio>
         </tab>
+
         <tab title="checkbox">
             <checkbox data-i18n checked>Checked</checkbox>
             <checkbox data-i18n>Unchecked</checkbox>
@@ -217,6 +222,7 @@ document.on("click", "button", function(event, element) {
                 <caption data-i18n .false>unchecked state</caption>
             </checkbox>
         </tab>
+
         <tab title="toggle">
             <toggle (foo) checked>
                 <option data-i18n>No</option>
@@ -234,7 +240,7 @@ document.on("click", "button", function(event, element) {
             <toggle|radio(group) value="C" />
         </tab>
 
-        <tab title="select|switch">
+        <tab title="switch">
             <select|switch>
                 <option data-i18n>Left</option>
                 <option data-i18n>Center</option>
@@ -242,7 +248,7 @@ document.on("click", "button", function(event, element) {
             </select>
         </tab>
 
-        <tab title="select|dropdown">
+        <tab title="dropdown">
             <select|dropdown data-i18n novalue="dropdown">
                 <option data-i18n>Apple</option>
                 <option data-i18n>Apricot</option>
@@ -293,7 +299,8 @@ document.on("click", "button", function(event, element) {
                 <option data-i18n>Twelve</option>
             </select>
         </tab>
-        <tab title="select|list">
+
+        <tab title="list">
             <select|list multiple size=5>
                 <option data-i18n>Apple</option>
                 <option data-i18n selected>Apricot</option>
@@ -327,7 +334,8 @@ document.on("click", "button", function(event, element) {
                 </option>
             </select>
         </tab>
-        <tab title="select|tree">
+
+        <tab title="tree">
             <select|tree multiple="checkmarks" treelines>
                 <option expanded>
                     <caption data-i18n>Fruits</caption>
@@ -475,7 +483,8 @@ document.on("click", "button", function(event, element) {
                 </li>
             </menu>
         </tab>
-        <tab title="dialogs">
+
+        <tab title="dialog">
             <button #info data-i18n>info</button>
             <button #error data-i18n>error</button>
             <button #warning data-i18n>warning</button>
@@ -483,6 +492,7 @@ document.on("click", "button", function(event, element) {
             <button #file data-i18n>select file</button>
             <button #folder data-i18n>select folder</button>
         </tab>
+
         <tab title="plaintext">
             <plaintext data-i18n="plaintext:plaintext">
 This small text should get translated without too many issues.
