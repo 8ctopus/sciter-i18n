@@ -86,7 +86,7 @@ export class i18n
         }
 
         // get all elements to translate
-        element.$$("[data-i18n]").map(function(element) {
+        element.$$("[data-i18n]").forEach(function(element) {
             switch (element.tag) {
                 case "button":
                 case "caption":
