@@ -69,7 +69,3 @@ let message = i18n.m("no-update", "Widget could not be updated.");
 // with a single argument, it's both the key and the default value
 let message = i18n.m("Widget could not be updated.");
 ```
-
-# known issues
-
-- pagecontrol refresh issues in the sample
