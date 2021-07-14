@@ -5,7 +5,7 @@ This is an attempt to create a translation engine for [sciter.js](https://sciter
 ## demo
 
 - git clone the repository
-- run `install.bat` to download the latest sciter binaries abd the sciter package manager
+- run `install.bat` to download the latest sciter binaries and the sciter package manager
 - install packages `php spm.phar install`
 - fix vendor path in `src\i18n.js` from `import i18next from "../../../i18next/i18next/src/index.js";` to `import i18next from "../vendor/i18next/i18next/src/index.js";`
 - run `scapp.bat`
