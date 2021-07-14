@@ -228,7 +228,7 @@ export class i18n
     static #innerHtml(element)
     {
         // search parts to translate
-        const match = element.innerHTML.match(/^([^<]*)<.*>([^<]*)$/);
+        const match = element.innerHTML.match(/^([^<]*)<.*>([^<]*)$/m);
 
         // nothing to translate
         if (match === null)
