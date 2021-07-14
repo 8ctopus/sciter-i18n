@@ -217,7 +217,7 @@ export class i18n
      */
     static #innerText(element)
     {
-        element.innerHTML = i18n.#t(element.attributes["data-i18n"] ?? "", element.innerText);
+        element.innerText = i18n.#t(element.attributes["data-i18n"] ?? "", element.innerText);
     }
 
     /**
