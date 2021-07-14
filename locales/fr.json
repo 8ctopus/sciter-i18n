@@ -13,6 +13,8 @@
         "menu": "menu",
         "dialog": "dialogue",
         "plaintext": "plaintext",
+        "special": "spécial",
+
         "input with content": "saisie avec contenu",
 
         "key1": "test du moteur i18n",
