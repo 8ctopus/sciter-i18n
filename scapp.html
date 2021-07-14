@@ -186,6 +186,8 @@ document.on("click", "button", function(event, element) {
             <button data-i18n .success>Success</button>
             <button data-i18n .warning>Warning</button>
             <button data-i18n .danger>Danger</button>
+            <button data-i18n><i class="fas fa-magic"></i>Automatic</button>
+            <button data-i18n><i class="fas fa-cog" />Manual</button>
         </tab>
 
         <tab title="editbox">
@@ -511,6 +513,7 @@ Even if it's on several lines.
             <div data-i18n="complex:test"><i class="fas fa-anchor"></i> Not translated</div>
             <div data-i18n="complex:test">Not translated <span>span</span></div>
             <span data-i18n>Value:</span>
+            <span data-i18n>This is a string.</span>
         </tab>
     </pagecontrol>
     <plaintext #logger readonly />

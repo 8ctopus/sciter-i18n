@@ -33,6 +33,8 @@
         "Success": "Succès",
         "Warning": "Attention",
         "Danger": "Danger",
+        "Automatic": "Automatique",
+        "Manual": "manuel",
 
         "input text here": "entrer le texte ici",
         "password": "mot de passe",
@@ -162,7 +164,9 @@
         "Second check item": "Second check élément",
         "Third check item": "Troisième check élément",
         "First sub-item": "Premier sous-élément",
-        "Second sub-item": "Second sous-élément"
+        "Second sub-item": "Second sous-élément",
+
+        "This is a string.": "Ceci est une phrase."
     },
 
     "messages": {
