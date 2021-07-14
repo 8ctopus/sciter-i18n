@@ -188,6 +188,10 @@ export class i18n
      */
     static #t(data, text)
     {
+        // do not translate numbers
+        if (i18n.#isNumeric(text))
+            return text;
+
         let key, options;
 
         if (data.length)
