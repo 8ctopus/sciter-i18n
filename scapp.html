@@ -75,6 +75,10 @@ button.context-menu {
     context-menu: selector(menu#context);
 }
 
+textarea {
+    width: *;
+}
+
 plaintext#logger {
     height: 150dip;
 }
@@ -509,11 +513,15 @@ document.on("click", "button", function(event, element) {
             <button #folder data-i18n>select folder</button>
         </tab>
 
-        <tab title="plaintext">
+        <tab title="text">
             <plaintext data-i18n="plaintext:plaintext">
 This small text should get translated without too many issues.
 Even if it's on several lines.
             </plaintext>
+            <textarea data-i18n="plaintext:plaintext">
+This small text should get translated without too many issues.
+Even if it's on several lines.
+            </textarea>
         </tab>
 
         <tab title="special">
