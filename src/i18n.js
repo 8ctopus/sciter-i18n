@@ -21,7 +21,7 @@ export class i18n
     static init(locale, url, debug)
     {
         if (debug)
-            i18n.#debug = true;
+            this.#debug = true;
 
         // get url content
         let result = fetch(url, {sync: true});
@@ -44,7 +44,7 @@ export class i18n
         result = false;
 
         // init translation system
-        i18n.#i18next = i18next;
+        this.#i18next = i18next;
 
         i18next.init({
             // i18next debugging
@@ -80,11 +80,10 @@ export class i18n
     static i18n(element)
     {
         try {
-
-            if (i18n.#debug) {
-                i18n.#timer      = new Date();
-                i18n.#translated = 0;
-                i18n.#missing    = [];
+            if (this.#debug) {
+                this.#timer      = new Date();
+                this.#translated = 0;
+                this.#missing    = [];
             }
 
             // get all elements to translate
@@ -138,16 +137,16 @@ export class i18n
                 }
             });
 
-            i18n.#timer = new Date() - i18n.#timer;
+            this.#timer = new Date() - this.#timer;
 
-            if (i18n.#debug) {
-                let total = i18n.#translated + i18n.#missing.length;
+            if (this.#debug) {
+                let total = this.#translated + this.#missing.length;
 
-                let percentage = Math.round(i18n.#translated / total * 100, 1);
+                let percentage = Math.round(this.#translated / total * 100, 1);
 
-                console.log(`i18n translate - OK - ${i18n.#translated} / ${total} (${percentage}%) - ${i18n.#timer} ms`);
+                console.log(`i18n translate - OK - ${this.#translated} / ${total} (${percentage}%) - ${this.#timer} ms`);
 
-                i18n.#missing.forEach(function(key) {
+                this.#missing.forEach(function(key) {
                     console.log(`i18n missing - ${key}`);
                 });
             }
@@ -169,7 +168,7 @@ export class i18n
             case 1:
             case 2:
                 // first argument is key, second is default message
-                return i18n.#t(
+                return this.#t(
                     arguments.length === 2 ? arguments[0] : "",
                     arguments.length === 2 ? arguments[1] : arguments[0],
                 );
@@ -189,7 +188,7 @@ export class i18n
     static #t(data, text)
     {
         // do not translate numbers
-        if (i18n.#isNumeric(text))
+        if (this.#isNumeric(text))
             return text;
 
         let key, options;
@@ -206,15 +205,15 @@ export class i18n
             };
         }
 
-        if (i18n.#debug) {
-            if (!i18n.#i18next.exists(key, options))
-                i18n.#missing.push(key);
+        if (this.#debug) {
+            if (!this.#i18next.exists(key, options))
+                this.#missing.push(key);
             else
-                i18n.#translated++;
+                this.#translated++;
         }
 
         // https://www.i18next.com/translation-function/essentials#essentials
-        return i18n.#i18next.t(key, {
+        return this.#i18next.t(key, {
             defaultValue: text + " (i18n)",
             ...options,
         });
@@ -230,10 +229,10 @@ export class i18n
         const str = element.innerText.trim();
 
         // do not translate empty and numeric strings
-        if (str === "" || i18n.#isNumeric(str))
+        if (str === "" || this.#isNumeric(str))
             return;
 
-        element.innerText = i18n.#t(element.attributes["data-i18n"] ?? "", str);
+        element.innerText = this.#t(element.attributes["data-i18n"] ?? "", str);
     }
 
     /**
@@ -263,7 +262,7 @@ export class i18n
 
             //console.log(`source "${source}"`);
 
-            element.innerHTML = element.innerHTML.replace(source, i18n.#t(element.attributes["data-i18n"] ?? "", source));
+            element.innerHTML = element.innerHTML.replace(source, this.#t(element.attributes["data-i18n"] ?? "", source));
             break;
         }
     }
@@ -280,7 +279,7 @@ export class i18n
 
         const key = element.attributes["data-i18n"] ? element.attributes["data-i18n"] + "-placeholder" : "";
 
-        element.attributes["placeholder"] = i18n.#t(key, element.attributes["placeholder"]);
+        element.attributes["placeholder"] = this.#t(key, element.attributes["placeholder"]);
     }
 
     /**
@@ -294,7 +293,7 @@ export class i18n
         if (typeof element.plaintext === "undefined")
             return;
 
-        element.plaintext.content = i18n.#t(element.attributes["data-i18n"] ?? "", element.plaintext.content);
+        element.plaintext.content = this.#t(element.attributes["data-i18n"] ?? "", element.plaintext.content);
     }
 
     /**
