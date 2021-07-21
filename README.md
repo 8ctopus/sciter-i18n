@@ -71,3 +71,11 @@ let message = i18n.m("no-update", "Widget could not be updated.");
 // with a single argument, it's both the key and the default value
 let message = i18n.m("Widget could not be updated.");
 ```
+
+# todo
+
+- go through (nodes instead of innerHtml)[https://sciter.com/forums/topic/menu-items-innerhtml-recursive-update/]
+- i18next file system backend or fetch backend
+- add missing ids to json
+- how to deal with interface refresh?
+
