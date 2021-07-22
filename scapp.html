@@ -7,9 +7,12 @@
 <title>sciter i18n demo</title>
 <style>
 
-@import url("css/controls.css");
-@import url("./vendor/8ctopus/sciter-pagecontrol/src/pagecontrol.css");
-@import url("./vendor/8ctopus/sciter-fontawesome/src/css/fontawesome.css");
+@import url(vendor/8ctopus/sciter-pagecontrol/src/pagecontrol.css);
+@import url(vendor/8ctopus/sciter-fontawesome/src/css/fontawesome.css);
+@import url(vendor/8ctopus/sciter-logger/src/logger.css);
+@import url(css/controls.css);
+@import url(css/std-menu.css);
+@import url(css/menu-bar.css);
 
 pagecontrol {
     size: *;
@@ -64,9 +67,6 @@ select[type="tree"] {
     size: 200dip;
 }
 
-@import url("css/std-menu.css");
-@import url("css/menu-bar.css");
-
 menu.bar {
     width: 280dip;
 }
@@ -84,33 +84,17 @@ plaintext#logger {
 }
 
 </style>
-<style src="vendor/8ctopus/sciter-logger/src/logger.css" />
 <script type="module">
 
-//import * as sys from "@sys";
-
 import {logger} from "vendor/8ctopus/sciter-logger/src/logger.js";
-
 import {dialogs} from "vendor/8ctopus/sciter-dialogs/src/dialogs.js";
-import {addReloadWindow, centerWindow} from "js/utils.js";
+import {addReloadWindow, centerWindow} from "vendor/8ctopus/sciter-utils/src/utils.js";
 
 import {i18n} from "src/i18n.js";
 
-// initialize logger
-logger.init("", false);
-
-// attach logger to console
-logger.attach();
-
-// capture unhandled exceptions
-logger.capture();
-
 document.on("ready", function() {
-    // add support for F5 reload
-    addReloadWindow();
-
-    // center window on screen
-    centerWindow();
+    // initialize logger
+    logger.init("", false);
 
     // subscribe to logger messages
     logger.subscribe(function(level, message) {
@@ -121,6 +105,18 @@ document.on("ready", function() {
         // scroll to last item
         log.lastElementChild.scrollIntoView({behavior: "smooth"});
     });
+
+    // attach logger to console
+    logger.attach();
+
+    // capture unhandled exceptions
+    logger.capture();
+
+    // add support for F5 reload
+    addReloadWindow();
+
+    // center window on screen
+    centerWindow();
 
     // initialize translation engine
     const locale = "fr";

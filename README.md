@@ -15,8 +15,8 @@ This is an attempt to create a translation engine for [sciter.js](https://sciter
 
 ## install
 
-- add the `src` dir to your project
-- add to `<script type="module">`
+- add the `src` dir to your project or use the sciter package manager
+- in `<script type="module">`
 
 ```js
 import {i18n} from "src/i18n.js";
