@@ -1,5 +1,4 @@
 import i18next from "../../../i18next/i18next/src/index.js";
-import * as sys from "@sys";
 import {encode,decode} from "@sciter";
 
 export class i18n
