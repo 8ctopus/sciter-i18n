@@ -85,16 +85,22 @@ plaintext#logger {
 
 </style>
 <script src="js/logger.js" />
-<script src="js/utils.js" />
 <script type="module">
+
+import * as sys from "@sys";
+import {dialogs} from "vendor/8ctopus/sciter-dialogs/src/dialogs.js";
+import {addReloadWindow, centerWindow} from "js/utils.js";
 
 import {i18n} from "src/i18n.js";
 
-import {dialogs} from "vendor/8ctopus/sciter-dialogs/src/dialogs.js";
-
-import * as sys from "@sys";
 
 document.on("ready", function() {
+    // add support for F5 reload
+    addReloadWindow();
+
+    // center window on screen
+    centerWindow();
+
     // initialize translation engine
     const locale = "fr";
     const file   = sys.cwd() + `\\locales\\${locale}.json`;
