@@ -1,20 +1,5 @@
 {
     "translation": {
-        "general": "général",
-        "button": "bouton",
-        "editbox": "edit",
-        "radio": "radio",
-        "checkbox": "coches",
-        "toggle": "toggle",
-        "switch": "switch",
-        "dropdown": "menu déroulant",
-        "list": "liste",
-        "tree": "arbre",
-        "menu": "menu",
-        "dialog": "dialogue",
-        "text": "texte",
-        "special": "spécial",
-
         "input with content": "saisie avec contenu",
 
         "key1": "test du moteur i18n",
@@ -194,5 +179,23 @@
         "no": "Non",
         "cancel": "Annuler",
         "help": "Aide"
+    },
+
+    "menu": {
+        "general": "général",
+        "button": "bouton",
+        "editbox": "edit",
+        "radio": "radio",
+        "checkbox": "coches",
+        "toggle": "toggle",
+        "switch": "switch",
+        "dropdown": "menu déroulant",
+        "list": "liste",
+        "tree": "arbre",
+        "menu": "menu",
+        "dialog": "dialogue",
+        "text": "texte",
+        "number": "nombre",
+        "special": "spécial"
     }
 }
