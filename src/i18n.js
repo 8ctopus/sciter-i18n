@@ -19,8 +19,7 @@ export class i18n
      */
     static init(locale, url, debug)
     {
-        if (debug)
-            this.#debug = true;
+        this.#debug = debug;
 
         // get url content
         let result = fetch(url, {sync: true});
@@ -47,7 +46,7 @@ export class i18n
 
         i18next.init({
             // i18next debugging
-            debug: false,
+            debug: this.#debug,
 
             // wait for resources to be loaded before returning from call
             // but it does not apply in our case as the translation is already provided for
