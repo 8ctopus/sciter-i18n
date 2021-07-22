@@ -3,6 +3,7 @@
         "https://github.com/8ctopus/sciter-dialogs": "1.0.19",
         "https://github.com/8ctopus/sciter-pagecontrol": "1.1.0",
         "https://github.com/8ctopus/sciter-fontawesome": "1.0.0",
+        "https://github.com/8ctopus/sciter-logger": "0.3.3",
         "https://github.com/i18next/i18next": "v20.3.1"
     }
 }

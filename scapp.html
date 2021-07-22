@@ -84,15 +84,26 @@ plaintext#logger {
 }
 
 </style>
-<script src="js/logger.js" />
+<style src="vendor/8ctopus/sciter-logger/src/logger.css" />
 <script type="module">
 
 import * as sys from "@sys";
+
+import {logger} from "vendor/8ctopus/sciter-logger/src/logger.js";
+
 import {dialogs} from "vendor/8ctopus/sciter-dialogs/src/dialogs.js";
 import {addReloadWindow, centerWindow} from "js/utils.js";
 
 import {i18n} from "src/i18n.js";
 
+// initialize logger
+logger.init("", false);
+
+// attach logger to console
+logger.attach();
+
+// capture unhandled exceptions
+logger.capture();
 
 document.on("ready", function() {
     // add support for F5 reload
@@ -101,12 +112,22 @@ document.on("ready", function() {
     // center window on screen
     centerWindow();
 
+    // subscribe to logger messages
+    logger.subscribe(function(level, message) {
+        const log = document.$("plaintext#logger");
+
+        log.append(JSX(level, {}, [message]));
+
+        // scroll to last item
+        log.lastElementChild.scrollIntoView({behavior: "smooth"});
+    });
+
     // initialize translation engine
     const locale = "fr";
     const file   = sys.cwd() + `\\locales\\${locale}.json`;
 
     if (i18n.init(locale, file, true)) {
-        console.log("i18n init - OK");
+        console.debug("i18n init - OK");
 
         // translate window
         i18n.i18n(document);
@@ -127,7 +148,7 @@ document.on("ready", function() {
  */
 function dialogCallback(root)
 {
-    console.log("dialog callback");
+    console.debug("dialog callback");
 
     // translate dialog
     i18n.i18n(root);
@@ -164,11 +185,11 @@ document.on("click", "button", function(event, element) {
             break;
 
         default:
-            //console.error("unknown element");
+            console.error(`unknown element ${element.id}`);
             return;
     }
 
-    console.log("return value: " + value);
+    console.debug("return value: " + value);
 });
 
 </script>
