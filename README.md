@@ -16,19 +16,17 @@ This is an attempt to create a translation engine for [sciter.js](https://sciter
 ## install
 
 - add the `src` dir to your project
-- add to script
+- add to `<script type="module">`
 
 ```js
-<script type="module">
-
 import {i18n} from "src/i18n.js";
 
 document.on("ready", function() {
-    // initialize translation engine
     const locale = "fr";
-    const file   = sys.cwd() + `\\locales\\${locale}.json`;
+    const file   = URL.toPath(__DIR__ + `locales/${locale}.json`);
     const debug  = true;
 
+    // initialize translation engine
     if (i18n.init(locale, file, debug)) {
         console.log("i18n init - OK");
 
@@ -50,19 +48,19 @@ document.on("ready", function() {
 }
 ```
 
-- then in the html code add attribute `data-i18n` to all elements you want translated. If `data-i18n` value is set then it will be used as the translation key.
+- then in the html code add attribute `data-i18n` to all elements you want translated. If the `data-i18n` attribute value is set then it will be used as the translation key.
 
 ```html
 <h1 data-i18n="key1">i18n engine test</h1>
 ```
 
-- otherwise the element's `innerHTML` will be the key
+- otherwise the element's `innerText` will be the key
 
 ```html
 <h1 data-i18n>h1</h1>
 ```
 
-- translate in code
+- translate string in your code
 
 ```js
 // with 2 arguments, first serves as key, second as default value (better option)
@@ -74,8 +72,7 @@ let message = i18n.m("Widget could not be updated.");
 
 # todo
 
-- go through (nodes instead of innerHtml)[https://sciter.com/forums/topic/menu-items-innerhtml-recursive-update/]
+- go through [nodes instead of innerHtml](https://sciter.com/forums/topic/menu-items-innerhtml-recursive-update/)
 - i18next file system backend or fetch backend
 - add missing ids to json
 - how to deal with interface refresh?
-
