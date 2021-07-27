@@ -1,5 +1,4 @@
 import i18next from "../vendor/i18next/i18next/src/index.js";
-import {encode,decode} from "@sciter";
 
 export class i18n
 {
@@ -136,9 +135,9 @@ export class i18n
                 }
             });
 
-            this.#timer = new Date() - this.#timer;
-
             if (this.#debug) {
+                this.#timer = new Date() - this.#timer;
+
                 let total = this.#translated + this.#missing.length;
 
                 let percentage = Math.round(this.#translated / total * 100, 1);
@@ -163,14 +162,10 @@ export class i18n
      */
     static m()
     {
+        // first argument is key, second is default message
         switch (arguments.length) {
-            case 1:
-            case 2:
-                // first argument is key, second is default message
-                return this.#t(
-                    arguments.length === 2 ? arguments[0] : "",
-                    arguments.length === 2 ? arguments[1] : arguments[0],
-                );
+            case 1: return this.#t("", arguments[0]);
+            case 2: return this.#t(arguments[0], arguments[1]);
 
             default:
                 console.error(`i18n::m expects 1 or 2 arguments`);
