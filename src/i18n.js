@@ -104,6 +104,8 @@ export class i18n
                     case "radio":
                     case "span":
                     case "textarea":
+                    case "th":
+                    case "td":
                         if (element.innerHTML.indexOf("<") === -1)
                             i18n.#innerText(element);
                         else
