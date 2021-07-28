@@ -32,8 +32,6 @@ document.on("ready", function() {
         // translate window
         i18n.i18n(document);
     }
-    else
-        console.error("i18n init - FAILED");
 });
 ```
 
