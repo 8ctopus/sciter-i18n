@@ -120,12 +120,9 @@ document.on("ready", function() {
 
     // initialize translation engine
     const locale = "fr";
-    //const old    = sys.cwd() + `\\locales\\${locale}.json`;
     const url    = __DIR__ + `locales/${locale}.json`;
     const file   = URL.toPath(url);
 
-    //console.debug(`old  ${old}`);
-    //console.debug(`url  ${url}`);
     console.debug(`file ${file}`);
 
     if (i18n.init(locale, file, true)) {
