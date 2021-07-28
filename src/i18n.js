@@ -12,9 +12,10 @@ export class i18n
     /**
      * Initialize engine
      * @param string locale
-     * @param string url locale url or file
-     * @param bool debug
+     * @param string url - url or path to locale
+     * @param bool debug - log debug info
      * @return bool true on success, false otherwise
+     * @note use URL.toPath() for url
      */
     static init(locale, url, debug)
     {
