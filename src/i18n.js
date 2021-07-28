@@ -2,6 +2,8 @@ import i18next from "../vendor/i18next/i18next/src/index.js";
 
 export class i18n
 {
+    static #init = false;
+
     static #i18next;
 
     static #debug;
@@ -39,8 +41,6 @@ export class i18n
             return false;
         }
 
-        result = false;
-
         // init translation system
         this.#i18next = i18next;
 
@@ -59,15 +59,15 @@ export class i18n
             resources: {
                 [locale]: json,
             }
-        }, function(error, t) {
+        }, (error, t) => {
             // callback when initialization is complete
             if (!error)
-                result = true;
+                this.#init = true;
             else
-                console.error(`i18n init - ${error}`);
+                console.error(`i18n init - FAILED - ${error}`);
         });
 
-        return result;
+        return this.#init;
     }
 
     /**
@@ -78,6 +78,10 @@ export class i18n
     static i18n(element)
     {
         try {
+            // check that class was initialized
+            if (!this.#init)
+                return;
+
             if (this.#debug) {
                 this.#timer      = new Date();
                 this.#translated = 0;
@@ -163,10 +167,18 @@ export class i18n
      */
     static m()
     {
-        // first argument is key, second is default message
+        // check that class was initialized
+        if (!this.#init)
+            return arguments.length === 1 ? arguments[0] : arguments[1];
+
         switch (arguments.length) {
-            case 1: return this.#t("", arguments[0]);
-            case 2: return this.#t(arguments[0], arguments[1]);
+            case 1:
+                // only default message
+                return this.#t("", arguments[0]);
+
+            case 2:
+                // first argument is key, second is default message
+                return this.#t(arguments[0], arguments[1]);
 
             default:
                 console.error(`i18n::m expects 1 or 2 arguments`);
