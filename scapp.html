@@ -83,6 +83,20 @@ plaintext#logger {
     height: 150dip;
 }
 
+table {
+    width: *;
+    margin: 10dip;
+
+    border-collapse: collapse;
+    border-spacing: 0;
+    padding: 0;
+}
+
+th, td {
+    padding: 5dip;
+    border: 1px solid rgba(46,49,49,.5);
+}
+
 </style>
 <script type="module">
 
@@ -553,6 +567,28 @@ Even if it's on several lines.
             <span data-i18n>Value:</span>
             <span data-i18n>This is a string.</span>
         </tab>
+
+         <tab title="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th data-i18n="table:one">One</th>
+                        <th data-i18n="table:two">Two</th>
+                        <th data-i18n="table:three">Three</th>
+                        <th data-i18n="table:four">Four</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-i18n="table:first">First example</td>
+                        <td data-i18n="table:second">Second example</td>
+                        <td data-i18n="table:third">Third example</td>
+                        <td data-i18n="table:fourth">Fourth example</td>
+                    </tr>
+                </tbody>
+            </table>
+        </tab>
+
     </pagecontrol>
     <plaintext #logger readonly />
 </body>

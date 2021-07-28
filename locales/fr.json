@@ -196,6 +196,18 @@
         "dialog": "dialogue",
         "text": "texte",
         "number": "nombre",
-        "special": "spécial"
+        "special": "spécial",
+        "table": "tableau"
+    },
+
+    "table": {
+        "one": "un",
+        "two": "deux",
+        "three": "trois",
+        "four": "quatre",
+        "first": "premier exemple",
+        "second": "deuxième exemple",
+        "third": "troisième exemple",
+        "fourth": "quatrième exemple"
     }
 }
