@@ -71,7 +71,7 @@ export class i18n
     }
 
     /**
-     * Translate element
+     * Translate element and children
      * @param element
      * @return void
      */
@@ -88,9 +88,15 @@ export class i18n
                 this.#missing    = [];
             }
 
-            // get all elements to translate
+            // get all children elements to translate
             // reversing the array fixes translation of menus within menus
-            element.$$("[data-i18n]").reverse().forEach(function(element) {
+            let elements = element.$$("[data-i18n]").reverse();
+
+            // add root element if it needs translation
+            if (element.hasAttribute("data-i18n"))
+                elements.push(element);
+
+            elements.forEach(function(element) {
                 switch (element.tag) {
                     case "button":
                     case "caption":
@@ -164,7 +170,7 @@ export class i18n
     /**
      * Get message translation
      * @param string (optional) key
-     * @param string msg
+     * @param string msg - default message
      * @return string translation or original message if the translation does not exist
      */
     static m()
