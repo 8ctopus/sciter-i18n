@@ -46,7 +46,7 @@ export class i18n
 
         i18next.init({
             // i18next debugging
-            debug: this.#debug,
+            debug: false,
 
             // wait for resources to be loaded before returning from call
             // but it does not apply in our case as the translation is already provided for
