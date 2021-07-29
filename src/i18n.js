@@ -37,7 +37,7 @@ export class i18n
         try {
             json = result.json();
         } catch (e) {
-            console.error(`i18n init - FAILED - json - ${e.message} ${e.stack}`);
+            console.error(`i18n init - FAILED - json - ${e.message} - ${e.stack}`);
             return false;
         }
 
