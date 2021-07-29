@@ -85,7 +85,7 @@ Interpolation can also be set at initialization to apply to all translations.
 
 ```js
 const config = {
-    interpolation = {
+    interpolation: {
         defaultVariables: {
             name: "Yuri",
             country: "Russia",
