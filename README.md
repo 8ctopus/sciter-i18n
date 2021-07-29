@@ -88,7 +88,7 @@ i18n.init(locale, path, interpolation, true);
 let message = i18n.m("My name is {{name}} and I'm from {{country}}.");
 ```
 
-# todo
+## todo
 
 - go through [nodes instead of innerHtml](https://sciter.com/forums/topic/menu-items-innerhtml-recursive-update/)
 - i18next file system backend or fetch backend

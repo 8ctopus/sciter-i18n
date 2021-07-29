@@ -6,7 +6,7 @@ export class i18n
 
     static #i18next;
 
-    static #debug;
+    static #logging;
     static #timer;
     static #translated;
     static #missing;
@@ -15,14 +15,14 @@ export class i18n
      * Initialize engine
      * @param string locale
      * @param string url - url or path to locale
-     * @param object - interpolation
-     * @param bool debug - log debug info
+     * @param object interpolation
+     * @param bool logging - logging
      * @return bool true on success, false otherwise
      * @note use URL.toPath() for url
      */
-    static init(locale, url, interpolation, debug)
+    static init(locale, url, interpolation, logging)
     {
-        this.#debug = debug;
+        this.#logging = logging;
 
         // get url content
         let result = fetch(url, {sync: true});
@@ -88,7 +88,7 @@ export class i18n
             if (!this.#init)
                 return;
 
-            if (this.#debug) {
+            if (this.#logging) {
                 this.#timer      = new Date();
                 this.#translated = 0;
                 this.#missing    = [];
@@ -154,7 +154,7 @@ export class i18n
                 }
             });
 
-            if (this.#debug) {
+            if (this.#logging) {
                 this.#timer = new Date() - this.#timer;
 
                 let total = this.#translated + this.#missing.length;
@@ -243,7 +243,7 @@ export class i18n
             };
         }
 
-        if (this.#debug) {
+        if (this.#logging) {
             if (!this.#i18next.exists(key, options))
                 this.#missing.push(key);
             else
