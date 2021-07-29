@@ -206,7 +206,7 @@ document.on("click", "button", function(event, element) {
 </head>
 <body>
     <pagecontrol header="top">
-        <tab title="general" selected>
+        <tab caption="general" selected>
             <h1 data-i18n="key1">i18n engine test</h1>
             <h1 data-i18n>h1</h1>
             <h2 data-i18n>h2</h2>
@@ -220,7 +220,7 @@ document.on("click", "button", function(event, element) {
             </ol>
         </tab>
 
-        <tab title="button">
+        <tab caption="button">
             <button data-i18n>Do it!</button>
             <button data-i18n role="default-button">Default</button>
             <button data-i18n disabled>Disabled</button>
@@ -231,7 +231,7 @@ document.on("click", "button", function(event, element) {
             <button data-i18n><i class="fas fa-cog" />Manual</button>
         </tab>
 
-        <tab title="editbox">
+        <tab caption="editbox">
             <editbox data-i18n value="foo" placeholder="input with content" maxlength=6 filter="a~z" spellcheck="yes" />
             <editbox data-i18n placeholder="input text here" />
             <editbox data-i18n nullable placeholder="nullable" />
@@ -241,7 +241,7 @@ document.on("click", "button", function(event, element) {
             <input|masked mask="(###) ### - ####" />
         </tab>
 
-        <tab title="number">
+        <tab caption="number">
             <input|number data-i18n value="42" step="1" min="0" max="999" placeholder="number" />
             <input|number data-i18n step="1" min="0" max="999" placeholder="number" />
             <input|number disabled step="1" min="0" max="999" />
@@ -249,7 +249,7 @@ document.on("click", "button", function(event, element) {
             <input|integer value="42" />
         </tab>
 
-        <tab title="radio">
+        <tab caption="radio">
             <!-- as="string | integer | float | numeric | auto" -->
             <radio (rgroup) data-i18n checked value="true" as="string">Yes</radio>
             <radio (rgroup) data-i18n value="false" as="string">No</radio>
@@ -259,7 +259,7 @@ document.on("click", "button", function(event, element) {
             <radio (rgroupd) data-i18n disabled value="b">Disabled</radio>
         </tab>
 
-        <tab title="checkbox">
+        <tab caption="checkbox">
             <checkbox data-i18n checked>Checked</checkbox>
             <checkbox data-i18n>Unchecked</checkbox>
             <checkbox data-i18n mixed>Mixed</checkbox>
@@ -273,7 +273,7 @@ document.on("click", "button", function(event, element) {
             </checkbox>
         </tab>
 
-        <tab title="toggle">
+        <tab caption="toggle">
             <toggle (foo) checked>
                 <option data-i18n>No</option>
                 <option data-i18n>Yes</option>
@@ -290,7 +290,7 @@ document.on("click", "button", function(event, element) {
             <toggle|radio(group) value="C" />
         </tab>
 
-        <tab title="switch">
+        <tab caption="switch">
             <select|switch>
                 <option data-i18n>Left</option>
                 <option data-i18n>Center</option>
@@ -298,7 +298,7 @@ document.on("click", "button", function(event, element) {
             </select>
         </tab>
 
-        <tab title="dropdown">
+        <tab caption="dropdown">
             <select|dropdown data-i18n novalue="dropdown">
                 <option data-i18n>Apple</option>
                 <option data-i18n>Apricot</option>
@@ -350,7 +350,7 @@ document.on("click", "button", function(event, element) {
             </select>
         </tab>
 
-        <tab title="list">
+        <tab caption="list">
             <select|list multiple size=5>
                 <option data-i18n>Apple</option>
                 <option data-i18n selected>Apricot</option>
@@ -385,7 +385,7 @@ document.on("click", "button", function(event, element) {
             </select>
         </tab>
 
-        <tab title="tree">
+        <tab caption="tree">
             <select|tree multiple="checkmarks" treelines>
                 <option expanded>
                     <caption data-i18n>Fruits</caption>
@@ -402,7 +402,7 @@ document.on("click", "button", function(event, element) {
             </select>
         </tab>
 
-        <tab title="menu">
+        <tab caption="menu">
             <!-- top level - menu bar, it must match ul#menu-bar selector, see std-menu.css -->
             <ul #menu-bar>
                 <li>
@@ -541,7 +541,7 @@ document.on("click", "button", function(event, element) {
             </menu>
         </tab>
 
-        <tab title="dialog">
+        <tab caption="dialog">
             <button #info data-i18n>info</button>
             <button #error data-i18n>error</button>
             <button #warning data-i18n>warning</button>
@@ -550,7 +550,7 @@ document.on("click", "button", function(event, element) {
             <button #folder data-i18n>select folder</button>
         </tab>
 
-        <tab title="text">
+        <tab caption="text">
             <plaintext data-i18n="plaintext:plaintext">
 This small text should get translated without too many issues.
 Even if it's on several lines.
@@ -561,14 +561,14 @@ Even if it's on several lines.
             </textarea>
         </tab>
 
-        <tab title="special">
+        <tab caption="special">
             <div data-i18n="complex:test"><i class="fas fa-anchor"></i> Not translated</div>
             <div data-i18n="complex:test">Not translated <span>span</span></div>
             <span data-i18n>Value:</span>
             <span data-i18n>This is a string.</span>
         </tab>
 
-         <tab title="table">
+         <tab caption="table">
             <table>
                 <thead>
                     <tr>
