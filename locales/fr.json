@@ -182,6 +182,7 @@
     },
 
     "menu": {
+        "interpolation": "interpolation",
         "general": "général",
         "button": "bouton",
         "editbox": "edit",
@@ -209,5 +210,9 @@
         "second": "deuxième exemple",
         "third": "troisième exemple",
         "fourth": "quatrième exemple"
+    },
+
+    "interpolation": {
+        "h1": "Je m'appelle {{name}} et j'ai {{age}} ans."
     }
 }

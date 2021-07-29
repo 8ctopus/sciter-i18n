@@ -6,6 +6,8 @@ export class i18n
 
     static #i18next;
 
+    static #interpolation;
+
     static #debug;
     static #timer;
     static #translated;
@@ -15,13 +17,15 @@ export class i18n
      * Initialize engine
      * @param string locale
      * @param string url - url or path to locale
+     * @param object - interpolation
      * @param bool debug - log debug info
      * @return bool true on success, false otherwise
      * @note use URL.toPath() for url
      */
-    static init(locale, url, debug)
+    static init(locale, url, interpolation, debug)
     {
-        this.#debug = debug;
+        this.#interpolation = interpolation;
+        this.#debug         = debug;
 
         // get url content
         let result = fetch(url, {sync: true});
@@ -198,7 +202,7 @@ export class i18n
      * Get translation
      * @param string data - data-i18n attribute value
      * @param string text - text to translate
-     * @return string translated text
+     * @return string - translated text
      */
     static #t(data, text)
     {
@@ -206,7 +210,11 @@ export class i18n
         if (this.#isNumeric(text))
             return text;
 
-        let key, options;
+        let options = {
+            ...this.#interpolation,
+        };
+
+        let key;
 
         if (data.length)
             key = data;
