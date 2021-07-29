@@ -69,10 +69,10 @@ let message = i18n.m("Widget could not be updated.");
 
 ## interpolation
 
+The basics
+
 ```js
-let message = i18n.m("Widget failed with error {{error_number}}.", {
-    error_number: 18,
-});
+let message = i18n.m("Widget failed with error {{error_number}}.", { eror_number: 18 });
 ```
 
 Interpolation can also be set on an app level at initialization
