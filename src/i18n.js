@@ -15,14 +15,15 @@ export class i18n
      * Initialize engine
      * @param string locale
      * @param string url - url or path to locale
-     * @param object settings - i18next settings
-     * @param bool logging - logging
+     * @param object (optional) config - i18next config https://www.i18next.com/overview/configuration-options
      * @return bool true on success, false otherwise
      * @note use URL.toPath() for url
      */
-    static init(locale, url, settings, logging)
+    static init(locale, url, config)
     {
-        this.#logging = logging;
+        this.#logging = config.logging || false;
+
+        //console.debug(this.#logging);
 
         // get url content
         let result = fetch(url, {sync: true});
@@ -61,7 +62,7 @@ export class i18n
                 [locale]: json,
             },
 
-            ...settings,
+            ...config,
         }, (error, t) => {
             // callback when initialization is complete
             if (!error)

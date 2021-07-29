@@ -23,10 +23,16 @@ import {i18n} from "src/i18n.js";
 document.on("ready", function() {
     const locale  = "fr";
     const file    = URL.toPath(__DIR__ + `locales/${locale}.json`);
-    const logging = true;
+    const config = {
+        // i18n logging
+        logging: true,
+
+        // debug i18next
+        debug: true,
+    };
 
     // initialize translation engine
-    if (i18n.init(locale, file, {}, logging)) {
+    if (i18n.init(locale, file, config)) {
         console.log("i18n init - OK");
 
         // translate window
@@ -75,10 +81,10 @@ The basics
 let message = i18n.m("Widget failed with error {{error_number}}.", { eror_number: 18 });
 ```
 
-Interpolation can also be set on an app level at initialization
+Interpolation can also be set at initialization to apply to all translations.
 
 ```js
-const settings = {
+const config = {
     interpolation = {
         defaultVariables: {
             name: "Yuri",
@@ -87,7 +93,7 @@ const settings = {
     },
 };
 
-i18n.init(locale, path, settings, true);
+i18n.init(locale, path, config);
 
 let message = i18n.m("My name is {{name}} and I'm from {{country}}.");
 ```

@@ -139,7 +139,14 @@ document.on("ready", function() {
 
     console.debug(`path ${path}`);
 
-    const settings = {
+    // i18next config
+    const config = {
+        // i18n logging
+        logging: true,
+
+        // debug i18next
+        debug: true,
+
         interpolation: {
             defaultVariables: {
                 name: "John",
@@ -148,7 +155,7 @@ document.on("ready", function() {
         }
     };
 
-    if (i18n.init(locale, path, settings, true))
+    if (i18n.init(locale, path, config))
         console.debug("i18n init - OK");
 
     // translate window
