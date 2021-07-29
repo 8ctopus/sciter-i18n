@@ -185,7 +185,7 @@ document.on("click", "button", function(event, element) {
             break;
 
         case "error":
-            value = dialogs.show("error", i18n.m("Widget failed with error {{error_number}}."), "ok help[https://duckduckgo.com]");
+            value = dialogs.show("error", i18n.m("Widget failed with error {{error_number}}.", { error_number: 18 }), "ok help[https://duckduckgo.com]");
             break;
 
         case "warning":
@@ -217,7 +217,7 @@ document.on("click", "button", function(event, element) {
 </head>
 <body>
     <pagecontrol header="top">
-        <tab caption="general">
+        <tab caption="general" selected>
             <h1 data-i18n="key1">i18n engine test</h1>
             <h1 data-i18n>h1</h1>
             <h2 data-i18n>h2</h2>
@@ -600,7 +600,7 @@ Even if it's on several lines.
             </table>
         </tab>
 
-        <tab caption="interpolation" selected>
+        <tab caption="interpolation">
             <h1 data-i18n="interpolation:h1">My name is {{name}} and I'm {{age}} old.</h1>
             <h1 #h1 />
             <h1 #h2 />
