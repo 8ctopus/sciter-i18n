@@ -152,6 +152,9 @@ document.on("ready", function() {
 
     // test interpolation
     document.$("h1#h1").innerText = i18n.m("interpolation:h1", "");
+    document.$("h1#h2").innerText = i18n.m("Widget failed with error {{error_number}}.", {
+        error_number: 18,
+    });
 
     // set dialogs translation callback
     dialogs.setOptions({
@@ -182,7 +185,7 @@ document.on("click", "button", function(event, element) {
             break;
 
         case "error":
-            value = dialogs.show("error", i18n.m("Widget failed with error 18."), "ok help[https://duckduckgo.com]");
+            value = dialogs.show("error", i18n.m("Widget failed with error {{error_number}}."), "ok help[https://duckduckgo.com]");
             break;
 
         case "warning":
@@ -599,7 +602,8 @@ Even if it's on several lines.
 
         <tab caption="interpolation" selected>
             <h1 data-i18n="interpolation:h1">My name is {{name}} and I'm {{age}} old.</h1>
-            <h1 #h1></h1>
+            <h1 #h1 />
+            <h1 #h2 />
         </tab>
 
     </pagecontrol>

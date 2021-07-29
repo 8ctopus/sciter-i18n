@@ -57,7 +57,7 @@ document.on("ready", function() {
 <h1 data-i18n>h1</h1>
 ```
 
-- translate string in your code
+## translate text in code
 
 ```js
 // with 2 arguments, first serves as key, second as default value (better option)
@@ -65,6 +65,27 @@ let message = i18n.m("no-update", "Widget could not be updated.");
 
 // with a single argument, it's both the key and the default value
 let message = i18n.m("Widget could not be updated.");
+```
+
+## interpolation
+
+```js
+let message = i18n.m("Widget failed with error {{error_number}}.", {
+    error_number: 18,
+});
+```
+
+Interpolation can also be set on an app level at initialization
+
+```js
+const interpolation = {
+    name: "Yuri",
+    country: "Russia",
+};
+
+i18n.init(locale, path, interpolation, true);
+
+let message = i18n.m("My name is {{name}} and I'm from {{country}}.");
 ```
 
 # todo

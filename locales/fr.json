@@ -104,7 +104,7 @@
 
         "Widget update successful.": "Succès de la mise-à-jour de widget.",
         "Widget could not be updated.": "Widget n'a pas pu être mis-à-jour.",
-        "Widget failed with error 18.": "Widget a échoué avec une erreur 18.",
+        "Widget failed with error {{error_number}}.": "Widget a échoué avec une erreur {{error_number}}.",
 
         "Uppercase": "Majuscules",
         "Lowercase": "Minuscules",

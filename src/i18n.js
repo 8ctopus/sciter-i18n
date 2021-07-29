@@ -191,8 +191,17 @@ export class i18n
                 return this.#t("", arguments[0]);
 
             case 2:
-                // first argument is key, second is default text
-                return this.#t(arguments[0], arguments[1]);
+                if (typeof arguments[1] === "string")
+                    // first argument is key, second is default text
+                    return this.#t(arguments[0], arguments[1]);
+                else
+                if (typeof arguments[1] === "object")
+                    // first argument is key, second is interpolation
+                    return this.#t(arguments[0], "", arguments[1]);
+                else {
+                    console.error(`i18n::m unknown second argument`);
+                    return "";
+                }
 
             default:
                 console.error(`i18n::m expects 1 or 2 arguments`);
@@ -204,15 +213,23 @@ export class i18n
      * Get translation
      * @param string data - data-i18n attribute value
      * @param string text - text to translate
+     * @param object interpolation - interpolation
      * @return string - translated text
      */
-    static #t(data, text)
+    static #t(data, text, interpolation)
     {
         // do not translate numbers
         if (this.#isNumeric(text))
             return text;
 
-        let options, key;
+        let options = {
+            ...interpolation,
+        };
+
+        //if (typeof interpolation === "undefined")
+        //    console.debug(JSON.stringify(options));
+
+        let key;
 
         if (data.length)
             key = data;
