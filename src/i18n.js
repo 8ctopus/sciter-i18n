@@ -6,8 +6,6 @@ export class i18n
 
     static #i18next;
 
-    static #interpolation;
-
     static #debug;
     static #timer;
     static #translated;
@@ -24,8 +22,7 @@ export class i18n
      */
     static init(locale, url, interpolation, debug)
     {
-        this.#interpolation = interpolation;
-        this.#debug         = debug;
+        this.#debug = debug;
 
         // get url content
         let result = fetch(url, {sync: true});
@@ -59,10 +56,15 @@ export class i18n
             // set language
             lng: locale,
 
-            // set translation
+            // set translation resource
             resources: {
                 [locale]: json,
-            }
+            },
+
+            // set interpolation default variables
+            interpolation: {
+                defaultVariables: interpolation,
+            },
         }, (error, t) => {
             // callback when initialization is complete
             if (!error)
@@ -174,8 +176,8 @@ export class i18n
     /**
      * Get message translation
      * @param string (optional) key
-     * @param string msg - default message
-     * @return string translation or original message if the translation does not exist
+     * @param string text - default text
+     * @return string translation or original text if the translation does not exist
      */
     static m()
     {
@@ -185,11 +187,11 @@ export class i18n
 
         switch (arguments.length) {
             case 1:
-                // only default message
+                // only default text
                 return this.#t("", arguments[0]);
 
             case 2:
-                // first argument is key, second is default message
+                // first argument is key, second is default text
                 return this.#t(arguments[0], arguments[1]);
 
             default:
@@ -210,11 +212,7 @@ export class i18n
         if (this.#isNumeric(text))
             return text;
 
-        let options = {
-            ...this.#interpolation,
-        };
-
-        let key;
+        let options, key;
 
         if (data.length)
             key = data;
