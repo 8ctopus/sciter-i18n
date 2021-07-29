@@ -21,12 +21,12 @@ A translation engine for [sciter.js](https://sciter.com/) on top of [i18next](ht
 import {i18n} from "src/i18n.js";
 
 document.on("ready", function() {
-    const locale = "fr";
-    const file   = URL.toPath(__DIR__ + `locales/${locale}.json`);
-    const debug  = true;
+    const locale  = "fr";
+    const file    = URL.toPath(__DIR__ + `locales/${locale}.json`);
+    const logging = true;
 
     // initialize translation engine
-    if (i18n.init(locale, file, debug)) {
+    if (i18n.init(locale, file, {}, logging)) {
         console.log("i18n init - OK");
 
         // translate window
@@ -78,12 +78,16 @@ let message = i18n.m("Widget failed with error {{error_number}}.", { eror_number
 Interpolation can also be set on an app level at initialization
 
 ```js
-const interpolation = {
-    name: "Yuri",
-    country: "Russia",
+const settings = {
+    interpolation = {
+        defaultVariables: {
+            name: "Yuri",
+            country: "Russia",
+        },
+    },
 };
 
-i18n.init(locale, path, interpolation, true);
+i18n.init(locale, path, settings, true);
 
 let message = i18n.m("My name is {{name}} and I'm from {{country}}.");
 ```

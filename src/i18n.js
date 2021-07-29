@@ -15,12 +15,12 @@ export class i18n
      * Initialize engine
      * @param string locale
      * @param string url - url or path to locale
-     * @param object interpolation
+     * @param object settings - i18next settings
      * @param bool logging - logging
      * @return bool true on success, false otherwise
      * @note use URL.toPath() for url
      */
-    static init(locale, url, interpolation, logging)
+    static init(locale, url, settings, logging)
     {
         this.#logging = logging;
 
@@ -61,10 +61,7 @@ export class i18n
                 [locale]: json,
             },
 
-            // set interpolation default variables
-            interpolation: {
-                defaultVariables: interpolation,
-            },
+            ...settings,
         }, (error, t) => {
             // callback when initialization is complete
             if (!error)
