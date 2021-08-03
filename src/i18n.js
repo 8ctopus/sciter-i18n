@@ -93,8 +93,7 @@ export class i18n
             }
 
             // get all children elements to translate
-            // reversing the array fixes translation of menus within menus
-            let elements = element.$$("[data-i18n]").reverse();
+            let elements = element.$$("[data-i18n]");
 
             // add root element if it needs translation
             if (element.hasAttribute("data-i18n"))
