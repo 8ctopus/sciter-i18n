@@ -268,8 +268,8 @@ export class i18n
     {
         const str = element.innerText.trim();
 
-        // do not translate empty and numeric strings
-        if (str === "" || this.#isNumeric(str))
+        // do not translate empty and numeric strings if data-18n is not set
+        if (!element.attributes["data-i18n"] && (str === "" || this.#isNumeric(str)))
             return;
 
         element.innerText = this.#t(element.attributes["data-i18n"] ?? "", str);
