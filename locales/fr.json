@@ -182,7 +182,7 @@
         "help": "Aide"
     },
 
-    "menu": {
+    "pagecontrol": {
         "interpolation": "interpolation",
         "general": "général",
         "button": "bouton",
