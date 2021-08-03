@@ -282,28 +282,23 @@ export class i18n
      */
     static #innerHtml(element)
     {
-        // search parts to translate
-        const match = element.innerHTML.match(/^([^<]*)<.*>([^<]*)$/m);
+        // iterate over element child nodes
+        for (let i = 0; i < element.childNodes.length; ++i) {
+            const node = element.childNodes[i];
 
-        // nothing to translate
-        if (match === null)
-            return;
+            // find text nodes
+            if (node.nodeType === 3) {
+                const value = node.nodeValue.trim();
 
-        // loop through matches
-        for (let i = 1; i <= 2; ++i) {
-            if (!match[i])
-                continue;
+                // skip whitespace
+                if (value === "")
+                    continue;
 
-            // get text to translate
-            const source = match[i].trim();
+                //console.debug(`${element.tagName} - nodeValue - "${node.nodeValue}"`);
 
-            if (source.length === 0)
-                continue;
-
-            //console.log(`source "${source}"`);
-
-            element.innerHTML = element.innerHTML.replace(source, this.#t(element.attributes["data-i18n"] ?? "", source));
-            break;
+                node.nodeValue = this.#t(element.attributes["data-i18n"] ?? "", value);
+                break;
+            }
         }
     }
 
