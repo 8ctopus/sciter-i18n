@@ -167,7 +167,7 @@
 
     "text": {
         "plaintext": "Ce petit texte devrait être traduit sans trop de problèmes.\r\nMême si sur plusieurs lignes.",
-        "htmlarea": "Ce petit texte devrait être traduit sans trop de problèmes.\r\n<a href=\"https://duckduckgo.com\">duckduckgo.com</a>\r\nMême si sur plusieurs lignes."
+        "htmlarea": "Ce petit texte devrait être traduit sans trop de problèmes.<br><a href=\"https://duckduckgo.com\">duckduckgo.com</a><br>Même si sur plusieurs lignes."
     },
 
     "dialogs": {
