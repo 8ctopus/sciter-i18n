@@ -112,7 +112,6 @@ export class i18n
                     case "h4":
                     case "h5":
                     case "h6":
-                    case "htmlarea":
                     case "label":
                     case "li":
                     case "option":
@@ -145,6 +144,10 @@ export class i18n
 
                     case "plaintext":
                         i18n.#plaintext(element);
+                        break;
+
+                    case "htmlarea":
+                        i18n.#htmlarea(element);
                         break;
 
                     default:
@@ -333,6 +336,21 @@ export class i18n
         element.plaintext.content = this.#t(element.attributes["data-i18n"] ?? "", element.plaintext.content);
     }
 
+    /**
+     * Translate htmlarea
+     * @param element
+     * @return void
+     */
+    static #htmlarea(element)
+    {
+        const str = element.innerText.trim();
+
+        // do not translate empty and numeric strings
+        if (!element.attributes["data-i18n"] && (str === "" || this.#isNumeric(str)))
+            return;
+
+        element.innerHTML = this.#t(element.attributes["data-i18n"] ?? "", str);
+    }
     /**
      * Check if string is a number
      * @param string str
