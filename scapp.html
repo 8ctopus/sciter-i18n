@@ -217,7 +217,7 @@ document.on("click", "button", function(event, element) {
             break;
 
         default:
-            console.error(`unknown element ${element.id}`);
+            console.warn(`unknown element ${element.id}`);
             return;
     }
 
@@ -257,7 +257,7 @@ document.on("click", "button", function(event, element) {
             <editbox data-i18n value="foo" placeholder="input with content" maxlength=6 filter="a~z" spellcheck="yes" />
             <editbox data-i18n placeholder="input text here" />
             <editbox data-i18n nullable placeholder="nullable" />
-            <editbox data-i18n disabled value="disabled" />
+            <editbox data-i18n disabled placeholder="disabled" />
             <input|password data-i18n placeholder="password" password-char="*" />
             <!-- https://github.com/c-smile/sciter-js-sdk/blob/main/docs/md/behaviors/behavior-masked-edit.md -->
             <input|masked mask="(###) ### - ####" />
