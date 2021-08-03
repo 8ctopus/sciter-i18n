@@ -165,7 +165,7 @@
         "test": "Traduit"
     },
 
-    "plaintext": {
+    "text": {
         "plaintext": "Ce petit texte devrait être traduit sans trop de problèmes.\r\nMême si sur plusieurs lignes."
     },
 

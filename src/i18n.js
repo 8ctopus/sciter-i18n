@@ -112,6 +112,7 @@ export class i18n
                     case "h4":
                     case "h5":
                     case "h6":
+                    case "htmlarea":
                     case "label":
                     case "li":
                     case "option":
