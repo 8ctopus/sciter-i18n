@@ -101,6 +101,7 @@ export class i18n
 
             elements.forEach(function(element) {
                 switch (element.tag) {
+                    case "button":
                     case "caption":
                     case "checkbox":
                     case "div":
@@ -124,15 +125,7 @@ export class i18n
                         else
                             i18n.#innerHtml(element);
 
-                        break;
-
-                    case "button":
                         i18n.#arialabel(element);
-
-                        if (element.innerHTML.indexOf("<") === -1)
-                            i18n.#innerText(element);
-                        else
-                            i18n.#innerHtml(element);
 
                         break;
 
