@@ -25,6 +25,7 @@
         "password": "mot de passe",
         "nullable": "peut être nul",
         "disabled": "désactivé",
+        "en-aria-label": "Aria label traduit en français",
 
         "number": "nombre",
 
@@ -215,5 +216,9 @@
 
     "interpolation": {
         "h1": "Je m'appelle {{name}} et j'ai {{age}} ans."
+    },
+
+    "aria-label-key": {
+        "example-aria-label": "ça marche"
     }
 }

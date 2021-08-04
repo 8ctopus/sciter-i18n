@@ -101,7 +101,6 @@ export class i18n
 
             elements.forEach(function(element) {
                 switch (element.tag) {
-                    case "button":
                     case "caption":
                     case "checkbox":
                     case "div":
@@ -120,6 +119,16 @@ export class i18n
                     case "textarea":
                     case "th":
                     case "td":
+                        if (element.innerHTML.indexOf("<") === -1)
+                            i18n.#innerText(element);
+                        else
+                            i18n.#innerHtml(element);
+
+                        break;
+
+                    case "button":
+                        i18n.#arialabel(element);
+
                         if (element.innerHTML.indexOf("<") === -1)
                             i18n.#innerText(element);
                         else
@@ -314,6 +323,21 @@ export class i18n
         const key = element.attributes["data-i18n"] ? element.attributes["data-i18n"] + "-placeholder" : "";
 
         element.attributes["placeholder"] = this.#t(key, element.attributes["placeholder"]);
+    }
+
+    /**
+     * Translate aria-label
+     * @param DOMElement element
+     * @return void
+     */
+    static #arialabel(element)
+    {
+        if (!element.hasAttribute("aria-label"))
+            return;
+
+        const key = element.attributes["data-i18n"] ? element.attributes["data-i18n"] + "-aria-label" : "";
+
+        element.attributes["aria-label"] = this.#t(key, element.attributes["aria-label"]);
     }
 
     /**
