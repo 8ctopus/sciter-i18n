@@ -129,8 +129,17 @@ document.on("ready", function() {
     // add support for F5 reload
     utils.addReloadWindow();
 
+    // close window on escape
+    utils.closeWindowOnEscape();
+
     // center window on screen
-    utils.centerWindow();
+    utils.centerWindow("screen");
+
+    // bring window to front
+    utils.windowToFront();
+
+    // log sciter version
+    console.debug(utils.sciterInfo());
 
     // initialize translation engine
     const locale = "fr";
