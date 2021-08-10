@@ -1,10 +1,10 @@
 {
     "require": {
-        "https://github.com/8ctopus/sciter-logger": "0.3.10",
-        "https://github.com/8ctopus/sciter-utils": "0.4.6",
+        "https://github.com/8ctopus/sciter-logger": "0.3.12",
+        "https://github.com/8ctopus/sciter-utils": "0.5.0",
         "https://github.com/8ctopus/sciter-fontawesome": "1.0.0",
-        "https://github.com/8ctopus/sciter-dialogs": "1.1.1",
-        "https://github.com/8ctopus/sciter-pagecontrol": "1.5.3",
+        "https://github.com/8ctopus/sciter-dialogs": "1.2.0",
+        "https://github.com/8ctopus/sciter-pagecontrol": "1.5.4",
         "https://github.com/i18next/i18next": "v20.3.1"
     }
 }
