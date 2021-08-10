@@ -157,6 +157,8 @@ document.on("ready", function() {
         debug: true,
 
         interpolation: {
+            // escapeValue is needed for variables that have / in them
+            escapeValue: false,
             defaultVariables: {
                 name: "John",
                 age: 23,
