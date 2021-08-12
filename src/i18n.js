@@ -5,6 +5,7 @@ export class i18n
     static #init = false;
 
     static #i18next;
+    static #defaultValue;
 
     static #logging;
     static #timer;
@@ -21,9 +22,8 @@ export class i18n
      */
     static init(locale, url, config)
     {
-        this.#logging = config.logging || false;
-
-        //console.debug(this.#logging);
+        this.#logging      = config.logging || false;
+        this.#defaultValue = (config.defaultValue !== undefined) ? config.defaultValue : " (i18n)";
 
         // get url content
         let result = fetch(url, {sync: true});
@@ -255,7 +255,7 @@ export class i18n
 
         // https://www.i18next.com/translation-function/essentials#essentials
         return this.#i18next.t(key, {
-            defaultValue: text + " (i18n)",
+            defaultValue: text + this.#defaultValue,
             ...options,
         });
     }
