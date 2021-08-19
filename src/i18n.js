@@ -129,6 +129,10 @@ export class i18n
 
                         break;
 
+                    case "window-button":
+                        i18n.#arialabel(element);
+                        break;
+
                     case "editbox":
                     case "input":
                         i18n.#placeholder(element);
