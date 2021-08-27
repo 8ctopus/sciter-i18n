@@ -27,9 +27,14 @@ tab > div {
     background-color: color(panel);
 }
 
+a,
 label,
 span {
     width: *;
+}
+
+title {
+    display: block;
 }
 
 checkbox#checkbox-label {
@@ -144,7 +149,7 @@ document.on("ready", function() {
     // i18next config
     const config = {
         // i18n logging
-        logging: false,
+        logging: true,
 
         // debug i18next
         debug: false,
@@ -240,6 +245,8 @@ document.on("click", "button", function(event, element) {
             <h2 data-i18n>h2</h2>
             <h3 data-i18n>h3</h3>
             <p data-i18n>p</p>
+            <title data-i18n>title</title>
+            <a data-i18n>a</a>
             <span data-i18n>span</span>
             <label data-i18n>label</label>
             <ol>

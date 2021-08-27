@@ -101,6 +101,7 @@ export class i18n
 
             elements.forEach(function(element) {
                 switch (element.tag) {
+                    case "a":
                     case "button":
                     case "caption":
                     case "checkbox":
@@ -119,6 +120,7 @@ export class i18n
                     case "span":
                     case "textarea":
                     case "th":
+                    case "title":
                     case "td":
                         if (element.innerHTML.indexOf("<") === -1)
                             i18n.#innerText(element);
