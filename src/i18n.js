@@ -116,8 +116,9 @@ export class i18n
                     case "li":
                     case "option":
                     case "p":
-                    case "radio":
+                    case "a":
                     case "span":
+                    case "radio":
                     case "textarea":
                     case "th":
                     case "title":
