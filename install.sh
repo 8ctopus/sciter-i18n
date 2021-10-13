@@ -20,5 +20,5 @@ chmod +x scapp inspector.app libsciter.dylib
 
 cd ..
 
-# sciter package manager 0.2.0
-curl -LO https://github.com/8ctopus/sciter-package-manager/releases/download/0.2.0/spm.phar
+# sciter package manager 0.2.1
+curl -LO https://github.com/8ctopus/sciter-package-manager/releases/download/0.2.1/spm.phar
