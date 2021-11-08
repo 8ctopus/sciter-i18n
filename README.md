@@ -4,6 +4,7 @@ A translation engine for [sciter.js](https://sciter.com/) on top of [i18next](ht
 
 ![sciter i18n screenshot](screenshot.png)
 
+*IMPORTANT NOTE* From 4.4.8.14, sciter.js offers [native translation support](https://github.com/c-smile/sciter-js-sdk/blob/main/docs/md/reactor/JSX-i18n.md).
 ## demo
 
 - git clone the repository
