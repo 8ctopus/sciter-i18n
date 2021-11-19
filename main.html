@@ -120,7 +120,7 @@ logger.attach();
 // capture unhandled exceptions
 logger.capture();
 
-document.on("ready", function() {
+document.ready = function() {
     // subscribe to logger messages
     logger.plaintext(document.$("plaintext#logger"));
 
@@ -182,7 +182,7 @@ document.on("ready", function() {
     dialogs.setOptions({
         callback: dialogCallback,
     });
-});
+}
 
 /**
  * Dialog callback
