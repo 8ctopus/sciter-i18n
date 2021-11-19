@@ -118,26 +118,29 @@ logger.init();
 logger.attach();
 
 // capture unhandled exceptions
-logger.capture();
+logger.capture(unhandledExceptionHandler);
 
 document.ready = function() {
     // subscribe to logger messages
     logger.plaintext(document.$("plaintext#logger"));
 
+    // log sciter version
+    console.debug(utils.sciterInfo());
+
     // add support for F5 reload
     utils.addReloadWindow();
 
     // close window on escape key press
-    utils.closeWindowOnEscape();
+    utils.closeWindowOnEscape(Window.this);
 
     // center window on screen
-    utils.centerWindow("screen");
+    utils.centerWindow(Window.this, "screen");
 
     // bring window to front
-    utils.windowToFront();
+    //utils.windowToFront(Window.this);
 
-    // log sciter version
-    console.debug(utils.sciterInfo());
+    // bring window to front and set input focus
+    Window.this.activate(true);
 
     // initialize translation engine
     const locale = "fr";
@@ -234,6 +237,17 @@ document.on("click", "button", function(event, element) {
 
     console.debug("return value: " + value);
 });
+
+/**
+ * Unhandled exception handler
+ * @param  Error|String e
+ * @return void
+ */
+function unhandledExceptionHandler(e)
+{
+    // log exception using exception if it exists, error otherwise
+    typeof console.exception === "function" ? console.exception(e) : console.error(e);
+}
 
 </script>
 </head>
