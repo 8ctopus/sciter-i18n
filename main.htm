@@ -7,9 +7,9 @@
 <title>sciter i18n demo</title>
 <style>
 
-@import url(vendor/8ctopus/sciter-pagecontrol/src/pagecontrol.css);
-@import url(vendor/8ctopus/sciter-fontawesome/src/fontawesome.css);
-@import url(vendor/8ctopus/sciter-logger/src/logger.css);
+@import url(node_modules/sciter-pagecontrol/src/pagecontrol.css);
+@import url(node_modules/sciter-fontawesome/src/fontawesome.css);
+@import url(node_modules/sciter-logger/src/logger.css);
 @import url(css/controls.css);
 @import url(css/std-menu.css);
 @import url(css/menu-bar.css);
@@ -105,39 +105,36 @@ th, td {
 </style>
 <script type="module">
 
-import {logger} from "vendor/8ctopus/sciter-logger/src/logger.js";
-import {dialogs} from "vendor/8ctopus/sciter-dialogs/src/dialogs.js";
-import * as utils from "vendor/8ctopus/sciter-utils/src/utils.js";
+import Logger from "node_modules/sciter-logger/src/logger.js";
+import Dialogs from "node_modules/sciter-dialogs/src/dialogs.js";
+import * as Utils from "node_modules/sciter-utils/src/utils.js";
 
 import {i18n} from "src/i18n.js";
 
 // initialize logger
-logger.init();
+Logger.init();
 
 // attach logger to console
-logger.attach();
+Logger.attach();
 
 // capture unhandled exceptions
-logger.capture(unhandledExceptionHandler);
+Logger.capture();
 
-document.ready = function() {
+document.on("ready", function() {
     // subscribe to logger messages
-    logger.plaintext(document.$("plaintext#logger"));
+    Logger.plaintext(document.$("plaintext#logger"));
 
     // log sciter version
-    console.debug(utils.sciterInfo());
+    console.debug(Utils.sciterInfo());
 
     // add support for F5 reload
-    utils.addReloadWindow();
+    Utils.addReloadWindow();
 
     // close window on escape key press
-    utils.closeWindowOnEscape(Window.this);
+    Utils.closeWindowOnEscape(Window.this);
 
     // center window on screen
-    utils.centerWindow(Window.this, "screen");
-
-    // bring window to front
-    //utils.windowToFront(Window.this);
+    Utils.centerWindow(Window.this, "screen");
 
     // bring window to front and set input focus
     Window.this.activate(true);
@@ -182,10 +179,10 @@ document.ready = function() {
     });
 
     // set dialogs translation callback
-    dialogs.setOptions({
+    Dialogs.setOptions({
         callback: dialogCallback,
     });
-}
+});
 
 /**
  * Dialog callback
@@ -206,20 +203,20 @@ document.on("click", "button", function(event, element) {
 
     switch (element.id) {
         case "info":
-            value = dialogs.show("info", i18n.m("Widget update successful."), "ok");
+            value = Dialogs.show("info", i18n.m("Widget update successful."), "ok");
             break;
 
         case "error":
-            value = dialogs.show("error", i18n.m("Widget failed with error {{error_number}}.", { error_number: 18 }), "ok help[https://duckduckgo.com]");
+            value = Dialogs.show("error", i18n.m("Widget failed with error {{error_number}}.", { error_number: 18 }), "ok help[https://duckduckgo.com]");
             break;
 
         case "warning":
             // get message using namespace:key and default message
-            value = dialogs.show("warning", i18n.m("messages:no-update", "Widget could not be updated."), "ok");
+            value = Dialogs.show("warning", i18n.m("messages:no-update", "Widget could not be updated."), "ok");
             break;
 
         case "question":
-            value = dialogs.show("question", i18n.m("messages:update-question", "Do you want to update widget?"), "yes no cancel");
+            value = Dialogs.show("question", i18n.m("messages:update-question", "Do you want to update widget?"), "yes no cancel");
             break;
 
         case "file":
@@ -237,17 +234,6 @@ document.on("click", "button", function(event, element) {
 
     console.debug("return value: " + value);
 });
-
-/**
- * Unhandled exception handler
- * @param  Error|String e
- * @return void
- */
-function unhandledExceptionHandler(e)
-{
-    // log exception using exception if it exists, error otherwise
-    typeof console.exception === "function" ? console.exception(e) : console.error(e);
-}
 
 </script>
 </head>

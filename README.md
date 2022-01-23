@@ -2,29 +2,40 @@
 
 A translation engine for [sciter.js](https://sciter.com/) on top of [i18next](https://www.i18next.com/).
 
-![sciter i18n screenshot](screenshot.png)
+![sciter i18n screenshot](https://github.com/8ctopus/sciter-i18n/raw/master/screenshot.png)
 
 *IMPORTANT NOTE* From 4.4.8.14, sciter.js offers [native translation support](https://github.com/c-smile/sciter-js-sdk/blob/main/docs/md/reactor/JSX-i18n.md).
 
 ## demo
 
 - git clone the repository
-- on Linux/Mac `chmod +x install.sh start.sh`
-- run `install.bat` (Win) or `./install.sh` (Linux/Mac) to download the latest sciter binaries and the sciter package manager
-- install packages `php bin/spm.phar install`
-- run `start.bat` (Win) or `./start.sh` (Linux/Mac)
+- install packages `npm install`
+- install latest sciter sdk `npm run install-sdk`
+- start the demo `npm run scapp`
 
-## install
+## demo requirements
 
-- add the `src` dir to your project or use the sciter package manager
+- A recent version of Node.js `node` (tested with 16 LTS) and its package manager `npm`.
+    - On Windows [download](https://nodejs.dev/download/) and run the installer
+    - On Linux check the [installation guide](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04#option-2-%E2%80%94-installing-node-js-with-apt-using-a-nodesource-ppa)
+
+## add to your project
+
+### using npm
+
+- install package `npm install sciter-i18n`
+
+### copy source
+
+- add the `src` dir to your project
 - in `<script type="module">`
 
 ```js
 import {i18n} from "src/i18n.js";
 
 document.on("ready", function() {
-    const locale  = "fr";
-    const file    = URL.toPath(__DIR__ + `locales/${locale}.json`);
+    const locale = "fr";
+    const file   = URL.toPath(__DIR__ + `locales/${locale}.json`);
     const config = {
         // i18n logging
         logging: true,

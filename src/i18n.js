@@ -1,4 +1,4 @@
-import i18next from "../vendor/i18next/i18next/src/index.js";
+import i18next from "../node_modules/i18next/dist/esm/i18next.bundled.js";
 
 export class i18n
 {
