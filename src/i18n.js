@@ -1,4 +1,5 @@
-import i18next from "../node_modules/i18next/dist/esm/i18next.bundled.js";
+// import path does not allow to import from app root dir
+//import i18next from "/node_modules/i18next/dist/esm/i18next.bundled.js";
 
 export default class I18n {
     static #init = false;
@@ -19,7 +20,7 @@ export default class I18n {
      * @returns {boolean} true on success, false otherwise
      * @note use URL.toPath() for url
      */
-    static init(locale, url, config) {
+    static async init(locale, url, config) {
         this.#logging = config.logging || false;
         this.#defaultValue = (config.defaultValue !== undefined) ? config.defaultValue : " (i18n)";
 
@@ -43,9 +44,9 @@ export default class I18n {
         }
 
         // init translation system
-        this.#i18next = i18next;
+        this.#i18next = await import("../node_modules/i18next/dist/esm/i18next.bundled.js");
 
-        i18next.init({
+        this.#i18next.init({
             // i18next debugging
             debug: false,
 
