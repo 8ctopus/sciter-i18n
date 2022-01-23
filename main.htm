@@ -109,7 +109,7 @@ import Logger from "node_modules/sciter-logger/src/logger.js";
 import Dialogs from "node_modules/sciter-dialogs/src/dialogs.js";
 import * as Utils from "node_modules/sciter-utils/src/utils.js";
 
-import {i18n} from "src/i18n.js";
+import I18n from "src/i18n.js";
 
 // initialize logger
 Logger.init();
@@ -166,15 +166,15 @@ document.on("ready", function() {
         }
     };
 
-    if (i18n.init(locale, path, config))
+    if (I18n.init(locale, path, config))
         console.debug("i18n init - OK");
 
     // translate window
-    i18n.i18n(document);
+    I18n.i18n(document);
 
     // test interpolation
-    document.$("h1#h1").innerText = i18n.m("interpolation:h1", "");
-    document.$("h1#h2").innerText = i18n.m("Widget failed with error {{error_number}}.", {
+    document.$("h1#h1").innerText = I18n.m("interpolation:h1", "");
+    document.$("h1#h2").innerText = I18n.m("Widget failed with error {{error_number}}.", {
         error_number: 18,
     });
 
@@ -194,7 +194,7 @@ function dialogCallback(root)
     console.debug("dialog callback");
 
     // translate dialog
-    i18n.i18n(root);
+    I18n.i18n(root);
 }
 
 // set dialog buttons on click event
@@ -203,28 +203,28 @@ document.on("click", "button", function(event, element) {
 
     switch (element.id) {
         case "info":
-            value = Dialogs.show("info", i18n.m("Widget update successful."), "ok");
+            value = Dialogs.show("info", I18n.m("Widget update successful."), "ok");
             break;
 
         case "error":
-            value = Dialogs.show("error", i18n.m("Widget failed with error {{error_number}}.", { error_number: 18 }), "ok help[https://duckduckgo.com]");
+            value = Dialogs.show("error", I18n.m("Widget failed with error {{error_number}}.", { error_number: 18 }), "ok help[https://duckduckgo.com]");
             break;
 
         case "warning":
             // get message using namespace:key and default message
-            value = Dialogs.show("warning", i18n.m("messages:no-update", "Widget could not be updated."), "ok");
+            value = Dialogs.show("warning", I18n.m("messages:no-update", "Widget could not be updated."), "ok");
             break;
 
         case "question":
-            value = Dialogs.show("question", i18n.m("messages:update-question", "Do you want to update widget?"), "yes no cancel");
+            value = Dialogs.show("question", I18n.m("messages:update-question", "Do you want to update widget?"), "yes no cancel");
             break;
 
         case "file":
-            value = Window.this.selectFile(i18n.m("Select file"));
+            value = Window.this.selectFile(I18n.m("Select file"));
             break;
 
         case "folder":
-            value = Window.this.selectFolder(i18n.m("Select folder"));
+            value = Window.this.selectFolder(I18n.m("Select folder"));
             break;
 
         default:

@@ -31,7 +31,7 @@ A translation engine for [sciter.js](https://sciter.com/) on top of [i18next](ht
 - in `<script type="module">`
 
 ```js
-import {i18n} from "src/i18n.js";
+import I18n from "src/i18n.js";
 
 document.on("ready", function() {
     const locale = "fr";
@@ -45,11 +45,11 @@ document.on("ready", function() {
     };
 
     // initialize translation engine
-    if (i18n.init(locale, file, config)) {
+    if (I18n.init(locale, file, config)) {
         console.log("i18n init - OK");
 
         // translate window
-        i18n.i18n(document);
+        I18n.i18n(document);
     }
 });
 ```
@@ -80,10 +80,10 @@ document.on("ready", function() {
 
 ```js
 // with 2 arguments, first serves as key, second as default value (better option)
-let message = i18n.m("no-update", "Widget could not be updated.");
+let message = I18n.m("no-update", "Widget could not be updated.");
 
 // with a single argument, it's both the key and the default value
-let message = i18n.m("Widget could not be updated.");
+let message = I18n.m("Widget could not be updated.");
 ```
 
 ## interpolation
@@ -91,7 +91,7 @@ let message = i18n.m("Widget could not be updated.");
 The basics
 
 ```js
-let message = i18n.m("Widget failed with error {{error_number}}.", { eror_number: 18 });
+let message = I18n.m("Widget failed with error {{error_number}}.", { eror_number: 18 });
 ```
 
 Interpolation can also be set at initialization to apply to all translations.
@@ -106,9 +106,9 @@ const config = {
     },
 };
 
-i18n.init(locale, path, config);
+I18n.init(locale, path, config);
 
-let message = i18n.m("My name is {{name}} and I'm from {{country}}.");
+let message = I18n.m("My name is {{name}} and I'm from {{country}}.");
 ```
 
 ## todo

@@ -1,6 +1,6 @@
 import i18next from "../node_modules/i18next/dist/esm/i18next.bundled.js";
 
-export class i18n
+export default class I18n
 {
     static #init = false;
 
@@ -123,21 +123,21 @@ export class i18n
                     case "title":
                     case "td":
                         if (element.innerHTML.indexOf("<") === -1)
-                            i18n.#innerText(element);
+                            I18n.#innerText(element);
                         else
-                            i18n.#innerHtml(element);
+                            I18n.#innerHtml(element);
 
-                        i18n.#arialabel(element);
+                        I18n.#arialabel(element);
 
                         break;
 
                     case "window-button":
-                        i18n.#arialabel(element);
+                        I18n.#arialabel(element);
                         break;
 
                     case "editbox":
                     case "input":
-                        i18n.#placeholder(element);
+                        I18n.#placeholder(element);
                         break;
 
                     case "select":
@@ -145,16 +145,16 @@ export class i18n
                         const child = element.$("caption");
 
                         if (child !== null)
-                            i18n.#innerText(child);
+                            I18n.#innerText(child);
 
                         break;
 
                     case "plaintext":
-                        i18n.#plaintext(element);
+                        I18n.#plaintext(element);
                         break;
 
                     case "htmlarea":
-                        i18n.#htmlarea(element);
+                        I18n.#htmlarea(element);
                         break;
 
                     default:
