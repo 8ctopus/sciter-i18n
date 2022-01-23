@@ -1,7 +1,6 @@
 import i18next from "../node_modules/i18next/dist/esm/i18next.bundled.js";
 
-export default class I18n
-{
+export default class I18n {
     static #init = false;
 
     static #i18next;
@@ -14,19 +13,18 @@ export default class I18n
 
     /**
      * Initialize engine
-     * @param string locale
-     * @param string url - url or path to locale
-     * @param object (optional) config - i18next config https://www.i18next.com/overview/configuration-options
-     * @return bool true on success, false otherwise
+     * @param {string} locale
+     * @param {string} url - url or path to locale
+     * @param {object} config - (optional) i18next config https://www.i18next.com/overview/configuration-options
+     * @returns {boolean} true on success, false otherwise
      * @note use URL.toPath() for url
      */
-    static init(locale, url, config)
-    {
-        this.#logging      = config.logging || false;
+    static init(locale, url, config) {
+        this.#logging = config.logging || false;
         this.#defaultValue = (config.defaultValue !== undefined) ? config.defaultValue : " (i18n)";
 
         // get url content
-        let result = fetch(url, {sync: true});
+        const result = fetch(url, {sync: true});
 
         if (!result.ok) {
             console.error(`i18n init - FAILED - fetch - ${result.status} - ${url}`);
@@ -38,8 +36,9 @@ export default class I18n
 
         try {
             json = result.json();
-        } catch (e) {
-            console.error(`i18n init - FAILED - json - ${e.message} - ${e.stack}`);
+        }
+        catch (error) {
+            console.error(`i18n init - FAILED - json - ${error.message} - ${error.stack}`);
             return false;
         }
 
@@ -63,7 +62,7 @@ export default class I18n
             },
 
             ...config,
-        }, (error, t) => {
+        }, (error, _t) => {
             // callback when initialization is complete
             if (!error)
                 this.#init = true;
@@ -76,30 +75,28 @@ export default class I18n
 
     /**
      * Translate element and children
-     * @param element
-     * @return void
+     * @param {Element} element
      */
-    static i18n(element)
-    {
+    static i18n(element) {
         try {
             // check that class was initialized
             if (!this.#init)
                 return;
 
             if (this.#logging) {
-                this.#timer      = new Date();
+                this.#timer = new Date();
                 this.#translated = 0;
-                this.#missing    = [];
+                this.#missing = [];
             }
 
             // get all children elements to translate
-            let elements = element.$$("[data-i18n]");
+            const elements = element.$$("[data-i18n]");
 
             // add root element if it needs translation
             if (element.hasAttribute("data-i18n"))
                 elements.push(element);
 
-            elements.forEach(function(element) {
+            for (const element of elements) {
                 switch (element.tag) {
                     case "a":
                     case "button":
@@ -122,7 +119,7 @@ export default class I18n
                     case "th":
                     case "title":
                     case "td":
-                        if (element.innerHTML.indexOf("<") === -1)
+                        if (!element.innerHTML.includes("<"))
                             I18n.#innerText(element);
                         else
                             I18n.#innerHtml(element);
@@ -140,7 +137,7 @@ export default class I18n
                         I18n.#placeholder(element);
                         break;
 
-                    case "select":
+                    case "select": {
                         // get select caption
                         const child = element.$("caption");
 
@@ -148,6 +145,7 @@ export default class I18n
                             I18n.#innerText(child);
 
                         break;
+                    }
 
                     case "plaintext":
                         I18n.#plaintext(element);
@@ -161,35 +159,33 @@ export default class I18n
                         console.warn(`i18n - unknown element - ${element.tag}`);
                         break;
                 }
-            });
+            }
 
             if (this.#logging) {
-                this.#timer = new Date() - this.#timer;
+                this.#timer = Date.now() - this.#timer;
 
-                let total = this.#translated + this.#missing.length;
+                const total = this.#translated + this.#missing.length;
 
-                let percentage = Math.round(this.#translated / total * 100, 1);
+                const percentage = Math.round(this.#translated / total * 100, 1);
 
                 console.log(`i18n translate - OK - ${this.#translated} / ${total} (${percentage}%) - ${this.#timer} ms`);
 
-                this.#missing.forEach(function(key) {
+                for (const key of this.#missing)
                     console.log(`i18n missing - ${key}`);
-                });
             }
         }
-        catch (e) {
-            console.error(`i18n exception - ${e.message} - ${e.stack}`);
+        catch (error) {
+            console.error(`i18n exception - ${error.message} - ${error.stack}`);
         }
     }
 
     /**
      * Get message translation
-     * @param string (optional) key
-     * @param string text - default text
-     * @return string translation or original text if the translation does not exist
+     * @param {string} key - (optional)
+     * @param {string} text - default text
+     * @returns {string} translation or original text if the translation does not exist
      */
-    static m()
-    {
+    static m() {
         // check that class was initialized
         if (!this.#init)
             return arguments.length === 1 ? arguments[0] : arguments[1];
@@ -203,30 +199,27 @@ export default class I18n
                 if (typeof arguments[1] === "string")
                     // first argument is key, second is default text
                     return this.#t(arguments[0], arguments[1]);
-                else
                 if (typeof arguments[1] === "object")
                     // first argument is key, second is interpolation
                     return this.#t(arguments[0], "", arguments[1]);
-                else {
-                    console.error(`i18n::m unknown second argument`);
-                    return "";
-                }
+
+                console.error("i18n::m unknown second argument");
+                return "";
 
             default:
-                console.error(`i18n::m expects 1 or 2 arguments`);
+                console.error("i18n::m expects 1 or 2 arguments");
                 return "";
         }
     }
 
     /**
      * Get translation
-     * @param string data - data-i18n attribute value
-     * @param string text - text to translate
-     * @param object interpolation - interpolation
-     * @return string - translated text
+     * @param {string} data - data-i18n attribute value
+     * @param {string} text - text to translate
+     * @param {object} interpolation - interpolation
+     * @returns {string} - translated text
      */
-    static #t(data, text, interpolation)
-    {
+    static #t(data, text, interpolation) {
         // do not translate numbers
         if (this.#isNumeric(text))
             return text;
@@ -240,7 +233,7 @@ export default class I18n
 
         let key;
 
-        if (data.length)
+        if (data.length > 0)
             key = data;
         else {
             key = text;
@@ -268,27 +261,23 @@ export default class I18n
 
     /**
      * Translate inner text
-     * @param element
-     * @return void
+     * @param {Element} element
      */
-    static #innerText(element)
-    {
-        const str = element.innerText.trim();
+    static #innerText(element) {
+        const str = element.textContent.trim();
 
         // do not translate empty and numeric strings if data-18n is not set
         if (!element.attributes["data-i18n"] && (str === "" || this.#isNumeric(str)))
             return;
 
-        element.innerText = this.#t(element.attributes["data-i18n"] ?? "", str);
+        element.textContent = this.#t(element.attributes["data-i18n"] ?? "", str);
     }
 
     /**
      * Translate inner html
-     * @param element
-     * @return void
+     * @param {Element} element
      */
-    static #innerHtml(element)
-    {
+    static #innerHtml(element) {
         // iterate over element child nodes
         for (let i = 0; i < element.childNodes.length; ++i) {
             const node = element.childNodes[i];
@@ -311,26 +300,22 @@ export default class I18n
 
     /**
      * Translate placeholder
-     * @param DOMElement element
-     * @return void
+     * @param {Element} element
      */
-    static #placeholder(element)
-    {
+    static #placeholder(element) {
         if (!element.hasAttribute("placeholder"))
             return;
 
         const key = element.attributes["data-i18n"] ? element.attributes["data-i18n"] + "-placeholder" : "";
 
-        element.attributes["placeholder"] = this.#t(key, element.attributes["placeholder"]);
+        element.attributes.placeholder = this.#t(key, element.attributes.placeholder);
     }
 
     /**
      * Translate aria-label
-     * @param DOMElement element
-     * @return void
+     * @param {Element} element
      */
-    static #arialabel(element)
-    {
+    static #arialabel(element) {
         if (!element.hasAttribute("aria-label"))
             return;
 
@@ -341,11 +326,9 @@ export default class I18n
 
     /**
      * Translate plaintext
-     * @param DOMElement element
-     * @return void
+     * @param {Element} element
      */
-    static #plaintext(element)
-    {
+    static #plaintext(element) {
         // sometimes plaintext is undefined for some reason, this fixes it
         if (typeof element.plaintext === "undefined")
             return;
@@ -355,12 +338,10 @@ export default class I18n
 
     /**
      * Translate htmlarea
-     * @param element
-     * @return void
+     * @param {Element} element
      */
-    static #htmlarea(element)
-    {
-        const str = element.innerText.trim();
+    static #htmlarea(element) {
+        const str = element.textContent.trim();
 
         // do not translate empty and numeric strings
         if (!element.attributes["data-i18n"] && (str === "" || this.#isNumeric(str)))
@@ -368,17 +349,17 @@ export default class I18n
 
         element.innerHTML = this.#t(element.attributes["data-i18n"] ?? "", str);
     }
+
     /**
      * Check if string is a number
-     * @param string str
-     * @return true if number, false otherwise
+     * @param {string} str
+     * @returns {boolean} true if number, false otherwise
      * @note https://stackoverflow.com/a/175787/10126479
      */
-    static #isNumeric(str)
-    {
+    static #isNumeric(str) {
         if (typeof str !== "string")
             return false;
 
-        return !isNaN(str) && !isNaN(parseFloat(str))
+        return !Number.isNaN(str) && !Number.isNaN(Number.parseFloat(str));
     }
 }

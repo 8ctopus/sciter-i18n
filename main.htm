@@ -141,8 +141,8 @@ document.on("ready", function() {
 
     // initialize translation engine
     const locale = "fr";
-    const url    = __DIR__ + `locales/${locale}.json`;
-    const path   = URL.toPath(url);
+    const url = __DIR__ + `locales/${locale}.json`;
+    const path = URL.toPath(url);
 
     console.debug(`path ${path}`);
 
@@ -163,7 +163,7 @@ document.on("ready", function() {
                 name: "John",
                 age: 23,
             },
-        }
+        },
     };
 
     if (I18n.init(locale, path, config))
@@ -173,9 +173,9 @@ document.on("ready", function() {
     I18n.i18n(document);
 
     // test interpolation
-    document.$("h1#h1").innerText = I18n.m("interpolation:h1", "");
-    document.$("h1#h2").innerText = I18n.m("Widget failed with error {{error_number}}.", {
-        error_number: 18,
+    document.$("h1#h1").textContent = I18n.m("interpolation:h1", "");
+    document.$("h1#h2").textContent = I18n.m("Widget failed with error {{errorNumber}}.", {
+        errorNumber: 18,
     });
 
     // set dialogs translation callback
@@ -186,11 +186,9 @@ document.on("ready", function() {
 
 /**
  * Dialog callback
- * @param DOMElement root
- * @return void
+ * @param {Element} root
  */
-function dialogCallback(root)
-{
+function dialogCallback(root) {
     console.debug("dialog callback");
 
     // translate dialog
@@ -207,7 +205,7 @@ document.on("click", "button", function(event, element) {
             break;
 
         case "error":
-            value = Dialogs.show("error", I18n.m("Widget failed with error {{error_number}}.", { error_number: 18 }), "ok help[https://duckduckgo.com]");
+            value = Dialogs.show("error", I18n.m("Widget failed with error {{errorNumber}}.", {errorNumber: 18}), "ok help[https://duckduckgo.com]");
             break;
 
         case "warning":
