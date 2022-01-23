@@ -44,7 +44,10 @@ export default class I18n {
         }
 
         // init translation system
-        this.#i18next = await import("../node_modules/i18next/dist/esm/i18next.bundled.js");
+        if (__DIR__.includes("node_modules"))
+            this.#i18next = await import("../../i18next/dist/esm/i18next.bundled.js");
+        else
+            this.#i18next = await import("../node_modules/i18next/dist/esm/i18next.bundled.js");
 
         this.#i18next.init({
             // i18next debugging

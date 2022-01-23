@@ -31,6 +31,10 @@ A translation engine for [sciter.js](https://sciter.com/) on top of [i18next](ht
 - in `<script type="module">`
 
 ```js
+// import from npm package
+import I18n from "node_modules/sciter-i18n/src/i18n.js";
+
+// import from src dir
 import I18n from "src/i18n.js";
 
 document.on("ready", function() {
