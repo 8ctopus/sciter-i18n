@@ -120,3 +120,4 @@ let message = I18n.m("My name is {{name}} and I'm from {{country}}.");
 - i18next file system backend or fetch backend
 - add missing ids to json
 - how to deal with interface refresh?
+- add hjson engine in order to be able to place comments in json
