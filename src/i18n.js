@@ -43,11 +43,17 @@ export default class I18n {
             return false;
         }
 
+        //globalThis.Intl = {};
+
         // init translation system
-        if (__DIR__.includes("node_modules"))
+        if (__DIR__.includes("node_modules")) {
             this.#i18next = await import("../../i18next/dist/esm/i18next.bundled.js");
-        else
+            // npm install intl-pluralrules
+            //globalThis.Intl.PluralRules = await import("../../intl-pluralrules/factory.mjs");
+        } else {
             this.#i18next = await import("../node_modules/i18next/dist/esm/i18next.bundled.js");
+            //globalThis.Intl.PluralRules = await import("../node_modules/intl-pluralrules/factory.mjs");
+        }
 
         this.#i18next.init({
             // i18next debugging
