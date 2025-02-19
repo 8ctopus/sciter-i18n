@@ -15,7 +15,7 @@ _NOTE_: From 4.4.8.14, sciter.js offers [native translation support](https://git
 
 ## demo requirements
 
-- A recent version of Node.js `node` (tested with 16 LTS) and its package manager `npm`.
+- A recent version of Node.js `node` (tested with 22 LTS) and its package manager `npm`.
     - On Windows [download](https://nodejs.dev/download/) and run the installer
     - On Linux check the [installation guide](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04#option-2-%E2%80%94-installing-node-js-with-apt-using-a-nodesource-ppa)
 
@@ -31,15 +31,15 @@ _NOTE_: From 4.4.8.14, sciter.js offers [native translation support](https://git
 - in `<script type="module">`
 
 ```js
-// import from npm package
+// import from npm package (preferred)
 import I18n from "node_modules/sciter-i18n/src/i18n.js";
 
-// import from src dir
+// import from src dir (alternative)
 import I18n from "src/i18n.js";
 
-document.on("ready", function() {
+document.on("ready", async () => {
     const locale = "fr";
-    const file   = URL.toPath(__DIR__ + `locales/${locale}.json`);
+    const file = URL.toPath(__DIR__ + `locales/${locale}.json`);
     const config = {
         // i18n logging
         logging: true,
@@ -49,12 +49,10 @@ document.on("ready", function() {
     };
 
     // initialize translation engine
-    if (I18n.init(locale, file, config)) {
-        console.log("i18n init - OK");
+    await I18n.init(locale, file, config);
 
-        // translate window
-        I18n.i18n(document);
-    }
+    // translate window
+    I18n.i18n(document);
 });
 ```
 
