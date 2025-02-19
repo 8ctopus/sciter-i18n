@@ -120,7 +120,7 @@ Logger.attach();
 // capture unhandled exceptions
 Logger.capture();
 
-document.on("ready", function() {
+document.on("ready", async () => {
     // subscribe to logger messages
     Logger.plaintext(document.$("plaintext#logger"));
 
@@ -170,8 +170,7 @@ document.on("ready", function() {
         //compatibilityJSON: 'v3',
     };
 
-    if (I18n.init(locale, path, config))
-        console.debug("i18n init - OK");
+    await I18n.init(locale, path, config);
 
     // translate window
     I18n.i18n(document);

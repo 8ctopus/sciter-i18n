@@ -68,9 +68,10 @@ export default class I18n {
             ...config,
         }, (error, _t) => {
             // callback when initialization is complete
-            if (!error)
+            if (!error) {
                 this.#init = true;
-            else
+                console.debug('i18n init - OK');
+            } else
                 console.error(`i18n init - FAILED - ${error}`);
         });
 
