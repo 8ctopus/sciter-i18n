@@ -167,7 +167,7 @@ document.on("ready", async () => {
 
         // i18next::pluralResolver: Your environment seems not to be Intl API compatible, use an Intl.PluralRules polyfill.
         // Will fallback to the compatibilityJSON v3 format handling
-        //compatibilityJSON: 'v3',
+        compatibilityJSON: 'v3',
     };
 
     await I18n.init(locale, path, config);
