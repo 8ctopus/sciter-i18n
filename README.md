@@ -46,6 +46,8 @@ document.on("ready", async () => {
 
         // debug i18next
         debug: true,
+
+        compatibilityJSON: 'v3',
     };
 
     // initialize translation engine
