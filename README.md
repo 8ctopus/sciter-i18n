@@ -1,5 +1,8 @@
 # sciter i18n
 
+![latest version](https://img.shields.io/npm/v/sciter-i18n.svg)
+![downloads](https://img.shields.io/npm/dy/sciter-i18n.svg)
+
 A translation engine for [sciter.js](https://sciter.com/) on top of [i18next](https://www.i18next.com/).
 
 ![sciter i18n screenshot](https://github.com/8ctopus/sciter-i18n/raw/master/screenshot.png)
